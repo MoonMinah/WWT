@@ -9,6 +9,9 @@ app.use("/static", express.static(__dirname + "/static"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+const router = require("./routes");
+const { sequelize } = require("./models");
+
 
 const indexRouter = require("./routes");
 app.use("/", indexRouter);
