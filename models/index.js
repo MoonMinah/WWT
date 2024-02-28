@@ -3,6 +3,7 @@
 const Sequelize = require("sequelize");
 const config = require(__dirname + "/../config/config.json")["development"];
 
+
 console.log("config >> " + config);
 const db = {};
 
