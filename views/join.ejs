@@ -2,6 +2,7 @@
 <html lang="ko">
     <%- include('include/head', { title: '회원가입' })%>
     <body>
+        <%- include('include/header')%>
         <H1>What Was Today</H1>
         <form name="form-join">
             <input type="text" name="id" id="id" placeholder="아이디" required />
@@ -11,7 +12,7 @@
             <button type="button" onclick="joinUs()">Join us</button>
         </form>
         <script>
-            joinUs = () => {};
+            const joinUs = () => {};
         </script>
     </body>
 </html>
