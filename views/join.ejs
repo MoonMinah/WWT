@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <%- include('include/head', { title: '회원가입' })%>
+    <body>
+        <%- include('include/header')%>
+        <H1>What Was Today</H1>
+        <form name="form-join">
+            <input type="text" name="id" id="id" placeholder="아이디" required />
+            <input type="password" name="pw" id="pw" placeholder="비밀번호" required />
+            <input type="text" name="nickname" id="nickname" placeholder="닉네임" required />
+            <input type="email" name="email" id="email" placeholder="이메일 주소" required />
+            <button type="button" onclick="joinUs()">Join us</button>
+        </form>
+        <script>
+            const joinUs = () => {};
+        </script>
+    </body>
+</html>
