@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <%- include('include/head', { title: '로그인' })%>
+    <%- include('include/head', { title: 'Login' })%>
     <body>
         <%- include('include/header')%>
-        <h1>What Was Today</h1>
+        <h1 class="H1WWT">What Was Today</h1>
         <form name="form-login">
-            <input type="text" name="id" id="id" placeholder="아이디" required />
-            <input type="password" name="pw" id="pw" placeholder="비밀번호" required />
-            <button type="button" onclick="Login()">Login</button>
+            <input type="text" name="id" id="id" placeholder="아이디" required /> <br />
+            <input type="password" name="pw" id="pw" placeholder="비밀번호" required /> <br />
+            <button class="loginBTN" type="button" onclick="Login()">Login</button>
         </form>
-        <a href="/join">회원가입 하시겠습니까?</a>
+        <a class="loginA" href="/join">회원가입 하시겠습니까?</a>
         <script>
             const Login = () => {};
         </script>
