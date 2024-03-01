@@ -16,7 +16,7 @@ header {
     border-radius: 5%;
     /* padding: 0 10px; */
     position: fixed;
-    right: 930px;
+    right: 695px;
     top: 4px;
 }
 
@@ -25,7 +25,7 @@ header {
     right: 560px;
     font-size: 13px;
     line-height: 90%;
-    margin-left: 18px;
+    margin-left: 11px;
 }
 
 .headerUl {
