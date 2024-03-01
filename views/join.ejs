@@ -1,18 +1,52 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <%- include('include/head', { title: '회원가입' })%>
+    <!-- <%- include('include/head', { title: '회원가입' })%> -->
     <body>
         <%- include('include/header')%>
         <H1>What Was Today</H1>
         <form name="form-join">
-            <input type="text" name="id" id="id" placeholder="아이디" required />
-            <input type="password" name="pw" id="pw" placeholder="비밀번호" required />
-            <input type="text" name="nickname" id="nickname" placeholder="닉네임" required />
-            <input type="email" name="email" id="email" placeholder="이메일 주소" required />
+            <input type="text" name="userID" placeholder="아이디" required />
+            <input type="password" name="userPW" placeholder="비밀번호" required />
+            <input type="text" name="userName" placeholder="이름" required />
+            <input type="text" name="userNickname" placeholder="닉네임" required />
+            <input type="email" name="userEmail" placeholder="이메일 주소" required />
+            <!-- <textarea
+                name=""
+                id=""
+                cols="30"
+                rows="10"
+                placeholder="소개 글을 작성해주세요"
+            ></textarea> -->
             <button type="button" onclick="joinUs()">Join us</button>
         </form>
         <script>
-            const joinUs = () => {};
+            const joinUs = () => {
+                const form = document.forms["form-join"];
+                // if (!form.checkValidity()) {
+                //     form.reportValidity();
+                //     return;
+                // }
+                axios({
+                    url: "/join",
+                    method: "POST",
+                    data: {
+                        userID: form.userID.value,
+                        userPW: form.userPW.value,
+                        userName: form.userName.value,
+                        userNickname: form.userNickname.value,
+                        userEmail: form.userEmail.value,
+                    },
+                })
+                    .then((res) => {
+                        console.log("응답데이터", res.data);
+                        alert("회원가입 성공");
+                        document.location.href = "/login";
+                    })
+                    .catch((err) => {
+                        //console.log("회원가입 오류", err.response.data);
+                        alert("회원가입 실패");
+                    });
+            };
         </script>
     </body>
 </html>

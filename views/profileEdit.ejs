@@ -7,16 +7,79 @@
             <form action="">
                 <div class="profileEditPicture">이미지</div>
                 <button type="button">사진변경</button>
-                <input type="text" placeholder="닉네임" />
-                <textarea
-                    name=""
-                    id=""
+            </form>
+            <form name="form-text">
+                <input type="hidden" name="userID" value="<%=data.userID%>" required />
+                <input type="text" name="userName" value="<%=data.userName%>" required />
+                <br />
+                <input type="text" name="userNickname" value="<%=data.userNickname%>" required />
+                <br />
+                <input type="text" name="userEmail" value="<%=data.userEmail%>" required />
+                <br />
+                <input type="text" name="userPW" placeholder="비밀번호" required />
+                <!-- <textarea
+                    name="userText"
                     cols="30"
                     rows="10"
                     placeholder="소개 글을 작성해주세요"
-                ></textarea>
+                ></textarea> -->
+                <br />
             </form>
-            <button type="button">프로필 편집</button>
+            <button type="button" onclick="logout()">로그아웃</button>
+            <button type="button" onclick="profileEdit()">프로필 편집</button>
+            <button type="button" onclick="deleteUser()">회원탈퇴</button>
         </div>
+
+        <script>
+            function logout() {
+                axios({
+                    url: "/logout",
+                    method: "POST",
+                })
+                    .then(() => {
+                        alert("로그아웃되었습니다.");
+                        document.location.href = "/";
+                    })
+                    .catch((err) => {
+                        console.error("로그아웃 오류:", err);
+                    });
+            }
+
+            function profileEdit() {
+                const form = document.forms["form-text"];
+                axios({
+                    url: "/editUser",
+                    method: "POST",
+                    data: {
+                        userID: form.userID.value,
+                        userPW: form.userPW.value,
+                        userName: form.userName.value,
+                        userNickname: form.userNickname.value,
+                        userEmail: form.userEmail.value,
+                    },
+                })
+                    .then((res) => {
+                        alert("수정완료");
+                        document.location.href = "/profileEdit";
+                    })
+                    .catch((err) => {
+                        alert("수정실패");
+                    });
+            }
+
+            function deleteUser() {
+                const form = document.forms["form-text"];
+                axios({
+                    url: "/deleteUser",
+                    method: "POST",
+                    data: {
+                        userID: form.userID.value,
+                    },
+                }).then(() => {
+                    alert("탈퇴되었습니다.");
+                    document.location.href = "/";
+                });
+            }
+        </script>
     </body>
 </html>
