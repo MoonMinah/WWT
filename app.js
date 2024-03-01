@@ -11,21 +11,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 const router = require("./routes");
 
-
 const indexRouter = require("./routes");
 app.use("/", indexRouter);
 
-//db연동
-db.sequelize.sync({ force: false }).then((result) => {
-    // console.log(result);
-    console.log("DB연결 성공");
-  });
-  
+// //db연동
+// db.sequelize.sync({ force: false }).then((result) => {
+//     // console.log(result);
+//     console.log("DB연결 성공");
+//   });
 
 app.get("*", (req, res) => {
     res.render("404");
 });
-
 
 app.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`);
