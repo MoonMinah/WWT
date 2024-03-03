@@ -2,7 +2,9 @@ body {
     padding-top: 5px;
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
+    overflow: auto;
 }
+/* 해결해야 함!! 스크롤바가 생겼을 때 좌우가 안 맞음.(overflow) */
 
 .H1WWT {
     text-align: center;
