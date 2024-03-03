@@ -3,11 +3,16 @@
     <%- include('include/head', { title: 'What Was Today' })%>
     <body>
         <%- include('include/header')%>
-        <h1>Today's Weather</h1>
-        <p></p>
-        <!-- 날씨 api 받아서 로고 표시 -->
-        <p></p>
-        <!-- 날씨 api 받아서 온도 및 지역 표시 -->
-        <a href="/main">오늘의 코스를 보시겠습니까?</a>
+        <H1 class="H1WWT">Today's Weather</H1>
+        <div class="weather">
+            <p id="weatherLogo"><img src="/static/image/sunny.png" alt="" /></p>
+            <!-- 날씨 api 받아서 로고 표시 -->
+            <div id="weatherInfo">
+                <p id="weatherRegion">서울</p>
+                <p id="weatherTemp">7<span>℃</span></p>
+            </div>
+            <!-- 날씨 api 받아서 온도 및 지역 표시 -->
+            <a href="/main">오늘의 코스를 보시겠습니까?</a>
+        </div>
     </body>
 </html>
