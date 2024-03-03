@@ -1,0 +1,53 @@
+.postEditContainer {
+    width: 30%;
+    margin: 0 auto;
+    /* border: 1px solid blue; */
+}
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    box-shadow: 5px 5px 5px rgb(217, 217, 217);
+    /* border: 1px solid red; */
+    margin-bottom: 30px;
+}
+.inputContainer > input {
+    display: block;
+    width: 94.7%;
+    height: 30px;
+    margin: 0;
+    border: none;
+    border-bottom: 1px solid rgb(217, 217, 217);
+    /* box-shadow: 5px 5px 5px rgb(217, 217, 217); */
+}
+.inputContainer > textarea {
+    border: none;
+    margin-bottom: 10px;
+    /* box-shadow: 5px 5px 5px rgb(217, 217, 217); */
+}
+.inputContainer > button {
+    width: 100%;
+    /* margin-bottom: 15px; */
+    border: none;
+    padding: 10px;
+}
+.inputContainer > button:hover {
+    background-color: #b1b1b1;
+}
+.postEditContainer > button {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    font-weight: bold;
+    font-size: 18px;
+    /* border: 1px solid red; */
+    color: #333;
+    border: 0;
+    box-shadow: 5px 5px 5px rgb(217, 217, 217);
+}
+
+.postEditContainer > button:hover {
+    background-color: #b1b1b1;
+}
