@@ -1,0 +1,112 @@
+/* profile CSS */
+
+.profileInfo {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    margin-top: 40px;
+    /* border: 1px solid black; */
+    /* position: relative; */
+}
+
+.myPageDiv1 {
+    margin-right: 75px;
+    font-size: 13px;
+    position: relative;
+    left: 4px;
+    /* border: 1px solid black; */
+}
+
+.myPageDiv1 .nickname {
+    margin-bottom: 5px;
+    position: relative;
+    top: 10px;
+}
+
+.profilePicture {
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    top: 10px;
+}
+
+/* -------------------------------------------------- */
+
+.myPageDiv2 {
+    margin-left: 70px;
+    margin-right: 15px;
+    /* position: fixed; */
+    /* top: 25px; */
+    /* border: 1px solid black; */
+}
+
+.postCount {
+    margin-bottom: 0;
+    margin-top: 50px;
+    font-size: 12px;
+    color: #555;
+}
+
+.postCountName {
+    margin-top: 3px;
+    font-size: 7px;
+}
+
+/* -------------------------------------------------- */
+/* BTN CSS */
+
+.myPageBTN {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.editBTN,
+.postBTN {
+    background-color: #7d7a7a;
+    color: white;
+    cursor: pointer;
+    width: 100px;
+    border: 1px solid #7c7878;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 9px;
+}
+
+.editBTN:hover,
+.postBTN:hover {
+    background-color: #555;
+}
+
+/* -------------------------------------------------- */
+/* POST CSS */
+.post {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.postLine {
+    /* border: 1px solid black; */
+    width: 150px;
+    margin-top: 20px;
+    /* text-align: center; */
+}
+
+.goEdit {
+    /* display: none; */
+    cursor: pointer;
+    font-size: 10px;
+    text-align: center;
+    color: #7d7d7d;
+    position: absolute;
+    bottom: 0;
+    left: 35%;
+}
+/*글자 가운데 정렬 어떻게 ....?*/
+
+/* .postImg:hover .goEdit {
+    display: block;
+} */

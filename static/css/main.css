@@ -1,0 +1,52 @@
+.postImg {
+    position: relative;
+    border: 2px solid #333; /* 테두리 추가 */
+    padding: 0; /* 내부 여백 추가 */
+    width: 140px;
+    height: auto;
+    margin: 10px;
+
+    /* background-image: url("../image/beach1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat; */
+}
+
+/* #a {
+    background-image: url("../image/beach1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: auto;
+} */
+
+.postImg img {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.postImg .mainImg {
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    bottom: 2px; /* 바닥쪽에 붙임 */
+    left: 3px; /* 왼쪽에 붙임 */
+}
+
+.postImg .mainNickname {
+    position: absolute;
+    bottom: 0; /* 바닥쪽에 붙임 */
+    left: 22px;
+    font-size: 10px;
+    color: #555555;
+}
+
+.postImg .mainPostTitle {
+    position: absolute;
+    bottom: 0;
+    left: 80px;
+    font-size: 10px;
+    color: #555555;
+}
