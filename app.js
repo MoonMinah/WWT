@@ -14,7 +14,6 @@ const router = require("./routes");
 const indexRouter = require("./routes");
 app.use("/", indexRouter);
 
-//db연동
 // db.sequelize.sync({ force: false }).then((result) => {
 //     // console.log(result);
 //     console.log("DB연결 성공");
