@@ -2,12 +2,37 @@ const express = require("express");
 const app = express();
 const PORT = 8000;
 const db = require("./models");
+const multer = require("multer");
+const upload = multer({
+    dest: "img/",
+});
+
+const uploadDetail = multer({
+    storage: multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, "img/"); // 저장될 파일 경로 설정
+        },
+        filename: function (req, file, cb) {
+            const ext = path.extname(file.originalname); // 확장자를 담는 코드
+
+            cb(null, path.basename(file.originalname, ext) + ext);
+        },
+    }),
+    limits: { fileSize: 5 * 1024 * 1024 },
+});
+
+// multer 디테일 설정
+// limits : 파일 제한 설정
+// diskStorage : 파일을 디스크에 저장하기 위한 모든 제어 기능을 제공
+// destination : 저장할 경로
+// filename : 파일명
+
 const session = require("express-session");
 
 app.set("views", "./views");
 app.set("view engine", "ejs");
 app.use("/static", express.static(__dirname + "/static"));
-
+app.use("/img", express.static(__dirname + "/img"));
 app.use(
     session({
         secret: "secretKey",
