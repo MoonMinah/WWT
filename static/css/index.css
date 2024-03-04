@@ -46,6 +46,7 @@ body {
     /* border: 1px solid gray; */
     border-radius: 50px;
     box-shadow: 5px 5px 5px rgb(207, 207, 207);
+    border: 1px solid rgb(215, 215, 215);
 }
 /* header */
 header {
@@ -58,6 +59,7 @@ header {
     left: 0;
     right: 0;
     width: 100%;
+    z-index: 1;
 }
 .headerUl .logo {
     /* border: 1px solid white; */
@@ -119,6 +121,7 @@ header {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    margin-top: 8vmax;
 }
 #weatherInfo #weatherRegion {
     /* border: 1px solid red; */
@@ -138,37 +141,12 @@ header {
     text-align: center;
     margin: 0 auto;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 1.2vmax;
     /* border: 1px solid red; */
     color: #333;
 }
 
 /* main */
-.mainPost li {
-    display: inline-block;
-}
-
-.mainPost .mainPostProfile {
-    width: 15px;
-    height: 15px;
-    border: 1px solid black;
-    border-radius: 50%;
-}
-
-.mainPost .mainPostNickname {
-    position: absolute;
-    bottom: 0; /* 바닥쪽에 붙임 */
-    left: 22px;
-    font-size: 10px;
-    color: #555555;
-}
-.mainPost .mainPostTitle {
-    position: absolute;
-    bottom: 0;
-    left: 80px;
-    font-size: 10px;
-    color: #555555;
-}
 
 /* login & join */
 form {
@@ -215,6 +193,7 @@ input[type="email"] {
     flex-direction: row;
     text-align: center;
     justify-content: center;
+    align-items: center;
     margin-top: 40px;
     /* border: 1px solid black; */
     /* position: relative; */
@@ -222,7 +201,8 @@ input[type="email"] {
 
 .myPageDiv1 {
     margin-right: 75px;
-    font-size: 13px;
+    font-size: 15px;
+    font-weight: bold;
     position: relative;
     left: 4px;
     /* border: 1px solid black; */
@@ -242,39 +222,44 @@ input[type="email"] {
 .myPagePostCount {
     margin-bottom: 0;
     margin-top: 50px;
-    font-size: 12px;
+    font-size: 2vmax;
     color: #555;
 }
 
 .myPagePostCountName {
     margin-top: 3px;
     font-size: 7px;
+    font-size: 0.5vmax;
 }
-
-/* -------------------------------------------------- */
 /* BTN CSS */
-
 .myPageBTN {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin: 20px auto;
+    width: 18%;
+    border: 1px solid rgb(215, 215, 215);
 }
 
 .myPageEditBTN,
 .myPagePostBTN {
-    background-color: #7d7a7a;
-    color: white;
-    cursor: pointer;
-    width: 100px;
-    border: 1px solid #7c7878;
-    margin-left: 20px;
-    margin-right: 20px;
-    font-size: 9px;
+    display: block;
+    width: 100%;
+
+    padding: 10px 0;
+    text-align: center;
+    margin: 0 auto;
+    font-weight: bold;
+    font-size: 10px;
+    /* border: 1px solid red; */
+    color: #333;
+    border: 0;
+    box-shadow: 5px 5px 5px rgb(217, 217, 217);
 }
 
 .myPageEditBTN:hover,
 .myPagePostBTN:hover {
-    background-color: #555;
+    background-color: #b1b1b1;
+    color: rgb(238, 237, 237);
 }
 .myPageGoEdit {
     /* display: none; */
@@ -331,9 +316,9 @@ input[type="email"] {
 .inputContainer {
     display: flex;
     flex-direction: column;
-
     justify-content: center;
     box-shadow: 5px 5px 5px rgb(217, 217, 217);
+    border: 1px solid rgb(215, 215, 215);
     /* border: 1px solid red; */
     margin-bottom: 30px;
 }
@@ -341,21 +326,26 @@ input[type="email"] {
     display: block;
     width: 94.7%;
     height: 30px;
-    margin: 0;
+    margin: 0 auto;
     border: none;
     border-bottom: 1px solid rgb(217, 217, 217);
     /* box-shadow: 5px 5px 5px rgb(217, 217, 217); */
 }
+.inputContainer #postEditTitle {
+    margin-top: 5px;
+}
 .inputContainer > textarea {
+    margin: 0 auto;
     border: none;
+    width: 97.5%;
     margin-bottom: 10px;
     /* box-shadow: 5px 5px 5px rgb(217, 217, 217); */
 }
 .inputContainer > button {
     width: 100%;
-    /* margin-bottom: 15px; */
     border: none;
     padding: 10px;
+    /* border: 1px solid rgb(215, 215, 215); */
 }
 .inputContainer > button:hover {
     background-color: #b1b1b1;
@@ -371,6 +361,7 @@ input[type="email"] {
     color: #333;
     border: 0;
     box-shadow: 5px 5px 5px rgb(217, 217, 217);
+    border: 1px solid rgb(215, 215, 215);
 }
 .postEditContainer > button:hover {
     background-color: #b1b1b1;
@@ -378,12 +369,14 @@ input[type="email"] {
 
 /* profile edit */
 .profileEditContainer {
+    padding-top: 50px;
     width: 30%;
     margin: 0px auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     box-shadow: 5px 5px 5px rgb(217, 217, 217);
+    border: 1px solid rgb(215, 215, 215);
     /* border: 1px solid red; */
     margin-bottom: 30px;
 }
@@ -394,33 +387,40 @@ input[type="email"] {
     justify-content: space-between;
     padding: 30px 0;
 }
+#form-icon {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
 .profileEditIcon {
     width: 100px;
     height: 100px;
     /* border: 1px solid gray; */
     border-radius: 50px;
     box-shadow: 5px 5px 5px rgb(207, 207, 207);
+    border: 1px solid rgb(215, 215, 215);
     background-color: white;
 }
-.profileEditImgChange > button {
+#profileEditIconBTN {
     border: none;
     padding: 20px;
     height: 30px;
     background-color: rgb(248, 248, 248);
     /* border-radius: 10px; */
     box-shadow: 5px 5px 5px rgb(207, 207, 207);
+    border: 1px solid rgb(215, 215, 215);
     color: #3c3c3c;
     line-height: 0px;
 }
-.profileEditImgChange > button:hover {
+#profileEditIconBTN:hover {
     background-color: #b1b1b1;
     color: rgb(248, 248, 248);
 }
 .profileEditContainer form > input {
     display: block;
-    width: 93%;
+    width: 90%;
     height: 30px;
-    margin: 0;
+    margin: 0 auto;
     border: none;
     border-bottom: 1px solid rgb(217, 217, 217);
     /* box-shadow: 5px 5px 5px rgb(217, 217, 217); */

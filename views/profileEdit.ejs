@@ -4,9 +4,11 @@
     <body>
         <%- include('include/header')%>
         <div class="profileEditContainer">
-            <form action="">
-                <div class="profileEditPicture">이미지</div>
-                <button type="button">사진변경</button>
+            <form action="" id="form-icon">
+                <div class="profileEditIcon"><img src="" alt="" /></div>
+                <button type="button" id="profileEditIconBTN" onclick="imgChange()">
+                    사진변경
+                </button>
             </form>
             <form name="form-text">
                 <input type="hidden" name="userID" value="<%=data.userID%>" required />
@@ -80,6 +82,10 @@
                     document.location.href = "/";
                 });
             }
+
+            // function imgChange() {
+            //     const
+            // }
         </script>
     </body>
 </html>
