@@ -25,12 +25,18 @@ const router = require("./routes");
 const indexRouter = require("./routes");
 app.use("/", indexRouter);
 
+<<<<<<< Updated upstream
 //db연동
+=======
+>>>>>>> Stashed changes
 db.sequelize.sync({ force: false }).then((result) => {
     // console.log(result);
     console.log("DB연결 성공");
 });
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
 app.get("*", (req, res) => {
     res.render("404");
