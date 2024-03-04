@@ -4,6 +4,7 @@ const PORT = 8000;
 const db = require("./models");
 const session = require("express-session");
 const multer = require("multer");
+const path = require("path");
 const upload = multer({
     dest: "img/",
 });
