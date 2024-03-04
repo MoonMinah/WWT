@@ -1,0 +1,57 @@
+body {
+    padding-top: 5px;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    overflow: auto;
+}
+/* 해결해야 함!! 스크롤바가 생겼을 때 좌우가 안 맞음.(overflow) */
+
+.H1WWT {
+    text-align: center;
+    margin-top: 90px;
+    margin-bottom: 30px;
+}
+/* form style */
+form {
+    margin-top: 20px; /* Example margin from the header */
+    text-align: center; /* Align form elements at the center */
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+.loginBTN,
+.joinBTN {
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    /* border-radius: 5px; */
+    border: 2px solid #333;
+    width: 180px;
+}
+
+.loginBTN,
+.joinBTN {
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    width: 203px;
+    border: 2px solid #333;
+}
+
+.loginBTN:hover,
+.joinBTN:hover {
+    background-color: #555;
+}
+
+/* Link styles */
+.loginA {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+.loginA:hover {
+    color: #555;
+}

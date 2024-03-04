@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <%- include('include/head', { title: '로그인' })%>
+    <%- include('include/head', { title: 'Login' })%>
     <body>
         <%- include('include/header')%>
-        <h1>What Was Today</h1>
+
+        <h1 class="H1WWT">What Was Today</h1>
         <form name="form_info" action="/profileEdit" method="POST">
             <input type="hidden" name="userID" />
         </form>
@@ -12,7 +13,7 @@
             <input type="password" name="userPW" placeholder="비밀번호" required />
             <button type="button" onclick="Login()">Login</button>
         </form>
-        <a href="/join">회원가입 하시겠습니까?</a>
+        <a class="loginA" href="/join">회원가입 하시겠습니까?</a>
         <script>
             const Login = () => {
                 const formInfo = document.forms["form_info"];

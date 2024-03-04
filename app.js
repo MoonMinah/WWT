@@ -31,6 +31,7 @@ db.sequelize.sync({ force: false }).then((result) => {
     console.log("DB연결 성공");
 });
 
+
 app.get("*", (req, res) => {
     res.render("404");
 });
