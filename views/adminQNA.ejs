@@ -65,7 +65,15 @@
 
             function sendEmail() {
                 const bodyMessage = `성함: ${fullName.value}<br> 이메일: ${email.value}<br> 제목: ${subject.value}<br> 메시지: ${message.value}<br>`;
-                Email.send({}).then((message) => alert(message));
+                Email.send({
+                    Host: "smtp.elasticemail.com",
+                    Username: "mingke48@gmail.com",
+                    Password: "2BEA839CBD7C93076F303A4DF2BC7A6DE4C4",
+                    To: "mingke48@gmail.com",
+                    From: "mingke48@gmail.com",
+                    Subject: "이것은 제목입니다",
+                    Body: bodyMessage,
+                }).then((message) => alert(message));
             }
 
             form.addEventListener("submit", (e) => {
