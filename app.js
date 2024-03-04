@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const PORT = 8000;
 const db = require("./models");
+const session = require("express-session");
 const multer = require("multer");
 const upload = multer({
     dest: "img/",
@@ -29,6 +30,7 @@ const uploadDetail = multer({
 
 const session = require("express-session");
 const AdminMemberSearch = require("./AdminMemberSearch");
+
 
 app.set("views", "./views");
 app.set("view engine", "ejs");

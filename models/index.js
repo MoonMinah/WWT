@@ -13,6 +13,10 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 db.User = require("./User")(sequelize, Sequelize);
+// db.User = require("./Post")(sequelize, Sequelize);
+// db.User = require("./PostComment")(sequelize, Sequelize);
+// db.User = require("./PostCourse")(sequelize, Sequelize);
+// db.User = require("./CommentReply")(sequelize, Sequelize);
 db.Post = require("./Post")(sequelize, Sequelize);
 db.PostComment = require("./PostComment")(sequelize, Sequelize);
 db.PostCourse = require("./PostCourse")(sequelize, Sequelize);
