@@ -1,12 +1,15 @@
 <header>
-    <ul>
+    <ul class="headerUl">
         <li>
-            <a href="/">홈</a>
+            <span class="logo"
+                ><img src="../../static/image/logo.png" alt="" style="width: 20px" /></span
+            ><a class="WWT" href="/">What Was Today</a>
         </li>
         <%#if(isLogin){%>
-        <li><a href="/logout">로그아웃</a></li>
+        <li><a href="/login">Log in</a></li>
         <%#}else{%>
-        <li><a href="/login">로그인 하하</a></li>
+        <li><a href="/logout">Log out</a></li>
+        <li><a href="/myPage">nickname</a></li>
         <%#}%>
     </ul>
 </header>
