@@ -12,16 +12,11 @@ const PostModel = (sequelize, DataTypes) => {
                 type: DataTypes.STRING(50),
                 allowNull: false,
             },
-            createDate: {
-                type: DataTypes.DATE,
-                allowNull: false,
-            },
-            isModify: {
-                type: DataTypes.BOOLEAN,
-            },
         },
         {
+            tableName: "Post",
             freezeTableName: true,
+            timestamps: true,
         }
     );
 

@@ -10,7 +10,7 @@ const PostCourseModel = (sequelize, DataTypes) => {
             },
             courseImagePath: {
                 type: DataTypes.TEXT,
-                allowNull: false,
+                allowNull: true,
             },
             courseLon: {
                 type: DataTypes.FLOAT,
@@ -26,7 +26,9 @@ const PostCourseModel = (sequelize, DataTypes) => {
             },
         },
         {
+            tableName: "PostCourse",
             freezeTableName: true,
+            timestamps: true,
         }
     );
 
