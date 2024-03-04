@@ -9,11 +9,12 @@
                     style="width: 20px" /></span
             ><a class="WWT" href="/">What Was Today</a>
         </li>
-        <%#if(isLogin){%>
-        <li><a href="/login">Log in</a></li>
-        <%#}else{%>
+        <%if(isLogin){%>
+        <li><a href="/myPage"><%= data.userNickname %></a></li>
         <li><a href="/logout">Log out</a></li>
-        <li><a href="/myPage">nickname</a></li>
-        <%#}%>
+        <%}else{%>
+        <li><a href="/login">Log in</a></li>
+        <li><a href="/join">Join in</a></li>
+        <%}%>
     </ul>
 </header>
