@@ -2,22 +2,22 @@ const express = require("express");
 const app = express();
 const PORT = 8000;
 const db = require("./models");
-const session = require("express-session");
+// const session = require("express-session");
 
 app.set("views", "./views");
 app.set("view engine", "ejs");
 app.use("/static", express.static(__dirname + "/static"));
 
-app.use(
-    session({
-        secret: "secretKey",
-        resave: false,
-        saveUninitialized: false,
-        cookie: {
-            httpOnly: true,
-        },
-    })
-);
+// app.use(
+//     session({
+//         secret: "secretKey",
+//         resave: false,
+//         saveUninitialized: false,
+//         cookie: {
+//             httpOnly: true,
+//         },
+//     })
+// );
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 const router = require("./routes");
@@ -25,18 +25,13 @@ const router = require("./routes");
 const indexRouter = require("./routes");
 app.use("/", indexRouter);
 
-<<<<<<< Updated upstream
-//db연동
-=======
->>>>>>> Stashed changes
+
 db.sequelize.sync({ force: false }).then((result) => {
     // console.log(result);
     console.log("DB연결 성공");
 });
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
+
 
 app.get("*", (req, res) => {
     res.render("404");
