@@ -8,8 +8,9 @@ body {
 /* 전체 css */
 .H1WWT {
     text-align: center;
-    margin-top: 90px;
-    margin-bottom: 50px;
+    margin-top: 10rem;
+    margin-bottom: 3rem;
+    font-size: 60px;
 }
 .totalPost {
     display: flex;
@@ -27,7 +28,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat; */
 }
-.totalPost .mainPostImg {
+.totalPost img {
     display: block;
     width: 100%;
     height: auto;
@@ -58,21 +59,23 @@ header {
     right: 0;
     width: 100%;
 }
-.logo {
+.headerUl .logo {
     /* border: 1px solid white; */
-    width: 19px;
-    height: 19px;
+    width: 25px;
+    height: 25px;
     border-radius: 15%;
     padding: 0;
     position: absolute;
-    left: 1px;
-    bottom: 3px;
+    left: 0.4rem;
+    bottom: 0.7rem;
 }
 .headerUl .WWT {
     position: absolute;
-    font-size: 13px;
+    font-size: 20px;
     line-height: 90%;
-    margin-left: 6px;
+    margin-left: 18px;
+    bottom: 0.6rem;
+    font-weight: 700;
 }
 .headerUl {
     list-style-type: none;
@@ -87,7 +90,7 @@ header {
     color: white;
     text-decoration: none;
     padding: 5px 10px;
-    font-size: 11px;
+    font-size: 17px;
     position: relative;
     left: 10px;
     /* border: 1px solid black; */
@@ -104,7 +107,7 @@ header {
     width: 100%;
     height: 60%;
 }
-#weatherLogo img {
+#weatherLogo .weatherLogoImg {
     width: 100%;
 }
 #weatherInfo {
@@ -135,7 +138,7 @@ header {
     text-align: center;
     margin: 0 auto;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 20px;
     /* border: 1px solid red; */
     color: #333;
 }
@@ -144,6 +147,14 @@ header {
 .mainPost li {
     display: inline-block;
 }
+
+.mainPost .mainPostProfile {
+    width: 15px;
+    height: 15px;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+
 .mainPost .mainPostNickname {
     position: absolute;
     bottom: 0; /* 바닥쪽에 붙임 */
@@ -166,22 +177,25 @@ form {
 }
 input[type="text"],
 input[type="password"],
-input[type="email"],
-.loginBTN,
-.joinBTN {
+input[type="email"] {
     margin-bottom: 10px;
     padding: 5px 10px;
     /* border-radius: 5px; */
     border: 2px solid #333;
-    width: 180px;
+    width: 250px;
+    height: 25px;
+    font-size: 14px;
 }
 .loginBTN,
 .joinBTN {
+    margin: 20px 0;
     background-color: #333;
     color: white;
     cursor: pointer;
-    width: 203px;
+    width: 270px;
+    height: 35px;
     border: 2px solid #333;
+    font-size: 14px;
 }
 .loginBTN:hover,
 .joinBTN:hover {
@@ -192,6 +206,7 @@ input[type="email"],
     width: 100%;
     text-align: center;
     color: #333;
+    font-size: 20px;
 }
 
 /* mypage */
