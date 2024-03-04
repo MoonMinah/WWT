@@ -3,15 +3,44 @@
     <%- include('include/head', { title: 'Login' })%>
     <body>
         <%- include('include/header')%>
+
         <h1 class="H1WWT">What Was Today</h1>
-        <form name="form-login">
-            <input type="text" name="id" id="id" placeholder="아이디" required /> <br />
-            <input type="password" name="pw" id="pw" placeholder="비밀번호" required /> <br />
-            <button class="loginBTN" type="button" onclick="Login()">Login</button>
+        <form name="form_info" action="/profileEdit" method="POST">
+            <input type="hidden" name="userID" />
         </form>
-        <a class="loginA" href="/join">회원가입 하시겠습니까?</a>
+        <form name="form-login">
+            <input type="text" name="userID" placeholder="아이디" required />
+            <input type="password" name="userPW" placeholder="비밀번호" required />
+            <button type="button" onclick="Login()">Login</button>
+        </form>
+        <a class="loginJoin" href="/join">회원가입 하시겠습니까?</a>
         <script>
-            const Login = () => {};
+            const Login = () => {
+                const formInfo = document.forms["form_info"];
+                const form = document.forms["form-login"];
+
+                axios({
+                    url: "/login",
+                    method: "POST",
+                    data: {
+                        userID: form.userID.value,
+                        userPW: form.userPW.value,
+                    },
+                })
+                    .then((res) => {
+                        const { data } = res;
+
+                        if (data) {
+                            alert("로그인 성공");
+                            formInfo.userID.value = form.userID.value;
+                            formInfo.submit(); // 폼 제출
+                        } else {
+                            alert("로그인 실패");
+                            form.reset();
+                        }
+                    })
+                    .catch((err) => console.log(err));
+            };
         </script>
     </body>
 </html>
