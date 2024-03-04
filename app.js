@@ -28,9 +28,7 @@ const uploadDetail = multer({
 // destination : 저장할 경로
 // filename : 파일명
 
-const session = require("express-session");
 const AdminMemberSearch = require("./AdminMemberSearch");
-
 
 app.set("views", "./views");
 app.set("view engine", "ejs");
