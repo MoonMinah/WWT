@@ -108,6 +108,7 @@ header {
     width: 100%;
 }
 #weatherInfo {
+    width: 100%;
     text-align: center;
     font-weight: bold;
     height: 35%;
@@ -117,16 +118,17 @@ header {
     align-items: center;
 }
 #weatherInfo #weatherRegion {
-    height: 50%;
-    font-size: 50px;
+    /* border: 1px solid red; */
+    width: 60%;
+    font-size: 5vmax;
 }
 #weatherInfo #weatherTemp {
-    height: 50%;
-    font-size: 50px;
-    line-height: 75px;
+    width: 40%;
+    font-size: 5vmax;
+    margin-left: 15px;
 }
 #weatherInfo #weatherTemp span {
-    font-size: 35px;
+    font-size: 4vmax;
 }
 .weather a {
     display: block;
@@ -139,14 +141,17 @@ header {
 }
 
 /* main */
-.post .postNickname {
+.mainPost li {
+    display: inline-block;
+}
+.mainPost .mainPostNickname {
     position: absolute;
     bottom: 0; /* 바닥쪽에 붙임 */
     left: 22px;
     font-size: 10px;
     color: #555555;
 }
-.post .postTitle {
+.mainPost .mainPostTitle {
     position: absolute;
     bottom: 0;
     left: 80px;
@@ -170,7 +175,6 @@ input[type="email"],
     border: 2px solid #333;
     width: 180px;
 }
-
 .loginBTN,
 .joinBTN {
     background-color: #333;
@@ -182,6 +186,12 @@ input[type="email"],
 .loginBTN:hover,
 .joinBTN:hover {
     background-color: #555;
+}
+.loginJoin {
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: #333;
 }
 
 /* mypage */
