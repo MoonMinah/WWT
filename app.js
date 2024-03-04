@@ -3,9 +3,11 @@ const app = express();
 const PORT = 8000;
 const db = require("./models");
 const session = require("express-session");
+const AdminMemberSearch = require("./AdminMemberSearch");
 
 app.set("views", "./views");
 app.set("view engine", "ejs");
+
 app.use("/static", express.static(__dirname + "/static"));
 
 app.use(
@@ -20,10 +22,13 @@ app.use(
 );
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-const router = require("./routes");
 
-const indexRouter = require("./routes");
+// const router = require("./routes");
+const indexRouter = require("./routes/index");
+const adminRouter = require("./routes/admin");
+
 app.use("/", indexRouter);
+app.use("/admin", adminRouter);
 
 //db연동
 db.sequelize.sync({ force: false }).then((result) => {
