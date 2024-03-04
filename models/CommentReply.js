@@ -12,13 +12,11 @@ const CommentReplyModel = (sequelize, DataTypes) => {
                 type: DataTypes.TEXT,
                 allowNull: false,
             },
-            createDate: {
-                type: DataTypes.DATE,
-                allowNull: false,
-            },
         },
         {
+            tableName: "CommentReply",
             freezeTableName: true,
+            timestamps: true,
         }
     );
 
