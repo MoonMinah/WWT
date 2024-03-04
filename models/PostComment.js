@@ -12,14 +12,6 @@ const PostCommentModel = (sequelize, DataTypes) => {
                 type: DataTypes.TEXT,
                 allowNull: false,
             },
-            createDate: {
-                type: DataTypes.DATE,
-                allowNull: false,
-            },
-            isModify: {
-                type: DataTypes.BOOLEAN,
-                allowNull: false,
-            },
             isDeleted: {
                 type: DataTypes.BOOLEAN,
                 allowNull: false,
@@ -35,7 +27,9 @@ const PostCommentModel = (sequelize, DataTypes) => {
             },
         },
         {
+            tableName: "PostComment",
             freezeTableName: true,
+            timestamps: true,
         }
     );
 
