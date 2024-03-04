@@ -3,23 +3,23 @@
     <%- include('include/head', { title: 'What Was Today' })%>
     <body>
         <%- include('include/header')%>
-        <div class="profileInfo">
+        <div class="myPageProfileInfo">
             <div class="myPageDiv1">
-                <p class="nickname">Ready_four</p>
+                <p class="myPageNickname">Ready_four</p>
                 <!--닉네임-->
-                <div class="profilePicture"></div>
+                <div id="postIcon"></div>
             </div>
             <div class="myPageDiv2">
-                <p class="postCount">5</p>
+                <p class="myPagePostCount">5</p>
                 <!--게시물 수-->
-                <p class="postCountName">게시물</p>
+                <p class="myPagePostCountName">게시물</p>
             </div>
         </div>
         <div class="myPageBTN">
-            <button class="editBTN" type="button" onClick="location.href='/profileEdit'">
+            <button class="myPageEditBTN" type="button" onClick="location.href='/profileEdit'">
                 프로필 편집
             </button>
-            <button class="postBTN" type="button" onClick="location.href='/postEdit'">
+            <button class="myPagePostBTN" type="button" onClick="location.href='/postEdit'">
                 글 등록하기
             </button>
         </div>
@@ -30,14 +30,13 @@
                     <li>닉네임</li>
                     <li>제목</li> -->
                     <img src="../static/image/profile.jpg" alt="스티치" />
-                    <a class="goEdit" href="/postEdit">글 수정하기</a>
-
+                    <a class="myPageGoEdit" href="/postEdit">글 수정하기</a>
                 </ul>
                 <ul class="postImg">
                     <!-- <li>프로필 사진</li>
                     <li>닉네임</li>
                     <li>제목</li> -->
-                    <a class="goEdit" href="/postEdit">글 수정하기</a>
+                    <a class="myPageGoEdit" href="/postEdit">글 수정하기</a>
                 </ul>
             </div>
             <div class="postLine">
@@ -45,13 +44,13 @@
                     <!-- <li>프로필 사진</li>
                     <li>닉네임</li>
                     <li>제목</li> -->
-                    <a class="goEdit" href="/postEdit">글 수정하기</a>
+                    <a class="myPageGoEdit" href="/postEdit">글 수정하기</a>
                 </ul>
                 <ul class="postImg">
                     <!-- <li>프로필 사진</li>
                     <li>닉네임</li>
                     <li>제목</li> -->
-                    <a class="goEdit" href="/postEdit">글 수정하기</a>
+                    <a class="myPageGoEdit" href="/postEdit">글 수정하기</a>
                 </ul>
             </div>
             <div class="postLine">
@@ -59,15 +58,15 @@
                     <!-- <li>프로필 사진</li>
                     <li>닉네임</li>
                     <li>제목</li> -->
-                    <a class="goEdit" href="/postEdit">글 수정하기</a>
+                    <a class="myPageGoEdit" href="/postEdit">글 수정하기</a>
                 </ul>
             </div>
             <div class="postLine">
                 <ul class="postImg">
-                    <!-- <li>프로필 사진</li>
+                    <li>프로필 사진</li>
                     <li>닉네임</li>
-                    <li>제목</li> 
-                    <a class="goEdit" href="/postEdit">글 수정하기</a>
+                    <li>제목</li>
+                    <a class="myPageGoEdit" href="/postEdit">글 수정하기</a>
                 </ul>
             </div>
         </div>
