@@ -12,14 +12,31 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-db.User = require("./User")(sequelize, Sequelize);
-// db.User = require("./Post")(sequelize, Sequelize);
-// db.User = require("./PostComment")(sequelize, Sequelize);
-// db.User = require("./PostCourse")(sequelize, Sequelize);
-// db.User = require("./CommentReply")(sequelize, Sequelize);
-db.Post = require("./Post")(sequelize, Sequelize);
-db.PostComment = require("./PostComment")(sequelize, Sequelize);
-db.PostCourse = require("./PostCourse")(sequelize, Sequelize);
-db.CommentReply = require("./CommentReply")(sequelize, Sequelize);
+const User = require("./User")(sequelize, Sequelize);
+const Post = require("./Post")(sequelize, Sequelize);
+const PostComment = require("./PostComment")(sequelize, Sequelize);
+const PostCourse = require("./PostCourse")(sequelize, Sequelize);
+const CommentReply = require("./CommentReply")(sequelize, Sequelize);
+
+User.hasMany(Post, { foreignKey: "userID" });
+Post.belongsTo(User, { foreignKey: "userID" });
+
+Post.hasMany(PostComment, { foreignKey: "commentID" });
+PostComment.belongsTo(Post, { foreignKey: "commentID" });
+
+Post.hasMany(PostCourse, { foreignKey: "postNumber" });
+PostCourse.belongsTo(Post, { foreignKey: "postNumber" });
+
+User.hasMany(CommentReply, { foreignKey: "userID" });
+PostComment.hasMany(CommentReply, { foreignKey: "commentID" });
+CommentReply.belongsTo(User, { foreignKey: "userID" });
+CommentReply.belongsTo(PostComment, { foreignKey: "commentID" });
+
+db.User = User;
+db.Post = Post;
+db.PostComment = PostComment;
+db.PostCourse = PostCourse;
+db.CommentReply = CommentReply;
+
 
 module.exports = db;
