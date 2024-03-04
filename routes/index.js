@@ -13,7 +13,7 @@ router.get("/profileEdit", controller.profileEdit);
 
 router.post("/join", controller.postJoin);
 router.post("/login", controller.postLogin);
-router.post("/logout", controller.postLogout);
+router.get("/logout", controller.postLogout);
 router.post("/profileEdit", controller.postProfile);
 router.post("/deleteUser", controller.deleteUser);
 router.post("/editUser", controller.editUser);

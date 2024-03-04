@@ -38,4 +38,5 @@ db.PostComment = PostComment;
 db.PostCourse = PostCourse;
 db.CommentReply = CommentReply;
 
+
 module.exports = db;
