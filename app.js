@@ -36,4 +36,5 @@ app.get("*", (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`);
+    console.log(`http://49.50.167.42:${PORT}`);
 });

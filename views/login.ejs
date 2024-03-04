@@ -9,11 +9,11 @@
             <input type="hidden" name="userID" />
         </form>
         <form name="form-login">
-            <input type="text" name="userID" placeholder="아이디" required />
-            <input type="password" name="userPW" placeholder="비밀번호" required />
-            <button type="button" onclick="Login()">Login</button>
+            <input type="text" name="userID" placeholder="아이디" required /><br />
+            <input type="password" name="userPW" placeholder="비밀번호" required /><br />
+            <button class="loginBTN" type="button" onclick="Login()">Login</button><br />
+            <a class="loginJoin" href="/join">회원가입 하시겠습니까?</a>
         </form>
-        <a class="loginJoin" href="/join">회원가입 하시겠습니까?</a>
         <script>
             const Login = () => {
                 const formInfo = document.forms["form_info"];
