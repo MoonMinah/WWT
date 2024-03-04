@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>회원관리</title>
+    </head>
+    <body>
+        <section class="notice">
+            <div class="page-title">
+                <div class="container">
+                    <div class="text-center">
+                        <h3>
+                            회원관리
+                            <input
+                                class="btn btn-outline-warning btn-sm"
+                                type="button"
+                                value="뒤로"
+                                onclick="goBack()"
+                            />
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <!-- 검색 -->
+            <div id="board-search1" style="text-align: center">
+                <div class="container">
+                    <form action="/admin/memberSearch" method="get">
+                        <div class="search-wrap">
+                            <label class="blind" for="searchInput">회원 검색</label>
+                            <input
+                                id="searchInput"
+                                style="width: 600px"
+                                type="search"
+                                name="query"
+                                placeholder="이름/아이디/닉네임/이메일로 검색할 수 있습니다."
+                            />
+                            <button type="submit" class="btn btn-dark" id="search-button">
+                                검색
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div>
+                <form action="/admin/deleteAccount" method="post">
+                    <div class="d-flex justify-content-end">
+                        <input
+                            type="button"
+                            id="deleteButton"
+                            class="btn btn-warning btn-sm ml-auto"
+                            style="font-size: 10px; margin-right: 70px"
+                            value="삭제"
+                            onclick="deleteMember()"
+                        />
+                    </div>
+                </form>
+            </div>
+            <div id="member-list" style="overflow-y: scroll; max-height: 400px">
+                <div class="container">
+                    <table class="board-table">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="th-check"></th>
+                                <th scope="col" class="th-id">아이디</th>
+                                <th scope="col" class="th-name">이름</th>
+                                <th scope="col" class="th-nickname">닉네임</th>
+                                <th scope="col" class="th-email">이메일</th>
+                                <th scope="col" class="th-joindate">가입일</th>
+                                <th scope="col" class="th-mem_lv">권한</th>
+                            </tr>
+                        </thead>
+                        <tbody id="searchResults">
+                            <% members.forEach(user => { %>
+                            <tr class="tr-text">
+                                <td>
+                                    <input
+                                        type="checkbox"
+                                        class="checkbox"
+                                        data-member-idx="<%= user.id %>"
+                                    />
+                                </td>
+                                <td><%= user.id %></td>
+                                <td><%= user.userName %></td>
+                                <td><%= user.userNickname %></td>
+                                <td><%= user.userEmail %></td>
+                                <td><%= user.userAddr %></td>
+                                <td><%= user.createdAt %></td>
+                                <td>
+                                    <% if (user.memLV == 1) { %> 일반회원 <% } else { %> 관리자 <% }
+                                    %>
+                                </td>
+                            </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div style="text-align: center">
+                <span style="font-size: 50px">...</span>
+            </div>
+        </section>
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+            const deleteMember = async () => {
+                const checkboxes = document.querySelectorAll(".checkbox:checked"); // 체크된 체크박스 선택
+                const memberIds = Array.from(checkboxes).map(
+                    (checkbox) => checkbox.dataset.memberIdx
+                ); // 선택된 회원들의 ID 배열로 변환
+
+                if (memberIds.length === 0) {
+                    alert("삭제할 회원을 선택해주세요.");
+                    return;
+                }
+
+                try {
+                    const response = await fetch("/admin/deleteMember", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ memberIds }), // 선택된 회원들의 ID를 서버에 전송
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        alert(result.message); // 서버로부터의 응답 메시지 출력
+                        location.reload(); // 페이지 새로고침
+                    } else {
+                        throw new Error("회원 삭제 요청 실패");
+                    }
+                } catch (error) {
+                    console.error("회원 삭제 오류:", error);
+                    alert("회원 삭제 중 오류가 발생했습니다.");
+                }
+            };
+        </script>
+    </body>
+</html>
