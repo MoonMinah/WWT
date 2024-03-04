@@ -11,9 +11,27 @@ body {
     margin-top: 90px;
     margin-bottom: 50px;
 }
-.post {
+.totalPost {
     display: flex;
     justify-content: space-evenly;
+}
+.post {
+    position: relative;
+    border: 2px solid #333; /* 테두리 추가 */
+    padding: 0; /* 내부 여백 추가 */
+    width: 250px;
+    height: auto;
+    margin: 30px 0;
+    /* 
+    background-image: url("../image/beach1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat; */
+}
+.totalPost img {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
 }
 .postLine {
     /* border: 1px solid black; */
@@ -28,7 +46,6 @@ body {
     border-radius: 50px;
     box-shadow: 5px 5px 5px rgb(207, 207, 207);
 }
-
 /* header */
 header {
     background-color: #333;
@@ -122,41 +139,14 @@ header {
 }
 
 /* main */
-.mainPost {
-    position: relative;
-    border: 2px solid #333; /* 테두리 추가 */
-    padding: 0; /* 내부 여백 추가 */
-    width: 250px;
-    height: auto;
-    margin: 30px 0;
-
-    /* background-image: url("../image/beach1.jpg");
-    background-size: cover;
-    background-repeat: no-repeat; */
-}
-.mainPost img {
-    display: block;
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-}
-.mainPost .mainPostImg {
-    border: 1px solid black;
-    border-radius: 50%;
-    width: 15px;
-    height: 15px;
-    position: absolute;
-    bottom: 2px; /* 바닥쪽에 붙임 */
-    left: 3px; /* 왼쪽에 붙임 */
-}
-.mainPost .mainPostNickname {
+.post .postNickname {
     position: absolute;
     bottom: 0; /* 바닥쪽에 붙임 */
     left: 22px;
     font-size: 10px;
     color: #555555;
 }
-.mainPost .mainPostTitle {
+.post .postTitle {
     position: absolute;
     bottom: 0;
     left: 80px;
