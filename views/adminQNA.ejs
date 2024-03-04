@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>QNA</title>
+    </head>
+    <body>
+        <section class="contact">
+            <h2>문의하기</h2>
+
+            <form id="contactForm">
+                <div class="input-box">
+                    <div class="input-field field">
+                        <input
+                            type="text"
+                            placeholder="성함"
+                            id="name"
+                            class="item"
+                            autocomplete="off"
+                        />
+                        <span>성함은 필수입니다</span>
+                    </div>
+                    <div class="input-field field">
+                        <input
+                            type="text"
+                            placeholder="이메일 주소"
+                            id="email"
+                            class="item"
+                            autocomplete="off"
+                        />
+                        <span>이메일 주소는 필수입니다</span>
+                    </div>
+                    <div class="input-field field">
+                        <input
+                            type="text"
+                            placeholder="제목"
+                            id="subject"
+                            class="item"
+                            autocomplete="off"
+                        />
+                        <span>제목은 필수입니다</span>
+                    </div>
+                </div>
+                <div>
+                    <textarea
+                        name=""
+                        id="message"
+                        cols="30"
+                        rows="10"
+                        placeholder="메시지를 입력하세요"
+                    ></textarea>
+                </div>
+                <button type="submit">메시지 보내기</button>
+            </form>
+        </section>
+
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <script>
+            const form = document.getElementById("contactForm");
+            const fullName = document.getElementById("name");
+            const email = document.getElementById("email");
+            const subject = document.getElementById("subject");
+            const message = document.getElementById("message");
+
+            function sendEmail() {
+                const bodyMessage = `성함: ${fullName.value}<br> 이메일: ${email.value}<br> 제목: ${subject.value}<br> 메시지: ${message.value}<br>`;
+                Email.send({
+                    Host: "smtp.elasticemail.com",
+                    Username: "mingke48@gmail.com",
+                    Password: "2BEA839CBD7C93076F303A4DF2BC7A6DE4C4",
+                    To: "mingke48@gmail.com",
+                    From: "mingke48@gmail.com",
+                    Subject: "이것은 제목입니다",
+                    Body: bodyMessage,
+                }).then((message) => alert(message));
+            }
+
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+                sendEmail();
+            });
+        </script>
+    </body>
+</html>
