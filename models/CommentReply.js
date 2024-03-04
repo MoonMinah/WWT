@@ -10,11 +10,11 @@ const CommentReplyModel = (sequelize, DataTypes) => {
             },
             replyText: {
                 type: DataTypes.TEXT,
-                allowNull: false,
+                allowNull: true,
             },
             createDate: {
                 type: DataTypes.DATE,
-                allowNull: false,
+                allowNull: true,
             },
         },
         {
