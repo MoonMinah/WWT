@@ -13,3 +13,26 @@
         <%}%>
     </ul>
 </header>
+<div id="menuBar">
+    <input type="checkbox" id="menuicon" />
+    <label for="menuicon">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+    <div class="sidebar">
+        <ul class="sidebarMenu">
+            <%if(isLogin){%>
+            <li><a href="/">Open</a></li>
+            <li><a href="/main">Main</a></li>
+            <%# if() {%>
+            <li><a href="/admin">Admin</a></li>
+            <%#} else { %>
+            <li><a href="/myPage">My Page</a></li>
+            <%# } %> <%}else{%>
+            <li><a href="/open">Open</a></li>
+            <li><a href="/main">Main</a></li>
+            <%}%>
+        </ul>
+    </div>
+</div>
