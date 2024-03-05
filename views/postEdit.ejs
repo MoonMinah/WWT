@@ -7,6 +7,17 @@
             <h2 class="H1WWT">What Was Today</h2>
             <form action="" name="wwtPostEdit">
                 <div class="inputContainer">
+                    <fieldset>
+                        <legend>날씨를 골라주세요</legend>
+                        <label for=""
+                            ><input type="checkbox" name="weather" value="맑음" />맑음</label
+                        >
+                        <label for=""
+                            ><input type="checkbox" name="weather" value="흐림" />흐림</label
+                        >
+                        <label for=""><input type="checkbox" name="weather" value="비" />비</label>
+                        <label for=""><input type="checkbox" name="weather" value="눈" />눈</label>
+                    </fieldset>
                     <input type="text" name="title" id="postEditTitle" placeholder="제목" />
                     <textarea
                         name=""
@@ -21,7 +32,7 @@
                         위치 검색하기
                     </button>
                     <div class="searchResult"></div>
-                    <button type="button">+</button>
+                    <button type="button" onclick="addPost()">+</button>
                 </div>
             </form>
             <button type="button">Would you like to post?</button>
@@ -36,13 +47,16 @@
             //         },
             //     }).open();
             // }
-            function searchRegion() {
+            const form = document.forms["wwtPostEdit"];
+            function searchRegion() {}
+            function showRegion() {
                 const createTable = document.createElement("table");
                 const searchResult = document.querySelector(".searchResult");
                 const btn = document.querySelector("#searchBTN");
 
                 searchResult.appendChild(createTable);
             }
+            function addPost() {}
         </script>
     </body>
 </html>

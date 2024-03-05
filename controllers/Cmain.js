@@ -1,6 +1,4 @@
-//const User = require("../models/User");
 const model = require("../models");
-const Post = require("../models/Post");
 
 exports.open = (req, res) => {
     if (req.session.userID) {
@@ -98,15 +96,13 @@ exports.postLogin = (req, res) => {
 };
 
 exports.postLogout = (req, res) => {
-    // console.log("dddd");
     req.session.destroy((err) => {
         if (err) {
-            res.status(500).send("서버에러");
-            throw err;
+            console.error("세션 삭제 실패:", err);
+            return res.status(500).send("서버에러");
         }
-        res.clearCookie("sessionID"); // 세션 쿠키 삭제
+        res.clearCookie("sessionID");
         res.redirect("/");
-        // console.log("dddd");
     });
 };
 
@@ -131,49 +127,56 @@ exports.postProfile = (req, res) => {
 
 exports.deleteUser = (req, res) => {
     const user = req.session.userID;
-    if (user !== req.body.userID) {
+    const userIDFromClient = req.body.userID;
+
+    if (user !== userIDFromClient) {
         return res.status(403).send("권한이 없습니다.");
     }
-    if (!req.session) {
-        return res.status(500).send("세션을 찾을 수 없습니다.");
-    }
-    req.session.destroy((err) => {
-        if (err) {
-            console.error("세션 삭제 실패:", err);
-            return res.status(500).send("세션 삭제 실패");
-        }
-        // 쿠키를 삭제합니다.
-        res.clearCookie("sessionID");
-        res.end();
-    });
+
+    model.User.destroy({
+        where: { userID: user },
+    })
+        .then(() => {
+            req.session.destroy((err) => {
+                if (err) {
+                    console.error("세션 삭제 실패:", err);
+                    return res.status(500).send("서버에러");
+                }
+                res.clearCookie("sessionID");
+                res.redirect("/");
+            });
+        })
+        .catch((err) => {
+            console.error("회원 탈퇴 실패:", err);
+            res.status(500).send("회원 탈퇴 실패");
+        });
 };
 
 exports.editUser = (req, res) => {
-    const user = req.session.userID;
-    // console.log(req.body);
-    if (user !== req.body.userID) {
+    const loggedInUserID = req.session.userID;
+    const userIDFromClient = req.body.userID;
+
+    if (loggedInUserID !== userIDFromClient) {
         return res.status(403).send("권한이 없습니다.");
     }
+
     model.User.update(
         {
-            userID: req.body.userID,
             userPW: req.body.userPW,
             userName: req.body.userName,
             userNickname: req.body.userNickname,
             userEmail: req.body.userEmail,
-            //userPhoto
-            //userText
         },
         {
-            where: { userID: req.body.userID },
+            where: { userID: loggedInUserID },
         }
     )
-        .then((result) => {
-            console.log("정보변경");
-            res.render("profileEdit", { data: result });
+        .then(() => {
+            // 회원정보 수정 후 프로필 편집 페이지로 리다이렉션
+            res.redirect("/profileEdit");
         })
-        .catch(() => {
-            // console.error("오류가 발생", err);
-            res.status(500).send("프로필 정보를 가져올 수 없습니다.");
+        .catch((err) => {
+            console.error("프로필 정보 업데이트 실패", err);
+            res.status(500).send("프로필 정보 업데이트 실패");
         });
 };
