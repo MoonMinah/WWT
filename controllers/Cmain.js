@@ -1,5 +1,6 @@
 //const User = require("../models/User");
 const model = require("../models");
+const Post = require("../models/Post");
 
 exports.open = (req, res) => {
     if (req.session.userID) {
