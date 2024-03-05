@@ -22,4 +22,7 @@ router.post("/editUser", controller.editUser);
 const postController = require("../controllers/Cpost");
 router.post("/temp", postController.postPost);
 
+//포스트의 댓글과 관련된 router 설정
+const commentController = require("../controllers/Ccomment.js");
+router.post("/temp2", commentController.postComment);
 module.exports = router;
