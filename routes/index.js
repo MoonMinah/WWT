@@ -18,4 +18,8 @@ router.post("/profileEdit", controller.postProfile);
 router.post("/deleteUser", controller.deleteUser);
 router.post("/editUser", controller.editUser);
 
+//포스트와 관련된 router설정
+const postController = require("../controllers/Cpost");
+router.post("/temp", postController.postPost);
+
 module.exports = router;
