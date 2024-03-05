@@ -9,7 +9,7 @@ if (process.env.NODE_ENV) {
     config = require(__dirname + "/../config/config.json")[process.env.NODE_ENV];
 } else {
     //node app.js
-    require(__dirname + "/../config/config.json")["development"];
+    config = require(__dirname + "/../config/config.json")["development"];
 }
 
 console.log("config >> ", config);
@@ -46,6 +46,5 @@ db.Post = Post;
 db.PostComment = PostComment;
 db.PostCourse = PostCourse;
 db.CommentReply = CommentReply;
-
 
 module.exports = db;

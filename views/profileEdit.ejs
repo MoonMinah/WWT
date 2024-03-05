@@ -4,12 +4,13 @@
     <body>
         <%- include('include/header')%>
         <div class="profileEditContainer">
-            <form action="" id="form-icon">
-                <div class="profileEditIcon"><img src="" alt="" /></div>
-                <button type="button" id="profileEditIconBTN" onclick="imgChange()">
-                    사진변경
-                </button>
-            </form>
+            <div class="profileEditImgContainer">
+                <div class="profileEditIcon">
+                    <img id="imageElement" src="../static/image/default.jpg" alt="기본 이미지" />
+                </div>
+                <input type="file" accept="image/*" style="display: none" id="fileInput" />
+                <button id="profileEditIconBTN">사진변경</button>
+            </div>
             <form name="form-text">
                 <input type="hidden" name="userID" value="<%=data.userID%>" required />
                 <input type="text" name="userName" value="<%=data.userName%>" required />
@@ -83,9 +84,28 @@
                 });
             }
 
+            var fileInput = document.getElementById("fileInput");
+            var imageElement = document.getElementById("imageElement");
+            fileInput.addEventListener("change", function (event) {
+                var selectedFile = event.target.files[0];
+                console.log("selectedFile::", selectedFile);
+                if (selectedFile && selectedFile.type.startsWith("image/")) {
+                    var reader = new FileReader();
+                    reader.onload = function (event) {
+                        imageElement.src = event.target.result;
+                    };
+                    reader.readAsDataURL(selectedFile);
+                }
+            });
+            document.getElementById("profileEditIconBTN").addEventListener("click", function () {
+                fileInput.click();
+            });
+
             // function imgChange() {
-            //     const
+            //     var newImagePath = "../static/image/logo.png";
+            //     imageElement.src = newImagePath;
             // }
+            // 원래 쓰려고 했던 함수
         </script>
     </body>
 </html>
