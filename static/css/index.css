@@ -12,10 +12,7 @@ body {
     margin-bottom: 3rem;
     font-size: 60px;
 }
-.totalPost {
-    display: flex;
-    justify-content: space-evenly;
-}
+/* 글 이미지 post */
 .post {
     position: relative;
     border: 2px solid #333; /* 테두리 추가 */
@@ -28,18 +25,6 @@ body {
     background-size: cover;
     background-repeat: no-repeat; */
 }
-.totalPost img {
-    display: block;
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-}
-.postLine {
-    /* border: 1px solid black; */
-    width: 250px;
-    margin-top: 70px;
-    /* text-align: center; */
-}
 #postIcon {
     width: 100px;
     height: 100px;
@@ -47,6 +32,54 @@ body {
     border-radius: 50px;
     box-shadow: 5px 5px 5px rgb(207, 207, 207);
     border: 1px solid rgb(215, 215, 215);
+}
+.box-wrap {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.box {
+    position: relative;
+    width: 400px;
+    height: 300px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    margin: 5px;
+}
+.box img {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+.box .info {
+    color: #fff;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.35s ease-in-out;
+}
+.box:hover .info {
+    opacity: 1;
+}
+.box .info h3 {
+    font-size: 24px;
+    padding-bottom: 0.4em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+.box .info p a {
+    font-size: 20px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #fff;
 }
 /* header */
 header {
@@ -59,7 +92,7 @@ header {
     left: 0;
     right: 0;
     width: 100%;
-    z-index: 1;
+    z-index: 99;
 }
 .headerUl .logo {
     /* border: 1px solid white; */
@@ -96,6 +129,91 @@ header {
     position: relative;
     left: 10px;
     /* border: 1px solid black; */
+}
+#menuBar {
+    z-index: 98;
+    position: fixed;
+    top: 40px;
+}
+#menuBar input[id="menuicon"] {
+    display: none;
+}
+#menuBar input[id="menuicon"] + label {
+    display: block;
+    margin: 30px;
+    width: 25px;
+    height: 20px;
+    position: relative;
+    cursor: pointer;
+}
+#menuBar input[id="menuicon"] + label span {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    border-radius: 30px;
+    background: #000;
+    transition: all 0.35s;
+}
+#menuBar input[id="menuicon"] + label span:nth-child(1) {
+    top: 0;
+}
+#menuBar input[id="menuicon"] + label span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+}
+#menuBar input[id="menuicon"] + label span:nth-child(3) {
+    bottom: 0;
+}
+#menuBar input[id="menuicon"]:checked + label {
+    z-index: 2;
+}
+#menuBar input[id="menuicon"]:checked + label span {
+    background: #fff;
+}
+#menuBar input[id="menuicon"]:checked + label span:nth-child(1) {
+    top: 50%;
+    transform: translateY(-50%);
+    rotate: 45deg;
+}
+#menuBar input[id="menuicon"]:checked + label span:nth-child(2) {
+    opacity: 0;
+}
+#menuBar input[id="menuicon"]:checked + label span:nth-child(3) {
+    bottom: 50%;
+    transform: translateY(50%);
+    rotate: -45deg;
+}
+.sidebar {
+    width: 100%;
+    height: 120px;
+    background: #222;
+    position: fixed;
+    display: block;
+    top: -100px;
+    left: 0;
+    z-index: 1;
+    transition: all 0.35s;
+}
+input[id="menuicon"]:checked + label + div {
+    top: 0;
+}
+.sidebarMenu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-top: 75px;
+    margin-right: 10px;
+}
+.sidebarMenu li {
+    margin-left: 35px;
+}
+.sidebarMenu li a {
+    text-decoration: none;
+    color: #fff;
 }
 
 /* open */
