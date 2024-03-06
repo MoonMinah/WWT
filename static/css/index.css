@@ -544,7 +544,7 @@ input[type="email"] {
 .profileEditContainer {
     padding-top: 50px;
     width: 30%;
-    margin: 0px auto;
+    margin: 100px auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -589,6 +589,7 @@ input[type="email"] {
     border: 1px solid rgb(215, 215, 215);
     color: #3c3c3c;
     line-height: 0px;
+    font-size: 12px;
 }
 #profileEditIconBTN:hover {
     background-color: #b1b1b1;
@@ -616,6 +617,7 @@ input[type="email"] {
     padding: 10px;
     background-color: rgb(248, 248, 248);
     color: #3c3c3c;
+    font-size: 14px;
 }
 .profileEditContainer > button:hover {
     background-color: #b1b1b1;
