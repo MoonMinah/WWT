@@ -26,7 +26,21 @@ exports.join = (req, res) => {
 exports.myPage = (req, res) => {
     if (req.session.userID) {
         console.log("myPage에서 로그인", req.session.data.userNickname);
-        res.render("myPage", { isLogin: true, data: req.session.data });
+        model.Post.count({
+            where: {
+                userID: req.session.data.id,
+            },
+        })
+            .then((result) => {
+                res.render("myPage", {
+                    isLogin: true,
+                    data: req.session.data,
+                    myPagePostCount: result,
+                });
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     } else {
         res.render("myPage", { isLogin: false });
     }
