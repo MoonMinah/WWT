@@ -7,10 +7,10 @@ exports.postPost = (req, res) => {
         console.log(req.body.postTitle);
         const title = req.body.postTitle;
 
-        console.log(req.session);
+        console.log(req.session.data);
         const postCourseList = req.body.postCourse;
         model.Post.create({
-            userID: id,
+            userID: req.session.data.id,
             postTitle: title,
         }).then((result) => {
             console.log("temp", result.postNumber);

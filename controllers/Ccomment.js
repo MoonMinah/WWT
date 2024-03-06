@@ -10,6 +10,7 @@ exports.postComment = (req, res) => {
             postNumber: req.body.postNumber,
             userID: req.body.userID,
             commentText: req.body.commentText,
+            isReply: req.body.isReply,
         }).then((result) => {
             console.log(result);
             res.send("OK");
