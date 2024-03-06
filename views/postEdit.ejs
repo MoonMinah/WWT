@@ -5,7 +5,7 @@
         <%- include('include/header')%>
         <div class="postEditContainer">
             <h2 class="H1WWT">What Was Today</h2>
-            <form action="" name="wwtPostEdit">
+            <form action="/writePost" method="post" name="wwtPostEdit">
                 <div class="inputContainer">
                     <fieldset>
                         <legend>날씨를 골라주세요</legend>
@@ -34,8 +34,8 @@
                     <div class="searchResult"></div>
                     <button type="button" onclick="addPost()">+</button>
                 </div>
+                <button class="writePostBTN" type="button">Would you like to post?</button>
             </form>
-            <button type="button">Would you like to post?</button>
         </div>
         <!-- <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> -->
         <script>
