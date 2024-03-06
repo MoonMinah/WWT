@@ -21,3 +21,47 @@ exports.postComment = (req, res) => {
         //세션이 유효하지 않는다는 페이지로 수정해야함!!
     }
 };
+
+exports.deleteComment = (req, res) => {
+    const COMMENTID = req.params.commentID;
+    if (!req.session.data) {
+        res.send("권한이 없습니다!");
+    } else {
+        model.PostComment.findOne({
+            where: {
+                commentID: COMMENTID,
+            },
+        })
+            .then((findResult) => {
+                console.log(findResult);
+                console.log(req.session.data.id);
+                console.log(findResult.userID);
+                if (req.session.data.id !== findResult.userID) {
+                    res.send("권한이 없습니다!");
+                } else {
+                    model.PostComment.update(
+                        {
+                            isDeleted: true,
+                        },
+                        {
+                            where: {
+                                commentID: COMMENTID,
+                            },
+                        }
+                    )
+                        .then(() => {
+                            res.redirect(`/getPost/${findResult.PostNumber}`);
+                        })
+                        .catch((err) => {
+                            console.log(
+                                "게시글 댓글에 대해 2번째로 DB조회하다 오류가 발생했습니다!",
+                                err
+                            );
+                        });
+                }
+            })
+            .catch((err) => {
+                console.log("게시글 댓글에 대해 DB조회하다 오류가 발생했습니다!", err);
+            });
+    }
+};

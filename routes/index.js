@@ -54,6 +54,8 @@ router.get("/getPost/:postID", postController.showPost);
 //     ]
 // }
 
+router.get("/deletePost/:postID", postController.deletePost);
+
 // =================================================
 
 //포스트의 댓글과 관련된 router 설정
@@ -65,4 +67,7 @@ router.post("/postComment", commentController.postComment); // 댓글 등록에 
 //     "commentText": "댓글 내용입니다"
 //}와 같은 형태로 받고 있습니다.
 
+router.delete("/deleteComment/:commentID", commentController.deleteComment);
+// delete 로 댓글 ID(PostCommet의 PK입니다)를 params로 넣어서 전송하시면, 현재 세션의 userID와, 그 댓글 작성자의 ID를 검사후, DB에서 삭제하는 것이 아닌,
+// isDeleted의 값만 바꾸게 됩니다.
 module.exports = router;
