@@ -16,7 +16,7 @@ const User = require("./User")(sequelize, Sequelize);
 const Post = require("./Post")(sequelize, Sequelize);
 const PostComment = require("./PostComment")(sequelize, Sequelize);
 const PostCourse = require("./PostCourse")(sequelize, Sequelize);
-const CommentReply = require("./CommentReply")(sequelize, Sequelize);
+// const CommentReply = require("./CommentReply")(sequelize, Sequelize);
 
 User.hasMany(Post, { foreignKey: "userID" });
 Post.belongsTo(User, { foreignKey: "userID" });
@@ -27,15 +27,20 @@ PostComment.belongsTo(Post, { foreignKey: "commentID" });
 Post.hasMany(PostCourse, { foreignKey: "postNumber" });
 PostCourse.belongsTo(Post, { foreignKey: "postNumber" });
 
-User.hasMany(CommentReply, { foreignKey: "userID" });
-PostComment.hasMany(CommentReply, { foreignKey: "commentID" });
-CommentReply.belongsTo(User, { foreignKey: "userID" });
-CommentReply.belongsTo(PostComment, { foreignKey: "commentID" });
+// User.hasMany(CommentReply, { foreignKey: "userID" });
+// PostComment.hasMany(CommentReply, { foreignKey: "commentID" });
+// CommentReply.belongsTo(User, { foreignKey: "userID" });
+// CommentReply.belongsTo(PostComment, { foreignKey: "commentID" });
+
+PostComment.hasOne(PostComment, { foreignKey: "commentID" });
+PostComment.belongsTo(PostComment, { foreignKey: "commentID" });
+User.hasMany(PostComment, { foreignKey: "userID" });
+PostComment.belongsTo(User, { foreignKey: "userID" });
 
 db.User = User;
 db.Post = Post;
 db.PostComment = PostComment;
 db.PostCourse = PostCourse;
-db.CommentReply = CommentReply;
+// db.CommentReply = CommentReply;
 
 module.exports = db;

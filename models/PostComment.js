@@ -17,6 +17,14 @@ const PostCommentModel = (sequelize, DataTypes) => {
                 allowNull: false,
                 defaultValue: false,
             },
+            isReply: {
+                type: DataTypes.INTEGER,
+                allowNull: true,
+                references: {
+                    model: "PostComment",
+                    key: "commentID",
+                },
+            },
         },
         {
             tableName: "PostComment",
