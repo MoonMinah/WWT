@@ -12,9 +12,23 @@ exports.open = (req, res) => {
 exports.main = (req, res) => {
     if (req.session.userID) {
         console.log("main에서 로그인", req.session.data.userNickname);
-        res.render("main", { isLogin: true, data: req.session.data });
+        model.Post.findAll({
+            attributes: ["postTitle", "postNumber", "reImage"],
+            order: [["createdAt", "DESC"]],
+            limit: 20,
+        }).then((result) => {
+            res.render("main", { isLogin: true, data: req.session.data, posts: result }); //메인 페이지에 접근 할 때, 최신글 20개에 대해, postNumber, postTitle, reImage(대표 이미지 경로)
+            //를 보내고 있습니다. 이 또한 console.log()찍으시면서 작업하시면 수월하실겁니다.
+        });
     } else {
-        res.render("main", { isLogin: false });
+        model.Post.findAll({
+            attributes: ["postTitle", "postNumber", "reImage"],
+            order: [["createdAt", "DESC"]],
+            limit: 20,
+        }).then((result) => {
+            console.log(result);
+            res.render("main", { isLogin: false, posts: result }); // 이 또한, 위 주석과 설명이 같습니다.
+        });
     }
 };
 exports.login = (req, res) => {
