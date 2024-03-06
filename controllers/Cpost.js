@@ -6,13 +6,16 @@ exports.postPost = (req, res) => {
 
     if (req.session.userID) {
         console.log(req.body.postTitle);
-        const title = req.body.postTitle;
-
         console.log(req.session.data);
+        const title = req.body.postTitle;
+        const weather = req.body.weather;
+        const region = req.body.region;
         const postCourseList = req.body.postCourse;
         model.Post.create({
             userID: req.session.data.id,
             postTitle: title,
+            weather: weather,
+            region: region,
             reImage: postCourseList[0].courseImagePath, // 글 불러오기를 위해 대표 이미지로 가장 첫 코스의 이미지를 가져오도록
         })
             .then((result) => {
@@ -112,5 +115,86 @@ exports.deletePost = (req, res) => {
             .catch((err) => {
                 console.log("params로 전달한 ID로 조회중, 오류가 발생했습니다!", err);
             });
+    }
+};
+
+exports.putPostRequest = (req, res) => {
+    const PostNumber = req.params.postID;
+
+    if (!req.session.data) {
+        res.send("수정할 권한이 없습니다! 로그인 해주세요");
+    } else {
+        const CURRENTUSER = req.session.data.id;
+        model.Post.findOne({
+            where: {
+                postNumber: PostNumber,
+            },
+        }).then((postResult) => {
+            if (CURRENTUSER === postResult.userID) {
+                model.PostCourse.findAll({
+                    where: {
+                        postNumber: PostNumber,
+                    },
+                })
+                    .then((courseResult) => {
+                        // res.render("postEdit", {
+                        //     postResult: postResult,
+                        //     courseResult: courseResult,
+                        //     isLogin: true,
+                        // });
+                        res.send({
+                            postResult: postResult,
+                            courseResult: courseResult,
+                        });
+                    })
+                    .catch((err) => {
+                        console.log("course를 조회하다 오류가 발생", err);
+                    });
+            } else {
+                res.send("권한 없음");
+            }
+        });
+    }
+};
+
+exports.putPost = (req, res) => {
+    const PostNumber = req.params.postID;
+    if (!req.session.data) {
+        res.send("세션이 만료되었습니다. 다시 로그인 해주세요");
+    } else {
+        const title = req.body.postTitle;
+        const weather = req.body.weather;
+        const region = req.body.region;
+        const postCourseList = req.body.postCourse;
+        model.Post.update(
+            {
+                postTitle: title,
+                weather: weather,
+                region: region,
+                reImage: postCourseList[0].courseImagePath,
+            },
+            {
+                where: {
+                    postNumber: PostNumber,
+                },
+            }
+        ).then(() => {
+            model.PostCourse.destroy({
+                where: {
+                    postNumber: PostNumber,
+                },
+            }).then(() => {
+                for (let i = 0; i < postCourseList.length; i++) {
+                    model.PostCourse.create({
+                        postNumber: PostNumber,
+                        courseImagePath: postCourseList[i].courseImagePath,
+                        courseLon: postCourseList[i].courseLon,
+                        courseLat: postCourseList[i].courseLat,
+                        courseText: postCourseList[i].courseText,
+                    });
+                }
+                res.redirect(`/getPost/${PostNumber}`);
+            });
+        });
     }
 };

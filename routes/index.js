@@ -24,6 +24,8 @@ const postController = require("../controllers/Cpost");
 router.post("/writePost", postController.postPost); // 게시글 등록에 관한 api입니다. req의 body데이터로,
 //{
 //    "postTitle" :"임시제목",
+//    "weather" : "sunny",
+//    "region" : "서울",
 //    "postCourse" : [{"courseImagePath" : "temp", "courseLon":12.12, "courseLat":13.13, "courseText":"course설명입니다"},{"courseImagePath" : "temp", "courseLon":12.12, "courseLat":13.13, "courseText":"course설명입니다"}]
 //}와 같은 형태로 받도록 되어 있습니다.
 router.get("/getPost/:postID", postController.showPost);
@@ -54,7 +56,11 @@ router.get("/getPost/:postID", postController.showPost);
 //     ]
 // }
 
-router.delete("/deletePost/:postID", postController.deletePost);
+router.delete("/deletePost/:postID", postController.deletePost); //삭제할 게시글의 postID(DBmodel에는 postNumber로 되어 있음)을 params로 넘기면, 권한 조회 후, 삭제함
+
+router.get("/putPostRequest/:postID", postController.putPostRequest);
+router.put("/putPost/:postID", postController.putPost); //이 코드는, post api /writePost와 완전 일치합니다.
+// post /writePost와 같은 req.body를 작성하신 후, put api로 전송하면 됩니다.
 
 // =================================================
 
