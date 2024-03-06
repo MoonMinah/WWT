@@ -316,7 +316,8 @@ input[id="menuicon"]:checked + label + div {
 /* main */
 
 /* login & join */
-form {
+.joinForm,
+.loginForm {
     margin-top: 20px; /* Example margin from the header */
     text-align: center; /* Align form elements at the center */
 }
@@ -552,7 +553,10 @@ input[type="email"] {
     box-shadow: 5px 5px 5px rgb(217, 217, 217);
     border: 1px solid rgb(215, 215, 215);
     /* border: 1px solid red; */
-    margin-bottom: 30px;
+}
+.profileEditForm {
+    display: flex;
+    align-items: center;
 }
 .profileEditImgChange {
     display: flex;
@@ -565,6 +569,8 @@ input[type="email"] {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    margin-bottom: 30px;
+    /* border: 1px solid red; */
 }
 .profileEditIcon {
     width: 100px;
@@ -574,6 +580,7 @@ input[type="email"] {
     box-shadow: 5px 5px 5px rgb(207, 207, 207);
     border: 1px solid rgb(215, 215, 215);
     background-color: white;
+    margin-right: 10px;
 }
 .profileEditIcon > #imageElement {
     width: 100%;
@@ -591,6 +598,7 @@ input[type="email"] {
     color: #3c3c3c;
     line-height: 0px;
     font-size: 12px;
+    margin-left: 70px;
 }
 #profileEditIconBTN:hover {
     background-color: #b1b1b1;
