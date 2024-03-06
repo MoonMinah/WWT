@@ -3,18 +3,44 @@
     <%- include('include/head', { title: 'What Was Today' })%>
     <body>
         <%- include('include/header')%>
+
+        <!-- 
+
+{
+isLogin: true,
+postData:{
+    postNumber: 1,
+    postTitle: "임시제목",
+    weather: null,
+    region: null,
+    reImage: "temp",
+    createdAt: "2024-03-06T04:59:23.000Z",
+    updatedAt: "2024-03-06T04:59:23.000Z",
+    userID: 1
+    },
+commentResult:[
+        {"courseNumber": 1, "courseImagePath": "temp", "courseLon": 12.12, "courseLat": 13.13, "courseText": "course설명입니다",…},
+        {"courseNumber": 2, "courseImagePath": "temp", "courseLon": 12.12, "courseLat": 13.13, "courseText": "course설명입니다",…}
+    ],
+postCourseData:[
+        {"courseNumber": 1, "courseImagePath": "temp", "courseLon": 12.12, "courseLat": 13.13, "courseText": "course설명입니다",…},
+        {"courseNumber": 2, "courseImagePath": "temp", "courseLon": 12.12, "courseLat": 13.13, "courseText": "course설명입니다",…}
+    ]
+    }
+         -->
         <div class="postContainer">
             <div id="postIcon"></div>
-            <h2>맑은날 좋은 제주도 우도 코스</h2>
+            <h2><%#=postTitle%>맑은날 좋은 제주도 우도 코스</h2>
             <div class="postContent">
                 <ul>
                     <li id="postImg">
-                        <img src="../static/image/beach1.jpg" alt="" style="width: 100%" />
+                        <img src="/static/uploads/<%#=reImage%>" alt="" style="width: 100%" />
                     </li>
                     <li id="postWriting">
-                        안녕하세요 오늘은 제주도에 대해서 포스트하고 싶어서 이렇게 적어봅니다.
+                        <%#=courseText%>안녕하세요 오늘은 제주도에 대해서 포스트하고 싶어서 이렇게
+                        적어봅니다.
                     </li>
-                    <li id="postRegion">위치</li>
+                    <li id="postRegion"><%#=courseLon, couresLat%>위치</li>
                 </ul>
             </div>
         </div>
