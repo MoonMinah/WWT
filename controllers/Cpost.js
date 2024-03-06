@@ -54,12 +54,23 @@ exports.showPost = (req, res) => {
                     },
                 }).then((commentResult) => {
                     console.log(">>>", postData, ">>>", commentResult);
-                    res.send({
-                        isLogin: isLogin,
-                        postData: postData,
-                        commentResult: commentResult,
-                        postCourseData: postCourseData,
-                    });
+
+                    if (isLogin) {
+                        res.render("post", {
+                            isLogin: isLogin,
+                            postData: postData,
+                            commentResult: commentResult,
+                            postCourseData: postCourseData,
+                            data: req.session.data,
+                        });
+                    } else {
+                        res.render("post", {
+                            isLogin: isLogin,
+                            postData: postData,
+                            commentResult: commentResult,
+                            postCourseData: postCourseData,
+                        });
+                    }
                 });
             })
             .catch((err) => console.log(err));
