@@ -401,8 +401,9 @@ input[type="email"] {
 .myPageBTN {
     display: flex;
     justify-content: center;
-    margin: 20px auto;
+    margin: 18px auto;
     width: 25%;
+    padding-bottom: 15px;
     /* border: 1px solid rgb(215, 215, 215); */
 }
 
