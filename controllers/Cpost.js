@@ -2,7 +2,8 @@ const model = require("../models");
 const path = require("path");
 const id = 1;
 exports.postPost = (req, res) => {
-    req.session.userID = "11"; // 테스트를 위해 임시로 작성 삭제해야함
+    console.log(req.session);
+
     if (req.session.userID) {
         console.log(req.body.postTitle);
         const title = req.body.postTitle;
@@ -30,4 +31,37 @@ exports.postPost = (req, res) => {
         res.send("유효하지 않는 세션");
         //세션이 유효하지 않는다는 페이지로 수정해야함!!
     }
+};
+
+exports.showPost = (req, res) => {
+    const isLogin = req.session.userID ? true : false;
+    const PostNumber = req.params.postID;
+
+    model.Post.findOne({
+        where: {
+            postNumber: PostNumber,
+        },
+    }).then((postData) => {
+        model.PostCourse.findAll({
+            where: {
+                postNumber: PostNumber,
+            },
+        })
+            .then((postCourseData) => {
+                model.PostCourse.findAll({
+                    where: {
+                        postNumber: PostNumber,
+                    },
+                }).then((commentResult) => {
+                    console.log(">>>", postData, ">>>", commentResult);
+                    res.send({
+                        isLogin: isLogin,
+                        postData: postData,
+                        commentResult: commentResult,
+                        postCourseData: postCourseData,
+                    });
+                });
+            })
+            .catch((err) => console.log(err));
+    });
 };
