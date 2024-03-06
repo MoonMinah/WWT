@@ -1,4 +1,5 @@
 const model = require("../models");
+const path = require("path");
 
 exports.open = (req, res) => {
     if (req.session.userID) {
