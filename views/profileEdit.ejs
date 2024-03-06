@@ -28,25 +28,25 @@
                 ></textarea> -->
                 <br />
             </form>
-            <button type="button" onclick="logout()">로그아웃</button>
+            <!-- <button type="button" onclick="logout()">로그아웃</button> -->
             <button type="button" onclick="profileEdit()">프로필 편집</button>
             <button type="button" onclick="deleteUser()">회원탈퇴</button>
         </div>
 
         <script>
-            function logout() {
-                axios({
-                    url: "/logout",
-                    method: "POST",
-                })
-                    .then(() => {
-                        alert("로그아웃되었습니다.");
-                        document.location.href = "/";
-                    })
-                    .catch((err) => {
-                        console.error("로그아웃 오류:", err);
-                    });
-            }
+            // function logout() {
+            //     axios({
+            //         url: "/logout",
+            //         method: "POST",
+            //     })
+            //         .then(() => {
+            //             alert("로그아웃되었습니다.");
+            //             document.location.href = "/";
+            //         })
+            //         .catch((err) => {
+            //             console.error("로그아웃 오류:", err);
+            //         });
+            // }
 
             function profileEdit() {
                 const form = document.forms["form-text"];
