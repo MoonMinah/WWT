@@ -5,12 +5,12 @@
         <%- include('include/header')%> <% if(isLogin) {%>
         <div class="myPageProfileInfo">
             <div class="myPageDiv1">
+                <div id="postIcon"></div>
                 <p class="myPageNickname"><%= data.userNickname %></p>
                 <!--닉네임-->
-                <div id="postIcon"></div>
             </div>
             <div class="myPageDiv2">
-                <p class="myPagePostCount">5</p>
+                <p class="myPagePostCount"><%#= postCount%>5</p>
                 <!--게시물 수-->
                 <p class="myPagePostCountName">게시물</p>
             </div>

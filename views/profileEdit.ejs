@@ -88,7 +88,6 @@
             var imageElement = document.getElementById("imageElement");
             fileInput.addEventListener("change", function (event) {
                 var selectedFile = event.target.files[0];
-                console.log("selectedFile::", selectedFile);
                 if (selectedFile && selectedFile.type.startsWith("image/")) {
                     var reader = new FileReader();
                     reader.onload = function (event) {

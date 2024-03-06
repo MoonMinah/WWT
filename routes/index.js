@@ -10,6 +10,7 @@ router.get("/myPage", controller.myPage);
 router.get("/post", controller.post);
 router.get("/postEdit", controller.postEdit);
 router.get("/profileEdit", controller.profileEdit);
+// router.get("/postCount", controller.getPostCount);
 
 router.post("/join", controller.postJoin);
 router.post("/login", controller.postLogin);
