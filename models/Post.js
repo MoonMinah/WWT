@@ -21,6 +21,10 @@ const PostModel = (sequelize, DataTypes) => {
                 type: DataTypes.STRING(20),
                 allowNull: true,
             },
+            reImage: {
+                type: DataTypes.TEXT,
+                allowNull: true,
+            },
         },
         {
             tableName: "Post",

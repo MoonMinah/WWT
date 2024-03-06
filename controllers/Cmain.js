@@ -32,10 +32,20 @@ exports.myPage = (req, res) => {
             },
         })
             .then((result) => {
-                res.render("myPage", {
-                    isLogin: true,
-                    data: req.session.data,
-                    myPagePostCount: result,
+                const myPostCount = result;
+                model.Post.findAll({
+                    attributes: ["postNumber", "reImage"],
+                    where: {
+                        userId: req.session.data.id,
+                    },
+                }).then((findResult) => {
+                    res.render("myPage", {
+                        isLogin: true,
+                        data: req.session.data,
+                        myPagePostCount: myPostCount, //내가 몇개의 포스트를 작성하였는가
+                        myPosts: findResult, //내가 작성한 포스트들에 대한 정보. (postID와, 대표이미지의 경로가 갈 것입니다.)
+                        //프론트단에서 작업할 때, console.log()찍으면서 작업하시면 편할거에요.
+                    });
                 });
             })
             .catch((error) => {
