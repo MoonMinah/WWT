@@ -30,19 +30,17 @@ const PostCourse = require("./PostCourse")(sequelize, Sequelize);
 User.hasMany(Post, { foreignKey: "userID" });
 Post.belongsTo(User, { foreignKey: "userID" });
 
-Post.hasMany(PostComment, { foreignKey: "commentID" });
-PostComment.belongsTo(Post, { foreignKey: "commentID" });
-
-Post.hasMany(PostCourse, { foreignKey: "postNumber" });
-PostCourse.belongsTo(Post, { foreignKey: "postNumber" });
-
+Post.hasMany(PostComment, { foreignKey: "postNumber", onDelete: "CASCADE" });
+PostComment.belongsTo(Post, { foreignKey: "postNumber", onDelete: "CASCADE" });
+Post.hasMany(PostCourse, { foreignKey: "postNumber", onDelete: "CASCADE" });
+PostCourse.belongsTo(Post, { foreignKey: "postNumber", onDelete: "CASCADE" });
 // User.hasMany(CommentReply, { foreignKey: "userID" });
 // PostComment.hasMany(CommentReply, { foreignKey: "commentID" });
 // CommentReply.belongsTo(User, { foreignKey: "userID" });
 // CommentReply.belongsTo(PostComment, { foreignKey: "commentID" });
 
-PostComment.hasOne(PostComment, { foreignKey: "commentID" });
-PostComment.belongsTo(PostComment, { foreignKey: "commentID" });
+PostComment.hasMany(PostComment, { foreignKey: "isReply" });
+
 User.hasMany(PostComment, { foreignKey: "userID" });
 PostComment.belongsTo(User, { foreignKey: "userID" });
 

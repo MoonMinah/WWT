@@ -31,3 +31,36 @@ exports.postPost = (req, res) => {
         //세션이 유효하지 않는다는 페이지로 수정해야함!!
     }
 };
+
+exports.showPost = (req, res) => {
+    const isLogin = req.session.userID ? true : false;
+    const PostNumber = req.params.postID;
+
+    model.Post.findOne({
+        where: {
+            postNumber: PostNumber,
+        },
+    }).then((postData) => {
+        model.PostCourse.findAll({
+            where: {
+                postNumber: PostNumber,
+            },
+        })
+            .then((postCourseData) => {
+                model.PostCourse.findAll({
+                    where: {
+                        postNumber: PostNumber,
+                    },
+                }).then((commentResult) => {
+                    console.log(">>>", postData, ">>>", commentResult);
+                    res.send({
+                        isLogin: isLogin,
+                        postData: postData,
+                        commentResult: commentResult,
+                        postCourseData: postCourseData,
+                    });
+                });
+            })
+            .catch((err) => console.log(err));
+    });
+};
