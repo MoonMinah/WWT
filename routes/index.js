@@ -62,6 +62,6 @@ router.post("/temp2", commentController.postComment); // 댓글 등록에 관한
 //     "postNumber": 1,
 //     "userID": 1,
 //     "commentText": "댓글 내용입니다"
-//   }와 같은 형태로 받고 있습니다.
+//}와 같은 형태로 받고 있습니다.
 
 module.exports = router;

@@ -2,7 +2,8 @@ const model = require("../models");
 const path = require("path");
 const id = 1;
 exports.postPost = (req, res) => {
-    req.session.userID = "11"; // 테스트를 위해 임시로 작성 삭제해야함
+    console.log(req.session);
+
     if (req.session.userID) {
         console.log(req.body.postTitle);
         const title = req.body.postTitle;
