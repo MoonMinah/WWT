@@ -54,7 +54,7 @@ router.get("/getPost/:postID", postController.showPost);
 //     ]
 // }
 
-router.get("/deletePost/:postID", postController.deletePost);
+router.delete("/deletePost/:postID", postController.deletePost);
 
 // =================================================
 
