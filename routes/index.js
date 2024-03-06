@@ -10,6 +10,7 @@ router.get("/myPage", controller.myPage);
 router.get("/post", controller.post);
 router.get("/postEdit", controller.postEdit);
 router.get("/profileEdit", controller.profileEdit);
+// router.get("/postCount", controller.getPostCount);
 
 router.post("/join", controller.postJoin);
 router.post("/login", controller.postLogin);
@@ -20,12 +21,12 @@ router.post("/editUser", controller.editUser);
 
 //포스트와 관련된 router설정
 const postController = require("../controllers/Cpost");
-router.post("/temp", postController.postPost); // 게시글 등록에 관한 api입니다. req의 body데이터로,
+router.post("/writePost", postController.postPost); // 게시글 등록에 관한 api입니다. req의 body데이터로,
 //{
 //    "postTitle" :"임시제목",
 //    "postCourse" : [{"courseImagePath" : "temp", "courseLon":12.12, "courseLat":13.13, "courseText":"course설명입니다"},{"courseImagePath" : "temp", "courseLon":12.12, "courseLat":13.13, "courseText":"course설명입니다"}]
 //}와 같은 형태로 받도록 되어 있습니다.
-router.get("/temp3/:postID", postController.showPost);
+router.get("/getPost/:postID", postController.showPost);
 // 게시글 하나에 대해 글 내용과, 그 글에 달린 전체 댓글을 가져오는 api입니다. params로 postID를 받습니다.
 //즉, /temp3/1 (postID=1)인글의 데이터를 읽어옵니다.
 
@@ -57,7 +58,7 @@ router.get("/temp3/:postID", postController.showPost);
 
 //포스트의 댓글과 관련된 router 설정
 const commentController = require("../controllers/Ccomment.js");
-router.post("/temp2", commentController.postComment); // 댓글 등록에 관한 api입니다. req의 body 데이터로,
+router.post("/postComment", commentController.postComment); // 댓글 등록에 관한 api입니다. req의 body 데이터로,
 //{
 //     "postNumber": 1,
 //     "userID": 1,
