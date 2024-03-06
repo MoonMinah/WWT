@@ -12,6 +12,7 @@ exports.postPost = (req, res) => {
         model.Post.create({
             userID: req.session.data.id,
             postTitle: title,
+            reImage: postCourseList[0].courseImagePath, // 글 불러오기를 위해 대표 이미지로 가장 첫 코스의 이미지를 가져오도록
         }).then((result) => {
             console.log("temp", result.postNumber);
             for (let i = 0; i < postCourseList.length; i++) {

@@ -32,6 +32,16 @@ exports.myPage = (req, res) => {
             },
         })
             .then((result) => {
+                const myPostCount = result;
+                model.Post.findAll({
+                    attributes: ["postNumber", "reImage"],
+                    where: {
+                        userId: req.session.data.id,
+                    },
+                }).then((findResult) => {
+                    console.log(myPostCount);
+                });
+
                 res.render("myPage", {
                     isLogin: true,
                     data: req.session.data,
