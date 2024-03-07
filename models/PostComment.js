@@ -15,16 +15,16 @@ const PostCommentModel = (sequelize, DataTypes) => {
             isDeleted: {
                 type: DataTypes.BOOLEAN,
                 allowNull: false,
+                defaultValue: false,
             },
-            weather: {
-                type: DataTypes.ENUM,
-                values: ["sunny", "rainy", "snow", "cloudy"],
-                allowNull: false,
-            },
-            region: {
-                type: DataTypes.STRING(20),
-                allowNull: false,
-            },
+            // isReply: {
+            //     type: DataTypes.INTEGER,
+            //     allowNull: true,
+            //     references: {
+            //         model: "PostComment",
+            //         key: "commentID",
+            //     },
+            // },
         },
         {
             tableName: "PostComment",

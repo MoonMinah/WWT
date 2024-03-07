@@ -22,8 +22,8 @@ body {
     margin: 30px 0;
 }
 #postIcon {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     /* border: 1px solid gray; */
     border-radius: 50px;
     box-shadow: 5px 5px 5px rgb(207, 207, 207);
@@ -316,7 +316,8 @@ input[id="menuicon"]:checked + label + div {
 /* main */
 
 /* login & join */
-form {
+.joinForm,
+.loginForm {
     margin-top: 20px; /* Example margin from the header */
     text-align: center; /* Align form elements at the center */
 }
@@ -361,7 +362,7 @@ input[type="email"] {
     text-align: center;
     justify-content: center;
     align-items: center;
-    margin-top: 40px;
+    margin-top: 100px;
     /* border: 1px solid black; */
     /* position: relative; */
 }
@@ -374,53 +375,60 @@ input[type="email"] {
     left: 4px;
     /* border: 1px solid black; */
 }
-.myPageDiv1 .nickname {
-    margin-bottom: 5px;
+.myPageDiv1 .myPageNickname {
     position: relative;
-    top: 10px;
+    top: 5px;
 }
 .myPageDiv2 {
     margin-left: 70px;
     margin-right: 15px;
-    /* position: fixed; */
-    /* top: 25px; */
+    position: relative;
+    top: 7px;
     /* border: 1px solid black; */
 }
 .myPagePostCount {
     margin-bottom: 0;
-    margin-top: 50px;
-    font-size: 2vmax;
+    margin-top: 60px;
+    font-size: 1.5vmax;
     color: #555;
 }
 
 .myPagePostCountName {
-    margin-top: 3px;
-    font-size: 7px;
-    font-size: 0.5vmax;
+    margin-top: 6px;
+    font-size: 1.2vmax;
+    font-weight: 400;
 }
 /* BTN CSS */
 .myPageBTN {
     display: flex;
     justify-content: center;
-    margin: 20px auto;
-    width: 18%;
-    border: 1px solid rgb(215, 215, 215);
+    margin: 18px auto;
+    width: 25%;
+    padding-bottom: 15px;
+    /* border: 1px solid rgb(215, 215, 215); */
 }
 
 .myPageEditBTN,
 .myPagePostBTN {
     display: block;
     width: 100%;
-
+    border-radius: 5px;
     padding: 10px 0;
     text-align: center;
     margin: 0 auto;
     font-weight: bold;
-    font-size: 10px;
+    font-size: 12px;
     /* border: 1px solid red; */
     color: #333;
     border: 0;
     box-shadow: 5px 5px 5px rgb(217, 217, 217);
+}
+
+.myPageEditBTN {
+    margin-right: 10px;
+}
+.myPagePostBTN {
+    margin-left: 10px;
 }
 
 .myPageEditBTN:hover,
@@ -475,6 +483,42 @@ input[type="email"] {
 }
 
 /* post edit */
+/* post */
+.postContainer {
+    width: 50%;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid red; */
+    align-items: center;
+}
+.postContent {
+    width: 100%;
+    /* border: 1px solid red; */
+}
+.postContent > ul {
+    width: 100%;
+    margin: 0 auto;
+}
+.postContent > ul > li {
+    display: block;
+    list-style: none;
+    /* border: 1px solid red; */
+    width: 100%;
+    text-align: center;
+    box-shadow: 5px 5px 5px rgb(207, 207, 207);
+}
+.postContent > ul > #postWriting {
+    height: 150px;
+    padding: 30px 0;
+}
+.postContent > ul > #postRegion {
+    height: 30px;
+    padding: 8px 0;
+    line-height: 30px;
+}
+
+/* post edit */
 .postEditContainer {
     width: 30%;
     margin: 0 auto;
@@ -489,45 +533,35 @@ input[type="email"] {
     /* border: 1px solid red; */
     margin-bottom: 30px;
 }
-.inputContainer > form > input {
+.inputContainer > input {
     display: block;
-    width: 94%;
+    width: 94.7%;
     height: 30px;
     margin: 0 auto;
     border: none;
     border-bottom: 1px solid rgb(217, 217, 217);
     /* box-shadow: 5px 5px 5px rgb(217, 217, 217); */
 }
-.inputContainer > form > .adding > input {
-    display: block;
-    width: 94%;
-    height: 30px;
-    margin: 0 auto;
-    border: none;
-    border-bottom: 1px solid rgb(217, 217, 217);
-    /* box-shadow: 5px 5px 5px rgb(217, 217, 217); */
-}
-
-.inputContainer > form #postEditTitle {
+.inputContainer #postEditTitle {
     margin-top: 5px;
 }
-.inputContainer > form textarea {
+.inputContainer > textarea {
     margin: 0 auto;
     border: none;
     width: 97.5%;
     margin-bottom: 10px;
     /* box-shadow: 5px 5px 5px rgb(217, 217, 217); */
 }
-.inputContainer > form button {
+.inputContainer > button {
     width: 100%;
     border: none;
     padding: 10px;
     /* border: 1px solid rgb(215, 215, 215); */
 }
-.inputContainer > form button:hover {
+.inputContainer > button:hover {
     background-color: #b1b1b1;
 }
-.postEditContainer > button {
+.writePostBTN {
     display: block;
     width: 100%;
     text-align: center;
@@ -540,22 +574,24 @@ input[type="email"] {
     box-shadow: 5px 5px 5px rgb(217, 217, 217);
     border: 1px solid rgb(215, 215, 215);
 }
-.postEditContainer > button:hover {
+.writePostBTN:hover {
     background-color: #b1b1b1;
 }
-
 /* profile edit */
 .profileEditContainer {
     padding-top: 50px;
     width: 30%;
-    margin: 0px auto;
+    margin: 100px auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     box-shadow: 5px 5px 5px rgb(217, 217, 217);
     border: 1px solid rgb(215, 215, 215);
     /* border: 1px solid red; */
-    margin-bottom: 30px;
+}
+.profileEditForm {
+    display: flex;
+    align-items: center;
 }
 .profileEditImgChange {
     display: flex;
@@ -568,6 +604,8 @@ input[type="email"] {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    margin-bottom: 30px;
+    /* border: 1px solid red; */
 }
 .profileEditIcon {
     width: 100px;
@@ -577,6 +615,12 @@ input[type="email"] {
     box-shadow: 5px 5px 5px rgb(207, 207, 207);
     border: 1px solid rgb(215, 215, 215);
     background-color: white;
+    margin-right: 10px;
+}
+.profileEditIcon > #imageElement {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
 }
 .profileEditIcon > #imageElement {
     width: 100%;
@@ -593,6 +637,8 @@ input[type="email"] {
     border: 1px solid rgb(215, 215, 215);
     color: #3c3c3c;
     line-height: 0px;
+    font-size: 12px;
+    margin-left: 70px;
 }
 #profileEditIconBTN:hover {
     background-color: #b1b1b1;
@@ -620,8 +666,85 @@ input[type="email"] {
     padding: 10px;
     background-color: rgb(248, 248, 248);
     color: #3c3c3c;
+    font-size: 14px;
 }
 .profileEditContainer > button:hover {
     background-color: #b1b1b1;
     color: rgb(248, 248, 248);
+}
+
+/* comment */
+ul,
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.commentContainer {
+    width: 50%;
+    margin: 0 auto;
+}
+.comment {
+    display: block;
+    width: 100%;
+    /* border: 1px solid red; */
+    background-color: #f8f8f8;
+    box-shadow: 5px 5px 5px rgb(207, 207, 207);
+    /* margin: 0 auto; */
+    /* padding-top: 15px; */
+}
+.commentForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.commentForm > form > h4 {
+    margin-left: 1.3vmax;
+}
+.commentForm .psBox {
+    display: flex;
+    justify-content: space-evenly;
+}
+.commentForm > form > .psBox > input[class="int"] {
+    width: 80%;
+}
+.commentForm > form > .psBox > input[class="btn"] {
+    width: 10%;
+    height: 37px;
+}
+#commentList {
+    padding-bottom: 15px;
+    width: 100%;
+    margin: 0 auto;
+}
+.commentRow {
+    width: 94%;
+    height: 100%;
+    background: #fff;
+    margin: 0 auto;
+    border: 1px solid #b1b1b1;
+
+    /* box-shadow: 5px 5px 5px rgb(207, 207, 207); */
+}
+.commentID {
+    width: 100%;
+    height: 20px;
+    margin-bottom: 10px;
+    padding: 2px 5px;
+    border-bottom: 1px solid #ebebeb;
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 20px;
+}
+.commentContent {
+    /* border: 1px solid red; */
+    padding: 2px 5px;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+.commentDate {
+    padding: 2px 5px;
+    font-size: 13px;
+    border-top: 1px solid #ebebeb;
+    text-align: end;
 }

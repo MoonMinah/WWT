@@ -3,20 +3,134 @@
     <%- include('include/head', { title: 'What Was Today' })%>
     <body>
         <%- include('include/header')%>
+
+        <!-- 
+
+{
+isLogin: true,
+postData:{
+    postNumber: 1,
+    postTitle: "임시제목",
+    weather: null,
+    region: null,
+    reImage: "temp",
+    createdAt: "2024-03-06T04:59:23.000Z",
+    updatedAt: "2024-03-06T04:59:23.000Z",
+    userID: 1
+    },
+commentResult:[
+        {"courseNumber": 1, "courseImagePath": "temp", "courseLon": 12.12, "courseLat": 13.13, "courseText": "course설명입니다",…},
+        {"courseNumber": 2, "courseImagePath": "temp", "courseLon": 12.12, "courseLat": 13.13, "courseText": "course설명입니다",…}
+    ],
+postCourseData:[
+        {"courseNumber": 1, "courseImagePath": "temp", "courseLon": 12.12, "courseLat": 13.13, "courseText": "course설명입니다",…},
+        {"courseNumber": 2, "courseImagePath": "temp", "courseLon": 12.12, "courseLat": 13.13, "courseText": "course설명입니다",…}
+    ]
+    }
+         -->
         <div class="postContainer">
             <div id="postIcon"></div>
-            <h2>맑은날 좋은 제주도 우도 코스</h2>
+            <h2><%#=postData.postTitle%>맑은날 좋은 제주도 우도 코스</h2>
             <div class="postContent">
                 <ul>
                     <li id="postImg">
-                        <img src="../static/image/beach1.jpg" alt="" style="width: 100%" />
+                        <img
+                            src="/static/uploads/<%#=postData.reImage%>"
+                            alt=""
+                            style="width: 100%"
+                        />
                     </li>
                     <li id="postWriting">
-                        안녕하세요 오늘은 제주도에 대해서 포스트하고 싶어서 이렇게 적어봅니다.
+                        <%#=postCourseData.courseText%>안녕하세요 오늘은 제주도에 대해서 포스트하고
+                        싶어서 이렇게 적어봅니다.
                     </li>
-                    <li id="postRegion">위치</li>
+                    <li id="postRegion">
+                        <%#=postCourseData.courseLon, postCourseData.couresLat%>위치
+                    </li>
                 </ul>
             </div>
         </div>
+        <div class="commentContainer">
+            <ul class="comment">
+                <li class="commentForm">
+                    <form action="" id="commentForm">
+                        <h4>댓글쓰기(<span></span>)</h4>
+                        <span class="psBox">
+                            <input
+                                type="text"
+                                placeholder="댓글 내용을 입력해주세요."
+                                class="int"
+                                name="content"
+                            />
+                            <input type="submit" class="btn" value="등록" />
+                        </span>
+                    </form>
+                </li>
+                <li id="commentList"></li>
+            </ul>
+        </div>
+        <script>
+            const commentBtn = document.querySelector("#commentForm");
+            const commentList = document.querySelector("#commentList");
+            const total = document.querySelector("h4 > span");
+            const list = [];
+            function Comment(content) {
+                let today = new Date();
+                console.log(today.toLocaleString());
+                // this.userid = postData.postID;
+                this.userid = "rekey";
+                this.content = content;
+                this.date = today.toLocaleString();
+            }
+
+            function createRow(userid, content, date) {
+                const ul = document.createElement("ul");
+                const li1 = document.createElement("li");
+                const li2 = document.createElement("li");
+                const li3 = document.createElement("li");
+
+                ul.append(li1);
+                ul.append(li2);
+                ul.append(li3);
+
+                ul.setAttribute("class", "commentRow");
+                li1.setAttribute("class", "commentID");
+                li2.setAttribute("class", "commentContent");
+                li3.setAttribute("class", "commentDate");
+
+                li1.innerHTML = userid;
+                li2.innerHTML = content;
+                li3.innerHTML = date;
+
+                return ul;
+            }
+            function drawing() {
+                commentList.innerHTML = "";
+                for (let i = list.length - 1; i >= 0; i--) {
+                    const row = createRow(list[i].userid, list[i].content, list[i].date);
+                    commentList.appendChild(row);
+                }
+            }
+            function totalRecord() {
+                total.innerHTML = `${list.length}`;
+            }
+            function commentBtnHandler(e) {
+                e.preventDefault();
+                const input = e.target.content;
+                if (input.value === "") {
+                    alert("내용을 넣고 등록 버튼을 눌러주세요");
+                    return;
+                }
+                const commentObj = new Comment(input.value);
+                list.push(commentObj);
+                totalRecord();
+
+                drawing();
+                e.target.reset();
+            }
+
+            totalRecord();
+            commentBtn.addEventListener("submit", commentBtnHandler);
+        </script>
     </body>
 </html>

@@ -12,6 +12,19 @@ const PostModel = (sequelize, DataTypes) => {
                 type: DataTypes.STRING(50),
                 allowNull: false,
             },
+            weather: {
+                type: DataTypes.ENUM,
+                values: ["sunny", "rainy", "snow", "cloudy"],
+                allowNull: true,
+            },
+            region: {
+                type: DataTypes.STRING(20),
+                allowNull: true,
+            },
+            reImage: {
+                type: DataTypes.TEXT,
+                allowNull: true,
+            },
         },
         {
             tableName: "Post",
