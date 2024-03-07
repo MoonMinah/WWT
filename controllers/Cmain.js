@@ -213,7 +213,7 @@ exports.editUser = (req, res) => {
 
     model.User.update(
         {
-            userPW: req.body.userPW,
+            userPW: hashPW(req.body.userPW),
             userName: req.body.userName,
             userNickname: req.body.userNickname,
             userEmail: req.body.userEmail,
