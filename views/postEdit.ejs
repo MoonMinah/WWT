@@ -5,8 +5,8 @@
         <%- include('include/header')%>
         <div class="postEditContainer">
             <h2 class="H1WWT">What Was Today</h2>
-            <form action="" name="wwtPostEdit">
-                <div class="inputContainer">
+            <div class="inputContainer">
+                <form action="" name="wwtPostEdit">
                     <fieldset>
                         <legend>날씨를 골라주세요</legend>
                         <label for=""
@@ -19,23 +19,36 @@
                         <label for=""><input type="checkbox" name="weather" value="눈" />눈</label>
                     </fieldset>
                     <input type="text" name="title" id="postEditTitle" placeholder="제목" />
-                    <textarea
-                        name=""
-                        id=""
-                        cols="30"
-                        rows="10"
-                        placeholder="내용을 입력해주세요"
-                    ></textarea>
-                    <input type="file" name="" id="postEditFile" />
-                    <input type="text" id="searchText" placeholder="찾으시는 위치를 적어주세요" />
-                    <button type="button" onclick="searchRegion()" value="위치검색" id="searchBTN">
-                        위치 검색하기
-                    </button>
-                    <div class="searchResult"></div>
-                    <button type="button" onclick="addPost()">+</button>
-                </div>
-            </form>
-            <button type="button">Would you like to post?</button>
+                    <div class="adding">
+                        <textarea
+                            name="postContent"
+                            id=""
+                            cols="30"
+                            rows="10"
+                            placeholder="내용을 입력해주세요"
+                        ></textarea>
+                        <input type="file" name="postEditFile" id="postEditFile" />
+                        <input
+                            type="text"
+                            id="searchText"
+                            placeholder="찾으시는 위치를 적어주세요"
+                        />
+                        <button
+                            type="button"
+                            onclick="searchRegion()"
+                            value="위치검색"
+                            id="searchBTN"
+                        >
+                            위치 검색하기
+                        </button>
+                        <div class="searchResult"></div>
+                    </div>
+                    <button type="button" onclick="addPost()" id="addPostBTN">+</button>
+                </form>
+            </div>
+            <button type="button" onclick="sendPost()" id="sendPostBTN">
+                Would you like to post?
+            </button>
         </div>
         <!-- <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> -->
         <script>
@@ -48,15 +61,44 @@
             //     }).open();
             // }
             const form = document.forms["wwtPostEdit"];
+            const createTable = document.createElement("table");
+            const searchResult = document.querySelector(".searchResult");
+            const searchBTN = document.querySelector("#searchBTN");
+
             function searchRegion() {}
             function showRegion() {
-                const createTable = document.createElement("table");
-                const searchResult = document.querySelector(".searchResult");
-                const btn = document.querySelector("#searchBTN");
-
                 searchResult.appendChild(createTable);
             }
-            function addPost() {}
+            function sendPost() {
+                const formData = new FormData();
+                const file = document.getElementById("postEditFile");
+                console.log(file.files[0]);
+                formData.append("postEditFile", file.files[0]);
+                console.log(formData);
+                const weather = [];
+
+                form.weather.forEach((checkBox) => {
+                    if (checkBox.checked) {
+                        interests.push(checkBox.value);
+                    }
+                });
+
+                const data = {
+                    postTitle: form.title.value,
+                    comentText: form.postEditFile.value,
+                    imgData: formData,
+                    region: form.searchText.value,
+                    weather: weather,
+                };
+                axios({
+                    method: "POST",
+                    url: "/newPost",
+                    params: data,
+                }).then(function (res) {
+                    console.log(res);
+                    console.log(res.data);
+                });
+            }
         </script>
     </body>
 </html>
