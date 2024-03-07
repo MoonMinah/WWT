@@ -53,7 +53,7 @@ postCourseData:[
         <div class="commentContainer">
             <ul class="comment">
                 <li class="commentForm">
-                    <form action="" id="commentForm">
+                    <form action="" id="commentForm" method="post" name="comment">
                         <h4>댓글쓰기(<span></span>)</h4>
                         <span class="psBox">
                             <input
@@ -62,7 +62,7 @@ postCourseData:[
                                 class="int"
                                 name="content"
                             />
-                            <input type="submit" class="btn" value="등록" />
+                            <input type="submit" class="btn" value="등록" onclick="postComment()" />
                         </span>
                     </form>
                 </li>
@@ -77,7 +77,7 @@ postCourseData:[
             function Comment(content) {
                 let today = new Date();
                 console.log(today.toLocaleString());
-                // this.userid = postData.postID;
+                // this.userid = data.userNickname;
                 this.userid = "rekey";
                 this.content = content;
                 this.date = today.toLocaleString();
@@ -131,6 +131,30 @@ postCourseData:[
 
             totalRecord();
             commentBtn.addEventListener("submit", commentBtnHandler);
+
+            function postComment() {
+                // const commentData = {
+                //     postNumber: list.length,
+                //     // userID: getPost.useID,
+                //     userID: data.userNickname,
+                //     commentText: form.content.value,
+                // };
+                // axios({
+                //     method: "POST",
+                //     url: `/getPost/:${postData.postID}`,
+                //     data: commentData,
+                // })
+                //     .then(function (response) {
+                //         console.log(response.data);
+                //         if (response.data.isSuccess) {
+                //             totalRecord();
+                //             commentBtn.addEventListener("submit", commentBtnHandler);
+                //         } else {
+                //             alert("다시 시도해주세요");
+                //         }
+                //     })
+                //     .catch((err) => console.log(err));
+            }
         </script>
     </body>
 </html>

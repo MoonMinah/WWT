@@ -5,11 +5,22 @@
         <%- include('include/header')%>
         <div class="profileEditContainer">
             <div class="profileEditImgContainer">
-                <div class="profileEditIcon">
-                    <img id="imageElement" src="../static/image/default.jpg" alt="기본 이미지" />
-                </div>
-                <input type="file" accept="image/*" style="display: none" id="fileInput" />
-                <button id="profileEditIconBTN">사진변경</button>
+                <form
+                    class="profileEditForm"
+                    action="/uploads"
+                    method="post"
+                    enctype="multipart/form-data"
+                >
+                    <div class="profileEditIcon">
+                        <img
+                            id="imageElement"
+                            src="../static/image/default.jpg"
+                            alt="기본 이미지"
+                        />
+                    </div>
+                    <input type="file" accept="image/*" style="display: none" id="fileInput" />
+                    <button id="profileEditIconBTN" onclick="imgChange()">사진변경</button>
+                </form>
             </div>
             <form name="form-text">
                 <input type="hidden" name="userID" value="<%=data.userID%>" required />
@@ -84,9 +95,33 @@
                 fileInput.click();
             });
 
+            // var fileInput = document.getElementById("fileInput");
+            // var imageElement = document.getElementById("imageElement");
+            // fileInput.addEventListener("change", function (event) {
+            //     var selectedFile = event.target.files[0];
+            //     if (selectedFile && selectedFile.type.startsWith("image/")) {
+            //         var reader = new FileReader();
+            //         reader.onload = function (event) {
+            //             imageElement.src = event.target.result;
+            //         };
+            //         reader.readAsDataURL(selectedFile);
+            //     }
+            // });
+            // document.getElementById("profileEditIconBTN").addEventListener("click", function () {
+            //     fileInput.click();
+            // });
+
             // function imgChange() {
             //     var newImagePath = "../static/image/logo.png";
             //     imageElement.src = newImagePath;
+            //     const file = document.getElementById("fileInput");
+            //     const img = document.querySelector("#imageElement");
+            //     const formData = new FormData()
+
+            //     axios({
+            //         method: "POST",
+            //         url: ""
+            //     })
             // }
             // 원래 쓰려고 했던 함수
         </script>

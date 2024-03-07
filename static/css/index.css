@@ -622,11 +622,6 @@ input[type="email"] {
     height: 100%;
     border-radius: 50%;
 }
-.profileEditIcon > #imageElement {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-}
 #profileEditIconBTN {
     border: none;
     padding: 20px;
