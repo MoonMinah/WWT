@@ -65,7 +65,6 @@
                         alert("수정실패");
                     });
             }
-
             function deleteUser() {
                 const form = document.forms["form-text"];
                 axios({
@@ -79,6 +78,22 @@
                     document.location.href = "/";
                 });
             }
+            var fileInput = document.getElementById("fileInput");
+            var imageElement = document.getElementById("imageElement");
+            fileInput.addEventListener("change", function (event) {
+                var selectedFile = event.target.files[0];
+                console.log("selectedFile::", selectedFile);
+                if (selectedFile && selectedFile.type.startsWith("image/")) {
+                    var reader = new FileReader();
+                    reader.onload = function (event) {
+                        imageElement.src = event.target.result;
+                    };
+                    reader.readAsDataURL(selectedFile);
+                }
+            });
+            document.getElementById("profileEditIconBTN").addEventListener("click", function () {
+                fileInput.click();
+            });
 
             // var fileInput = document.getElementById("fileInput");
             // var imageElement = document.getElementById("imageElement");
@@ -97,6 +112,8 @@
             // });
 
             // function imgChange() {
+            //     var newImagePath = "../static/image/logo.png";
+            //     imageElement.src = newImagePath;
             //     const file = document.getElementById("fileInput");
             //     const img = document.querySelector("#imageElement");
             //     const formData = new FormData()

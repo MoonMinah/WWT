@@ -50,5 +50,111 @@ postCourseData:[
                 </ul>
             </div>
         </div>
+        <div class="commentContainer">
+            <ul class="comment">
+                <li class="commentForm">
+                    <form action="" id="commentForm" method="post" name="comment">
+                        <h4>댓글쓰기(<span></span>)</h4>
+                        <span class="psBox">
+                            <input
+                                type="text"
+                                placeholder="댓글 내용을 입력해주세요."
+                                class="int"
+                                name="content"
+                            />
+                            <input type="submit" class="btn" value="등록" onclick="postComment()" />
+                        </span>
+                    </form>
+                </li>
+                <li id="commentList"></li>
+            </ul>
+        </div>
+        <script>
+            const commentBtn = document.querySelector("#commentForm");
+            const commentList = document.querySelector("#commentList");
+            const total = document.querySelector("h4 > span");
+            const list = [];
+            function Comment(content) {
+                let today = new Date();
+                console.log(today.toLocaleString());
+                // this.userid = data.userNickname;
+                this.userid = "rekey";
+                this.content = content;
+                this.date = today.toLocaleString();
+            }
+
+            function createRow(userid, content, date) {
+                const ul = document.createElement("ul");
+                const li1 = document.createElement("li");
+                const li2 = document.createElement("li");
+                const li3 = document.createElement("li");
+
+                ul.append(li1);
+                ul.append(li2);
+                ul.append(li3);
+
+                ul.setAttribute("class", "commentRow");
+                li1.setAttribute("class", "commentID");
+                li2.setAttribute("class", "commentContent");
+                li3.setAttribute("class", "commentDate");
+
+                li1.innerHTML = userid;
+                li2.innerHTML = content;
+                li3.innerHTML = date;
+
+                return ul;
+            }
+            function drawing() {
+                commentList.innerHTML = "";
+                for (let i = list.length - 1; i >= 0; i--) {
+                    const row = createRow(list[i].userid, list[i].content, list[i].date);
+                    commentList.appendChild(row);
+                }
+            }
+            function totalRecord() {
+                total.innerHTML = `${list.length}`;
+            }
+            function commentBtnHandler(e) {
+                e.preventDefault();
+                const input = e.target.content;
+                if (input.value === "") {
+                    alert("내용을 넣고 등록 버튼을 눌러주세요");
+                    return;
+                }
+                const commentObj = new Comment(input.value);
+                list.push(commentObj);
+                totalRecord();
+
+                drawing();
+                e.target.reset();
+            }
+
+            totalRecord();
+            commentBtn.addEventListener("submit", commentBtnHandler);
+
+            function postComment() {
+                // const commentData = {
+                //     postNumber: list.length,
+                //     // userID: getPost.useID,
+                //     userID: data.userNickname,
+                //     commentText: form.content.value,
+                // };
+                // axios({
+                //     method: "POST",
+                //     url: `/getPost/:${postData.postID}`,
+                //     data: commentData,
+                // })
+                //     .then(function (response) {
+                //         console.log(response.data);
+                //         if (response.data.isSuccess) {
+                //             totalRecord();
+                //             commentBtn.addEventListener("submit", commentBtnHandler);
+                //         } else {
+                //             alert("다시 시도해주세요");
+                //         }
+                //     })
+                //     .catch((err) => console.log(err));
+            }
+        </script>
     </body>
 </html>

@@ -483,6 +483,42 @@ input[type="email"] {
 }
 
 /* post edit */
+/* post */
+.postContainer {
+    width: 50%;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid red; */
+    align-items: center;
+}
+.postContent {
+    width: 100%;
+    /* border: 1px solid red; */
+}
+.postContent > ul {
+    width: 100%;
+    margin: 0 auto;
+}
+.postContent > ul > li {
+    display: block;
+    list-style: none;
+    /* border: 1px solid red; */
+    width: 100%;
+    text-align: center;
+    box-shadow: 5px 5px 5px rgb(207, 207, 207);
+}
+.postContent > ul > #postWriting {
+    height: 150px;
+    padding: 30px 0;
+}
+.postContent > ul > #postRegion {
+    height: 30px;
+    padding: 8px 0;
+    line-height: 30px;
+}
+
+/* post edit */
 .postEditContainer {
     width: 30%;
     margin: 0 auto;
@@ -541,7 +577,6 @@ input[type="email"] {
 .writePostBTN:hover {
     background-color: #b1b1b1;
 }
-
 /* profile edit */
 .profileEditContainer {
     padding-top: 50px;
@@ -631,6 +666,82 @@ input[type="email"] {
 .profileEditContainer > button:hover {
     background-color: #b1b1b1;
     color: rgb(248, 248, 248);
+}
+
+/* comment */
+ul,
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.commentContainer {
+    width: 50%;
+    margin: 0 auto;
+}
+.comment {
+    display: block;
+    width: 100%;
+    /* border: 1px solid red; */
+    background-color: #f8f8f8;
+    box-shadow: 5px 5px 5px rgb(207, 207, 207);
+    /* margin: 0 auto; */
+    /* padding-top: 15px; */
+}
+.commentForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.commentForm > form > h4 {
+    margin-left: 1.3vmax;
+}
+.commentForm .psBox {
+    display: flex;
+    justify-content: space-evenly;
+}
+.commentForm > form > .psBox > input[class="int"] {
+    width: 80%;
+}
+.commentForm > form > .psBox > input[class="btn"] {
+    width: 10%;
+    height: 37px;
+}
+#commentList {
+    padding-bottom: 15px;
+    width: 100%;
+    margin: 0 auto;
+}
+.commentRow {
+    width: 94%;
+    height: 100%;
+    background: #fff;
+    margin: 0 auto;
+    border: 1px solid #b1b1b1;
+
+    /* box-shadow: 5px 5px 5px rgb(207, 207, 207); */
+}
+.commentID {
+    width: 100%;
+    height: 20px;
+    margin-bottom: 10px;
+    padding: 2px 5px;
+    border-bottom: 1px solid #ebebeb;
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 20px;
+}
+.commentContent {
+    /* border: 1px solid red; */
+    padding: 2px 5px;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+.commentDate {
+    padding: 2px 5px;
+    font-size: 13px;
+    border-top: 1px solid #ebebeb;
+    text-align: end;
 }
 /* admin CSS */
 .adminBody {
