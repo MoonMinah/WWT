@@ -673,17 +673,25 @@ input[type="email"] {
 }
 #search-button {
     margin-bottom: 0.4%;
+    font-size: 12px;
+    padding: 5px 10px;
+}
+#member-list {
+    padding-top: 10px;
 }
 .container {
     display: flex;
-    justify-content: center;
+    flex-direction: row-reverse;
 }
 .boardTable {
     border: solid 1px black;
     text-align: center;
 }
-#deleteButton {
+.container > form {
     position: relative;
-    left: 83%;
-    margin-bottom: 8px;
+    right: 5%;
+}
+#deleteButton {
+    font-size: 12px;
+    padding: 5px 10px;
 }
