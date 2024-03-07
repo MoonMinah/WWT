@@ -1,105 +1,160 @@
 <!DOCTYPE html>
 <html lang="ko">
+    <%- include('include/head', { title: '관리자 페이지' })%>
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>회원관리</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"
+        ></script>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+        />
     </head>
-    <body>
-        <section class="notice">
-            <div class="page-title">
-                <div class="container">
-                    <div class="text-center">
-                        <h3>
-                            회원관리
-                            <input
-                                class="btn btn-outline-warning btn-sm"
-                                type="button"
-                                value="뒤로"
-                                onclick="goBack()"
-                            />
-                        </h3>
-                    </div>
-                </div>
+    <body id="adminAccessBody">
+        <%#- include('include/header')%>
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button
+                    class="nav-link active"
+                    id="nav-home-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#nav-home"
+                    type="button"
+                    role="tab"
+                    aria-controls="nav-home"
+                    aria-selected="true"
+                >
+                    Member
+                </button>
+                <button
+                    class="nav-link"
+                    id="nav-profile-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#nav-profile"
+                    type="button"
+                    role="tab"
+                    aria-controls="nav-profile"
+                    aria-selected="false"
+                >
+                    Post
+                </button>
             </div>
-            <!-- 검색 -->
-            <div id="board-search1" style="text-align: center">
-                <div class="container">
-                    <form action="/admin/memberSearch" method="get">
-                        <div class="search-wrap">
-                            <label class="blind" for="searchInput">회원 검색</label>
-                            <input
-                                id="searchInput"
-                                style="width: 600px"
-                                type="search"
-                                name="query"
-                                placeholder="이름/아이디/닉네임/이메일로 검색할 수 있습니다."
-                            />
-                            <button type="submit" class="btn btn-dark" id="search-button">
-                                검색
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div>
-                <form action="/admin/deleteAccount" method="post">
-                    <div class="d-flex justify-content-end">
-                        <input
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div
+                class="tab-pane fade show active"
+                id="nav-home"
+                role="tabpanel"
+                aria-labelledby="nav-home-tab"
+                tabindex="0"
+            >
+                <section class="notice">
+                    <h2 class="h3Text">
+                        회원 관리
+                        <!-- <input
+                            class="btn btn-outline-warning btn-sm"
                             type="button"
-                            id="deleteButton"
-                            class="btn btn-warning btn-sm ml-auto"
-                            style="font-size: 10px; margin-right: 70px"
-                            value="삭제"
-                            onclick="deleteMember()"
-                        />
+                            value="뒤로"
+                            onclick="goBack()"
+                        /> -->
+                    </h2>
+                    <!-- 검색 -->
+                    <div>
+                        <form action="/admin/memberSearch" method="get">
+                            <div id="boardSearch1">
+                                <label class="blind" for="searchInput">회원 검색</label>
+                                <input
+                                    id="searchInput"
+                                    style="width: 500px"
+                                    type="search"
+                                    name="query"
+                                    placeholder="이름/아이디/닉네임/이메일로 검색할 수 있습니다."
+                                />
+                                <button type="submit" class="btn btn-dark" id="search-button">
+                                    검색
+                                </button>
+                            </div>
+                        </form>
                     </div>
-                </form>
-            </div>
-            <div id="member-list" style="overflow-y: scroll; max-height: 400px">
-                <div class="container">
-                    <table class="board-table">
-                        <thead>
-                            <tr>
-                                <th scope="col" class="th-check"></th>
-                                <th scope="col" class="th-id">아이디</th>
-                                <th scope="col" class="th-name">이름</th>
-                                <th scope="col" class="th-nickname">닉네임</th>
-                                <th scope="col" class="th-email">이메일</th>
-                                <th scope="col" class="th-joindate">가입일</th>
-                                <th scope="col" class="th-mem_lv">권한</th>
-                            </tr>
-                        </thead>
-                        <tbody id="searchResults">
-                            <% members.forEach(user => { %>
-                            <tr class="tr-text">
-                                <td>
+                    <br />
+                    <div id="member-list" style="overflow-y: scroll; max-height: 400px">
+                        <div class="container">
+                            <form action="/admin/deleteAccount" method="post">
+                                <span>
                                     <input
-                                        type="checkbox"
-                                        class="checkbox"
-                                        data-member-idx="<%= user.id %>"
+                                        type="button"
+                                        id="deleteButton"
+                                        class="btn btn-outline-info"
+                                        value="삭제"
+                                        onclick="deleteMember()"
                                     />
-                                </td>
-                                <td><%= user.id %></td>
-                                <td><%= user.userName %></td>
-                                <td><%= user.userNickname %></td>
-                                <td><%= user.userEmail %></td>
-                                <td><%= user.userAddr %></td>
-                                <td><%= user.createdAt %></td>
-                                <td>
-                                    <% if (user.memLV == 1) { %> 일반회원 <% } else { %> 관리자 <% }
-                                    %>
-                                </td>
-                            </tr>
-                            <% }); %>
-                        </tbody>
-                    </table>
-                </div>
+                                </span>
+                            </form>
+                            <table class="table caption-top">
+                                <caption>
+                                    회원 목록
+                                </caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="th-check"></th>
+                                        <th scope="col" class="th-id">아이디</th>
+                                        <th scope="col" class="th-name">이름</th>
+                                        <th scope="col" class="th-nickname">닉네임</th>
+                                        <th scope="col" class="th-email">이메일</th>
+                                        <th scope="col" class="th-joindate">가입일</th>
+                                        <th scope="col" class="th-mem_lv">권한</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% members.forEach(user => { %>
+                                    <tr class="tr-text">
+                                        <td>
+                                            <input
+                                                type="checkbox"
+                                                class="checkbox"
+                                                data-member-idx="<%= user.id %>"
+                                            />
+                                        </td>
+                                        <td><%= user.userID %></td>
+                                        <td><%= user.userName %></td>
+                                        <td><%= user.userNickname %></td>
+                                        <td><%= user.userEmail %></td>
+                                        <!-- <td><%#= user.userAddr %></td> -->
+                                        <!--user.userAddr이 뭘까요?  -->
+                                        <td><%= user.createdAt %></td>
+                                        <td>
+                                            <% if (user.memLV == 1) { %> 일반회원 <% } else { %>
+                                            관리자 <% } %>
+                                        </td>
+                                    </tr>
+                                    <% }); %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- <div style="text-align: center">
+                        <span style="font-size: 50px">...</span>
+                    </div> -->
+                </section>
             </div>
-            <div style="text-align: center">
-                <span style="font-size: 50px">...</span>
+            <div
+                class="tab-pane fade"
+                id="nav-profile"
+                role="tabpanel"
+                aria-labelledby="nav-profile-tab"
+                tabindex="0"
+            >
+                <h3>게시글 관리</h3>
             </div>
-        </section>
+        </div>
         <script>
             function goBack() {
                 window.history.back();
