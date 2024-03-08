@@ -807,6 +807,53 @@ li {
     padding: 5px 10px;
 }
 /* adminQnA CSS */
-fieldset > input {
-    width: 300px;
+.contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+.contact > h1 {
+    margin-top: 7rem;
+}
+/* #contactForm {
+    border: 1px solid #3c3c3c;
+    border-style: outset;
+    width: 478.260864px;
+} */
+#contactForm > table {
+    /* display: inline; */
+    text-align: center;
+    border: 1px solid black;
+}
+.contactTableTR > .contactTableTD {
+}
+#message {
+    /* font-size: 14px; */
+    width: 400px;
+}
+.adminQNABTN,
+.adminQNABackBTN {
+    text-align: center;
+    width: 120px;
+    border: none;
+    padding: 20px;
+    height: 20px;
+    background-color: rgb(248, 248, 248);
+    /* border-radius: 10px; */
+    box-shadow: 5px 5px 5px rgb(207, 207, 207);
+    border: 1px solid rgb(215, 215, 215);
+    color: #3c3c3c;
+    line-height: 0px;
+    font-size: 15px;
+    margin: 10px;
+    font-weight: 700;
+}
+.adminQNABTN:hover {
+    background-color: #b1b1b1;
+    color: rgb(248, 248, 248);
+}
+.contactTableTR {
+    text-align: center;
+    line-height: 50%;
 }
