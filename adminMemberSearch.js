@@ -1,7 +1,7 @@
 const { Client } = require("@elastic/elasticsearch");
 
 // 엘라스틱서치 클라이언트 설정
-const client = new Client({ node: "http://localhost:8000" });
+const client = new Client({ node: "http://49.50.167.42:8000" });
 
 class AdminMemberSearch {
     async execute(query) {

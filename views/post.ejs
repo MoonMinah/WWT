@@ -50,7 +50,7 @@ postCourseData:[
         <div class="commentContainer">
             <ul class="comment">
                 <li class="commentForm">
-                    <form action="/postComment" id="commentForm" name="comment">
+                    <form action="" id="commentForm" name="comment">
                         <h4>댓글쓰기(<span></span>)</h4>
                         <span class="psBox">
                             <input
@@ -59,12 +59,14 @@ postCourseData:[
                                 class="int"
                                 name="content"
                             />
-                            <input type="submit" class="btn" value="등록" />
+
+                            <input type="submit" class="btn" value="등록" onclick="postComment()" />
                         </span>
                     </form>
                 </li>
                 <li><%#= commentResult[0].userNickname %></li>
             </ul>
+            <% console.log(data) %> <% console.log('----->',postData) %>
         </div>
         <script>
             const commentBtn = document.querySelector("#commentForm");
@@ -73,10 +75,10 @@ postCourseData:[
             const list = [];
             const form = document.forms["comment"];
 
-            function Comment(userID, content) {
+            function Comment(content) {
                 let today = new Date();
                 // this.userid = data.userNickname;
-                this.userid = userID;
+                this.userid = "rekey";
                 this.content = content;
                 this.date = today.toLocaleString();
             }
@@ -131,34 +133,34 @@ postCourseData:[
             // commentBtn.addEventListener("submit", commentBtnHandler);
             // console.log(form.content.value);
 
-            // function postComment() {
-            //     console.log(form.content.value);
-            //     console.log(list.length + 1);
-            //     const data = {
-            //         postNumber: 1,
-            //         // userID: getPost.useID,
-            //         userID: 1,
-            //         commentText: form.content.value,
-            //     };
-            //     axios({
-            //         method: "POST",
-            //         url: "/postComment",
-            //         data: data,
-            //     })
-            //         .then((data) => {
-            //             if (data) {
-            //                 console.log(data);
-            //                 const commentObj = new Comment(data.userID, data.commentText);
-            //                 list.push(commentObj);
-            //                 totdalRecord();
-            //                 drawing();
-            //             } else {
-            //                 alert("다시 시도해주세요");
-            //             }
-            //         })
-            //         // .then(function (data) {})
-            //         .catch((err) => console.log(err));
-            // }
+            function postComment() {
+                console.log(form.content.value);
+                console.log(list.length + 1);
+                const data = {
+                    postNumber: "<%= postData.postNumber%>",
+                    // userID: getPost.useID,
+                    userID: "<%=data.id%>",
+                    commentText: form.content.value,
+                };
+                axios({
+                    method: "POST",
+                    url: "/postComment",
+                    data: data,
+                })
+                    .then((data) => {
+                        if (data) {
+                            console.log(data);
+                            const commentObj = new Comment(data.userID, data.commentText);
+                            list.push(commentObj);
+                            totalRecord();
+                            drawing();
+                        } else {
+                            alert("다시 시도해주세요");
+                        }
+                    })
+                    // .then(function (data) {})
+                    .catch((err) => console.log(err));
+            }
         </script>
     </body>
 </html>
