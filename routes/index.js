@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const controller = require("../controllers/Cmain");
 const apiKey = "AIzaSyDlu0zaA5jg995Mm5-Lu1lJ3jEjNg25m3c";
+const axios = require("axios");
+const multer = require("../middleware/upload");
 
 router.get("/", controller.open);
 router.get("/login", controller.login);
@@ -18,7 +20,7 @@ router.post("/login", controller.postLogin);
 router.get("/logout", controller.postLogout);
 router.post("/profileEdit", controller.postProfile);
 router.post("/deleteUser", controller.deleteUser);
-router.post("/editUser", controller.editUser);
+router.post("/editUser", multer.uploadProfile.single("fileInput"), controller.editUser);
 
 //포스트와 관련된 router설정
 const postController = require("../controllers/Cpost");
@@ -72,10 +74,10 @@ router.post("/postComment", commentController.postComment); // 댓글 등록에 
 //     "postNumber": 1,
 //     "userID": 1,
 //     "commentText": "댓글 내용입니다"const apiKey = "AIzaSyDlu0zaA5jg995Mm5-Lu1lJ3jEjNg25m3c";
-const axios = require("axios");
 
 router.post("/getPlaces", async (req, res) => {
     const { keyword } = req.body;
+
     try {
         // Google Places API를 사용하여 건물 이름과 관련된 장소 검색
         const placesResponse = await axios.get(

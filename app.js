@@ -3,25 +3,6 @@ const app = express();
 const PORT = 8000;
 const db = require("./models");
 const session = require("express-session");
-const multer = require("multer");
-const path = require("path");
-const upload = multer({
-    dest: "img/",
-});
-
-const uploadDetail = multer({
-    storage: multer.diskStorage({
-        destination: function (req, file, cb) {
-            cb(null, "img/"); // 저장될 파일 경로 설정
-        },
-        filename: function (req, file, cb) {
-            const ext = path.extname(file.originalname); // 확장자를 담는 코드
-
-            cb(null, path.basename(file.originalname, ext) + ext);
-        },
-    }),
-    limits: { fileSize: 5 * 1024 * 1024 },
-});
 
 // multer 디테일 설정
 // limits : 파일 제한 설정
@@ -35,7 +16,7 @@ app.set("views", "./views");
 app.set("view engine", "ejs");
 
 app.use("/static", express.static(__dirname + "/static"));
-app.use("/img", express.static(__dirname + "/img"));
+app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use(
     session({
         secret: "secretKey",

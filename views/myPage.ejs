@@ -5,7 +5,17 @@
         <%- include('include/header')%> <% if(isLogin) {%>
         <div class="myPageProfileInfo">
             <div class="myPageDiv1">
-                <div id="postIcon"></div>
+                <div id="postIcon">
+                    <% if(data.userPhoto) {%>
+                    <img
+                        src="/<%= data.userPhoto%>"
+                        alt="<%= data.userNickname %> image"
+                        width="100%"
+                    />
+                    <% } else{ %>
+                    <img src="/static/image/default.jpg" alt="default image" width="100%" />
+                    <% } %>
+                </div>
                 <p class="myPageNickname"><%= data.userNickname %></p>
                 <!--닉네임-->
             </div>
