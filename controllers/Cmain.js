@@ -2,6 +2,7 @@ const model = require("../models");
 const path = require("path");
 const bcrypt = require("bcrypt");
 const saltRound = 10;
+const multer = require("multer");
 function hashPW(pw) {
     return bcrypt.hashSync(pw, saltRound);
 }
@@ -26,8 +27,7 @@ exports.main = (req, res) => {
             order: [["createdAt", "DESC"]],
             limit: 20,
         }).then((result) => {
-            res.render("main", { isLogin: true, data: req.session.data, posts: result }); //메인 페이지에 접근 할 때, 최신글 20개에 대해, postNumber, postTitle, reImage(대표 이미지 경로)
-            //를 보내고 있습니다. 이 또한 console.log()찍으시면서 작업하시면 수월하실겁니다.
+            res.render("main", { isLogin: true, data: req.session.data, posts: result });
         });
     } else {
         model.Post.findAll({
@@ -36,8 +36,16 @@ exports.main = (req, res) => {
             limit: 20,
         }).then((result) => {
             console.log(result);
-            res.render("main", { isLogin: false, posts: result }); // 이 또한, 위 주석과 설명이 같습니다.
+            res.render("main", { isLogin: false, posts: result });
         });
+    }
+};
+
+exports.adminAccess = (req, res, next) => {
+    if (req.session.userID && req.session.data.memLV === 0) {
+        next(); // 권한이 있으면 다음 미들웨어로 이동
+    } else {
+        res.redirect("/"); // 권한이 없으면 홈페이지로 리다이렉트
     }
 };
 exports.login = (req, res) => {
@@ -231,4 +239,10 @@ exports.editUser = (req, res) => {
             console.error("프로필 정보 업데이트 실패", err);
             res.status(500).send("프로필 정보 업데이트 실패");
         });
+};
+
+exports.uploadProfile = (req, res) => {
+    console.log(req.file); // 파일 정보
+    console.log(req.body); // 텍스트 정보
+    res.send("파일 업로드 완료");
 };
