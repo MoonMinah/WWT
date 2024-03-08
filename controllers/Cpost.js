@@ -62,7 +62,11 @@ exports.showPost = (req, res) => {
                     },
                 })
                     .then((commentResult) => {
+<<<
                         console.log(">>>", postCourseData);
+===
+                        console.log(">>>", postData, ">>>", commentResult);
+>>>
                         console.log(commentResult.length);
 
                         const getUserNicknamePromises = commentResult.map((comment) => {
@@ -82,7 +86,7 @@ exports.showPost = (req, res) => {
                                 });
 
                                 if (isLogin) {
-                                    // console.log("내가 원하는데이터", commentResult[0].userNickname);
+                                    console.log("내가 원하는데이터", commentResult[0].userNickname);
                                     res.render("post", {
                                         isLogin: isLogin,
                                         postData: postData,
