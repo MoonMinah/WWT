@@ -48,6 +48,8 @@ router.post("/profileEdit", controller.postProfile);
 router.post("/deleteUser", controller.deleteUser);
 router.post("/editUser", controller.editUser);
 
+router.post("/profileUpload", uploadProfile.single("userfile"), controller.uploadProfile);
+
 //포스트와 관련된 router설정
 const postController = require("../controllers/Cpost");
 router.post("/writePost", postController.postPost); // 게시글 등록에 관한 api입니다. req의 body데이터로,

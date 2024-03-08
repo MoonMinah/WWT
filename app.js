@@ -5,14 +5,14 @@ const db = require("./models");
 const session = require("express-session");
 const multer = require("multer");
 const path = require("path");
-const upload = multer({
-    dest: "img/",
+const uploadProfile = multer({
+    dest: "uploads/profile",
 });
 
 const uploadDetail = multer({
     storage: multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, "img/"); // 저장될 파일 경로 설정
+            cb(null, "uploads/profile"); // 저장될 파일 경로 설정
         },
         filename: function (req, file, cb) {
             const ext = path.extname(file.originalname); // 확장자를 담는 코드

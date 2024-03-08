@@ -231,3 +231,9 @@ exports.editUser = (req, res) => {
             res.status(500).send("프로필 정보 업데이트 실패");
         });
 };
+
+exports.uploadProfile = (req, res) => {
+    console.log(req.file);
+    console.log(req.body);
+    res.send("파일 업로드 완료!");
+};
