@@ -6,7 +6,6 @@ const axios = require("axios");
 
 router.post("/getPlaces", async (req, res) => {
     const { keyword } = req.body;
-
     try {
         // Google Places API를 사용하여 건물 이름과 관련된 장소 검색
         const placesResponse = await axios.get(
