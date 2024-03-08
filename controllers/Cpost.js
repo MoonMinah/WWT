@@ -79,7 +79,7 @@ exports.showPost = (req, res) => {
                                 });
 
                                 if (isLogin) {
-                                    console.log("내가 원하는데이터", commentResult[0].userNickname);
+                                    // console.log("내가 원하는데이터", commentResult[0].userNickname);
                                     res.render("post", {
                                         isLogin: isLogin,
                                         postData: postData,
@@ -95,7 +95,12 @@ exports.showPost = (req, res) => {
                                     //     commentResult: commentResult,
                                     //     postCourseData: postCourseData,
                                     // });
-                                    res.render("temp", { commentResult: commentResult });
+                                    res.render("post", {
+                                        isLogin: isLogin,
+                                        postData: postData,
+                                        commentResult: commentResult,
+                                        postCourseData: postCourseData,
+                                    });
                                 }
                             })
                             .catch((getUserNicknameErr) => {

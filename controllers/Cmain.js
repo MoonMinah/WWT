@@ -13,7 +13,13 @@ function comparePW(inputpw, hashedpw) {
 exports.open = (req, res) => {
     if (req.session.userID) {
         console.log("open에서 로그인", req.session.data.userNickname);
-        res.render("open", { isLogin: true, data: req.session.data });
+        model.User.findOne({
+            where: {
+                id: req.session.data.id,
+            },
+        }).then((result) => {
+            res.render("open", { isLogin: true, data: result });
+        });
     } else {
         res.render("open", { isLogin: false });
     }
@@ -22,12 +28,25 @@ exports.open = (req, res) => {
 exports.main = (req, res) => {
     if (req.session.userID) {
         console.log("main에서 로그인", req.session.data.userNickname);
-        model.Post.findAll({
-            attributes: ["postTitle", "postNumber", "reImage"],
-            order: [["createdAt", "DESC"]],
-            limit: 20,
+        let userData;
+        model.User.findOne({
+            where: {
+                id: req.session.data.id,
+            },
         }).then((result) => {
+<<<<<<< HEAD
             res.render("main", { isLogin: true, data: req.session.data, posts: result });
+=======
+            userData = result;
+            model.Post.findAll({
+                attributes: ["postTitle", "postNumber", "reImage"],
+                order: [["createdAt", "DESC"]],
+                limit: 20,
+            }).then((result) => {
+                res.render("main", { isLogin: true, data: userData, posts: result }); //메인 페이지에 접근 할 때, 최신글 20개에 대해, postNumber, postTitle, reImage(대표 이미지 경로)
+                //를 보내고 있습니다. 이 또한 console.log()찍으시면서 작업하시면 수월하실겁니다.
+            });
+>>>>>>> c5e903319c3108752c5552a4679473fb49834f2c
         });
     } else {
         model.Post.findAll({
@@ -57,25 +76,33 @@ exports.join = (req, res) => {
 exports.myPage = (req, res) => {
     if (req.session.userID) {
         console.log("myPage에서 로그인", req.session.data.userNickname);
-        model.Post.count({
+        let userData;
+        model.User.findOne({
             where: {
-                userID: req.session.data.id,
+                id: req.session.data.id,
             },
         })
             .then((result) => {
-                const myPostCount = result;
-                model.Post.findAll({
-                    attributes: ["postNumber", "reImage"],
+                userData = result;
+                model.Post.count({
                     where: {
-                        userId: req.session.data.id,
+                        userID: req.session.data.id,
                     },
-                }).then((findResult) => {
-                    res.render("myPage", {
-                        isLogin: true,
-                        data: req.session.data,
-                        myPagePostCount: myPostCount, //내가 몇개의 포스트를 작성하였는가
-                        myPosts: findResult, //내가 작성한 포스트들에 대한 정보. (postID와, 대표이미지의 경로가 갈 것입니다.)
-                        //프론트단에서 작업할 때, console.log()찍으면서 작업하시면 편할거에요.
+                }).then((result) => {
+                    const myPostCount = result;
+                    model.Post.findAll({
+                        attributes: ["postNumber", "reImage"],
+                        where: {
+                            userId: req.session.data.id,
+                        },
+                    }).then((findResult) => {
+                        res.render("myPage", {
+                            isLogin: true,
+                            data: userData,
+                            myPagePostCount: myPostCount, //내가 몇개의 포스트를 작성하였는가
+                            myPosts: findResult, //내가 작성한 포스트들에 대한 정보. (postID와, 대표이미지의 경로가 갈 것입니다.)
+                            //프론트단에서 작업할 때, console.log()찍으면서 작업하시면 편할거에요.
+                        });
                     });
                 });
             })
@@ -89,7 +116,13 @@ exports.myPage = (req, res) => {
 exports.post = (req, res) => {
     if (req.session.userID) {
         console.log("post에서 로그인", req.session.data.userNickname);
-        res.render("post", { isLogin: true, data: req.session.data });
+        model.User.findOne({
+            where: {
+                id: req.session.data.id,
+            },
+        }).then((result) => {
+            res.render("post", { isLogin: true, data: result });
+        });
     } else {
         res.render("post", { isLogin: false });
     }
@@ -97,18 +130,31 @@ exports.post = (req, res) => {
 exports.postEdit = (req, res) => {
     if (req.session.userID) {
         console.log("postEdit에서 로그인", req.session.data.userNickname);
-        res.render("postEdit", {
-            isLogin: true,
-            data: req.session.data,
+        model.User.findOne({
+            where: {
+                id: req.session.data.id,
+            },
+        }).then((result) => {
+            res.render("postEdit", {
+                isLogin: true,
+                data: result,
+            });
         });
     } else {
         res.render("postEdit", { isLogin: false });
     }
 };
-exports.profileEdit = (req, res) => {
+exports.profileEdit = async (req, res) => {
     if (req.session.userID) {
         console.log("profileEdit에서 로그인", req.session.data.userNickname);
-        res.render("profileEdit", { isLogin: true, data: req.session.data });
+
+        const userData = await model.User.findOne({
+            where: {
+                id: req.session.data.id,
+            },
+        });
+
+        res.render("profileEdit", { isLogin: true, data: userData });
     } else {
         res.render("profileEdit", { isLogin: false });
     }
@@ -226,6 +272,7 @@ exports.editUser = (req, res) => {
             userName: req.body.userName,
             userNickname: req.body.userNickname,
             userEmail: req.body.userEmail,
+            userPhoto: req.file.path,
         },
         {
             where: { userID: loggedInUserID },
