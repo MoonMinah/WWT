@@ -83,7 +83,7 @@
                         keyword: keyword,
                     });
                     const places = response.data.places;
-                    
+
                     console.log(places);
                     displayPlaces(places);
                 } catch (error) {
@@ -191,7 +191,20 @@
                     postTitle: 1,
                     weather: "sunny",
                     region: "서울",
-                    postCourse: postCourse,
+                    postCourse: [
+                        {
+                            courseImagePath: "temp",
+                            courseLon: 12.12,
+                            courseLat: 13.13,
+                            courseText: "course설명입니다",
+                        },
+                        {
+                            courseImagePath: "temp",
+                            courseLon: 12.12,
+                            courseLat: 13.13,
+                            courseText: "course설명입니다",
+                        },
+                    ],
                 };
                 axios({
                     method: "POST",
