@@ -66,6 +66,7 @@ postCourseData:[
                 </li>
                 <li><%#= commentResult[0].userNickname %></li>
             </ul>
+            <% console.log(data) %> <% console.log('----->',postData) %>
         </div>
         <script>
             const commentBtn = document.querySelector("#commentForm");
@@ -136,9 +137,9 @@ postCourseData:[
                 console.log(form.content.value);
                 console.log(list.length + 1);
                 const data = {
-                    postNumber: 3,
+                    postNumber: "<%= postData.postNumber%>",
                     // userID: getPost.useID,
-                    userID: 1,
+                    userID: "<%=data.id%>",
                     commentText: form.content.value,
                 };
                 axios({
