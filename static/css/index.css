@@ -826,7 +826,15 @@ li {
     text-align: center;
     border: 1px solid black;
 }
-.contactTableTR > .contactTableTD {
+.contactTableTR > th {
+    text-align: center;
+    line-height: 50%;
+    margin: 0;
+}
+.contactTableTD > input {
+    width: 300px;
+    height: 35px;
+    margin: 0;
 }
 #message {
     /* font-size: 14px; */
@@ -854,6 +862,6 @@ li {
     color: rgb(248, 248, 248);
 }
 .contactTableTR {
-    text-align: center;
+    /* text-align: center; */
     line-height: 50%;
 }
