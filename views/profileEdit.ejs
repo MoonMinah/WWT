@@ -78,6 +78,7 @@
                     document.location.href = "/";
                 });
             }
+
             var fileInput = document.getElementById("fileInput");
             var imageElement = document.getElementById("imageElement");
             fileInput.addEventListener("change", function (event) {
@@ -95,35 +96,30 @@
                 fileInput.click();
             });
 
-            // var fileInput = document.getElementById("fileInput");
-            // var imageElement = document.getElementById("imageElement");
-            // fileInput.addEventListener("change", function (event) {
-            //     var selectedFile = event.target.files[0];
-            //     if (selectedFile && selectedFile.type.startsWith("image/")) {
-            //         var reader = new FileReader();
-            //         reader.onload = function (event) {
-            //             imageElement.src = event.target.result;
-            //         };
-            //         reader.readAsDataURL(selectedFile);
-            //     }
-            // });
-            // document.getElementById("profileEditIconBTN").addEventListener("click", function () {
-            //     fileInput.click();
-            // });
+            function imgChange() {
+                const file = document.getElementById("fileInput");
+                const img = document.querySelector("#imageElement");
+                const formData = new FormData();
 
-            // function imgChange() {
-            //     var newImagePath = "../static/image/logo.png";
-            //     imageElement.src = newImagePath;
-            //     const file = document.getElementById("fileInput");
-            //     const img = document.querySelector("#imageElement");
-            //     const formData = new FormData()
+                console.log(file.files[0]);
 
-            //     axios({
-            //         method: "POST",
-            //         url: ""
-            //     })
-            // }
-            // 원래 쓰려고 했던 함수
+                formData.append("fileInput", file.files[0]);
+
+                axios({
+                    method: "POST",
+                    url: "/profileUpload",
+                    data: formData,
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                }).then((res) => {
+                    console.log(res);
+                    console.log(res.data);
+                    console.log(res.data.path);
+
+                    img.src = res.data.path;
+                });
+            }
         </script>
     </body>
 </html>
