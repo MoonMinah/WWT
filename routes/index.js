@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const controller = require("../controllers/Cmain");
+const apiKey = "AIzaSyDlu0zaA5jg995Mm5-Lu1lJ3jEjNg25m3c";
 
 router.get("/", controller.open);
 router.get("/login", controller.login);
@@ -96,6 +97,29 @@ router.post("/getPlaces", async (req, res) => {
     } catch (error) {
         console.error("Error fetching places:", error.message);
         res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
+router.post("/getLatLng", async (req, res) => {
+    const { placeId } = req.body;
+
+    try {
+        const geocodeResponse = await axios.get(
+            "https://maps.googleapis.com/maps/api/geocode/json",
+            {
+                params: {
+                    place_id: placeId,
+                    key: apiKey,
+                },
+            }
+        );
+
+        const location = geocodeResponse.data.results[0].geometry.location;
+
+        res.json({ location });
+    } catch (error) {
+        console.error("Error fetching location:", error.message);
+        res.status(500).json({ error: "Failed to fetch location" });
     }
 });
 //}와 같은 형태로 받고 있습니다.
