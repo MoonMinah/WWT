@@ -95,7 +95,12 @@ exports.showPost = (req, res) => {
                                     //     commentResult: commentResult,
                                     //     postCourseData: postCourseData,
                                     // });
-                                    res.render("temp", { commentResult: commentResult });
+                                    res.render("post", {
+                                        isLogin: isLogin,
+                                        postData: postData,
+                                        commentResult: commentResult,
+                                        postCourseData: postCourseData,
+                                    });
                                 }
                             })
                             .catch((getUserNicknameErr) => {
