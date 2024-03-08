@@ -4,14 +4,31 @@
     <!-- <link rel="stylesheet" href="../../static/css/main.css" /> -->
     <body>
         <%- include('include/header')%>
+        <!-- res.render("main", { isLogin: true, data: req.session.data, posts: result }); //메인 페이지에 접근 할 때, 최신글 20개에 대해, postNumber, postTitle, reImage(대표 이미지 경로) -->
+
         <div id="main">
             <div class="mainIntro">
                 <H1 class="H1WWT">Today's recommend course</H1>
             </div>
             <div class="inner">
-                <!-- Boxes -->
                 <div class="box-wrap">
+                    <!-- Boxes -->
+                    <!-- "postTitle", "postNumber", "reImage -->
+                    <!-- 이미지 경로 이름은 확인하고 변경할 수도 있음(/static/uploads/ Or static) -->
+                    <% for(let i = 0; i < posts.length ; i++){%>
                     <div class="box">
+                        <div class="img">
+                            <img src="/static/uploads/<%#=posts[i].reImage%>" alt="Hover Effect" />
+                        </div>
+                        <div class="info">
+                            <h3><%=posts[i].postTitle%></h3>
+                            <p>
+                                <a href="/getPost/<%=posts[i].postNumber%>">글을 보시겠습니까?</a>
+                            </p>
+                        </div>
+                    </div>
+                    <% } %>
+                    <!-- <div class="box">
                         <div class="img">
                             <img src=../static/image/pic04.jpg alt="Hover Effect" />
                         </div>
@@ -104,19 +121,9 @@
                             <h3>글 제목</h3>
                             <p><a href="/post">글을 보시겠습니까?</a></p>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
-
-        <div class="copyright">Site made with: <a href="https://templated.co/">Templated</a>.</div>
-
-        <!-- Scripts -->
-        <script src="../static/js/jquery.min.js"></script>
-        <script src="../static/js/jquery.scrolly.min.js"></script>
-        <script src="../static/js/jquery.poptrox.min.js"></script>
-        <script src="../static/js/skel.min.js"></script>
-        <script src="../static/js/util.js"></script>
-        <script src="../static/js/main.js"></script>
     </body>
 </html>

@@ -1,5 +1,13 @@
 const model = require("../models");
 const path = require("path");
+const bcrypt = require("bcrypt");
+const saltRound = 10;
+function hashPW(pw) {
+    return bcrypt.hashSync(pw, saltRound);
+}
+function comparePW(inputpw, hashedpw) {
+    return bcrypt.compareSync(inputpw, hashedpw);
+}
 
 exports.open = (req, res) => {
     if (req.session.userID) {
@@ -102,7 +110,7 @@ exports.profileEdit = (req, res) => {
 exports.postJoin = (req, res) => {
     model.User.create({
         userID: req.body.userID,
-        userPW: req.body.userPW,
+        userPW: hashPW(req.body.userPW),
         userName: req.body.userName,
         userNickname: req.body.userNickname,
         userEmail: req.body.userEmail,
@@ -120,15 +128,19 @@ exports.postLogin = (req, res) => {
     model.User.findOne({
         where: {
             userID: req.body.userID,
-            userPW: req.body.userPW,
         },
     }).then((result) => {
         if (result) {
-            req.session.userID = req.body.userID;
-            req.session.data = result;
-            // console.log("이것은 로그인입니다 !!", result);
-            res.send({ isLogin: true, data: result });
-            // res.render("open", { data: result });
+            const LoginResult = comparePW(req.body.userPW, result.userPW);
+            if (LoginResult) {
+                req.session.userID = req.body.userID;
+                req.session.data = result;
+                // console.log("이것은 로그인입니다 !!", result);
+                res.send({ isLogin: true, data: result });
+                // res.render("open", { data: result });
+            } else {
+                res.send("비밀번호가 틀렸습니다");
+            }
         } else {
             res.send(false);
         }
@@ -202,7 +214,7 @@ exports.editUser = (req, res) => {
 
     model.User.update(
         {
-            userPW: req.body.userPW,
+            userPW: hashPW(req.body.userPW),
             userName: req.body.userName,
             userNickname: req.body.userNickname,
             userEmail: req.body.userEmail,
