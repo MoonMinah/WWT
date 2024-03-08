@@ -53,7 +53,7 @@ postCourseData:[
         <div class="commentContainer">
             <ul class="comment">
                 <li class="commentForm">
-                    <form action="" id="commentForm" method="post" name="comment">
+                    <form action="/postComment" id="commentForm" name="comment">
                         <h4>댓글쓰기(<span></span>)</h4>
                         <span class="psBox">
                             <input
@@ -62,7 +62,7 @@ postCourseData:[
                                 class="int"
                                 name="content"
                             />
-                            <input type="submit" class="btn" value="등록" onclick="postComment()" />
+                            <input type="submit" class="btn" value="등록" />
                         </span>
                     </form>
                 </li>
@@ -74,11 +74,12 @@ postCourseData:[
             const commentList = document.querySelector("#commentList");
             const total = document.querySelector("h4 > span");
             const list = [];
-            function Comment(content) {
+            const form = document.forms["comment"];
+
+            function Comment(userID, content) {
                 let today = new Date();
-                console.log(today.toLocaleString());
                 // this.userid = data.userNickname;
-                this.userid = "rekey";
+                this.userid = userID;
                 this.content = content;
                 this.date = today.toLocaleString();
             }
@@ -131,30 +132,36 @@ postCourseData:[
 
             totalRecord();
             commentBtn.addEventListener("submit", commentBtnHandler);
+            // console.log(form.content.value);
 
-            function postComment() {
-                // const commentData = {
-                //     postNumber: list.length,
-                //     // userID: getPost.useID,
-                //     userID: data.userNickname,
-                //     commentText: form.content.value,
-                // };
-                // axios({
-                //     method: "POST",
-                //     url: `/getPost/:${postData.postID}`,
-                //     data: commentData,
-                // })
-                //     .then(function (response) {
-                //         console.log(response.data);
-                //         if (response.data.isSuccess) {
-                //             totalRecord();
-                //             commentBtn.addEventListener("submit", commentBtnHandler);
-                //         } else {
-                //             alert("다시 시도해주세요");
-                //         }
-                //     })
-                //     .catch((err) => console.log(err));
-            }
+            // function postComment() {
+            //     console.log(form.content.value);
+            //     console.log(list.length + 1);
+            //     const data = {
+            //         postNumber: 1,
+            //         // userID: getPost.useID,
+            //         userID: 1,
+            //         commentText: form.content.value,
+            //     };
+            //     axios({
+            //         method: "POST",
+            //         url: "/postComment",
+            //         data: data,
+            //     })
+            //         .then((data) => {
+            //             if (data) {
+            //                 console.log(data);
+            //                 const commentObj = new Comment(data.userID, data.commentText);
+            //                 list.push(commentObj);
+            //                 totdalRecord();
+            //                 drawing();
+            //             } else {
+            //                 alert("다시 시도해주세요");
+            //             }
+            //         })
+            //         // .then(function (data) {})
+            //         .catch((err) => console.log(err));
+            // }
         </script>
     </body>
 </html>
