@@ -56,32 +56,65 @@ exports.showPost = (req, res) => {
             },
         })
             .then((postCourseData) => {
-                model.PostCourse.findAll({
+                model.PostComment.findAll({
                     where: {
                         postNumber: PostNumber,
                     },
-                }).then((commentResult) => {
-                    console.log(">>>", postData, ">>>", commentResult);
+                })
+                    .then((commentResult) => {
+                        console.log(">>>", postCourseData);
+                        console.log(commentResult.length);
 
-                    if (isLogin) {
-                        res.render("post", {
-                            isLogin: isLogin,
-                            postData: postData,
-                            commentResult: commentResult,
-                            postCourseData: postCourseData,
-                            data: req.session.data,
+                        const getUserNicknamePromises = commentResult.map((comment) => {
+                            const CommentUserID = comment.userID;
+                            return model.User.findOne({
+                                attributes: ["userNickname"],
+                                where: {
+                                    id: CommentUserID,
+                                },
+                            });
                         });
-                    } else {
-                        res.render("post", {
-                            isLogin: isLogin,
-                            postData: postData,
-                            commentResult: commentResult,
-                            postCourseData: postCourseData,
-                        });
-                    }
-                });
+
+                        Promise.all(getUserNicknamePromises)
+                            .then((userNicknames) => {
+                                userNicknames.forEach((userNickname, index) => {
+                                    commentResult[index].userNickname = userNickname.userNickname;
+                                });
+
+                                if (isLogin) {
+                                    // console.log("내가 원하는데이터", commentResult[0].userNickname);
+                                    res.render("post", {
+                                        isLogin: isLogin,
+                                        postData: postData,
+                                        commentResult: commentResult,
+                                        postCourseData: postCourseData,
+                                        data: req.session.data,
+                                    });
+                                } else {
+                                    // console.log("내가 원하는데이터", commentResult[0].userNickname);
+                                    // res.render("post", {
+                                    //     isLogin: isLogin,
+                                    //     postData: postData,
+                                    //     commentResult: commentResult,
+                                    //     postCourseData: postCourseData,
+                                    // });
+                                    res.render("temp", { commentResult: commentResult });
+                                }
+                            })
+                            .catch((getUserNicknameErr) => {
+                                console.error("Error fetching user nicknames:", getUserNicknameErr);
+                                res.status(500).send("Internal Server Error");
+                            });
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        res.status(500).send("Internal Server Error");
+                    });
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                console.log(err);
+                res.status(500).send("Internal Server Error");
+            });
     });
 };
 

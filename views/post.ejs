@@ -30,22 +30,19 @@ postCourseData:[
          -->
         <div class="postContainer">
             <div id="postIcon"></div>
-            <h2><%#=postData.postTitle%>맑은날 좋은 제주도 우도 코스</h2>
+            <h2><%=postData.postTitle%></h2>
             <div class="postContent">
                 <ul>
                     <li id="postImg">
                         <img
-                            src="/static/uploads/<%#=postData.reImage%>"
+                            src="/static/uploads/<%=postData.reImage%>"
                             alt=""
                             style="width: 100%"
                         />
                     </li>
-                    <li id="postWriting">
-                        <%#=postCourseData.courseText%>안녕하세요 오늘은 제주도에 대해서 포스트하고
-                        싶어서 이렇게 적어봅니다.
-                    </li>
+                    <li id="postWriting"><%=postCourseData[0].courseText%></li>
                     <li id="postRegion">
-                        <%#=postCourseData.courseLon, postCourseData.couresLat%>위치
+                        <%#=postCourseData[0].courseLon, postCourseData[0].couresLat%>위치
                     </li>
                 </ul>
             </div>
@@ -66,7 +63,7 @@ postCourseData:[
                         </span>
                     </form>
                 </li>
-                <li id="commentList"></li>
+                <li><%#= commentResult[0].userNickname %></li>
             </ul>
         </div>
         <script>
@@ -130,8 +127,8 @@ postCourseData:[
                 e.target.reset();
             }
 
-            totalRecord();
-            commentBtn.addEventListener("submit", commentBtnHandler);
+            // totalRecord();
+            // commentBtn.addEventListener("submit", commentBtnHandler);
             // console.log(form.content.value);
 
             // function postComment() {
