@@ -814,7 +814,8 @@ li {
     position: relative;
 }
 .contact > h1 {
-    margin-top: 7rem;
+    margin-top: 5rem;
+    margin-bottom: 2rem;
 }
 /* #contactForm {
     border: 1px solid #3c3c3c;
@@ -828,17 +829,26 @@ li {
 }
 .contactTableTR > th {
     text-align: center;
-    line-height: 50%;
-    margin: 0;
+    line-height: 3;
+}
+.contactTableTR > .th4 {
+    text-align: center;
+    line-height: 12.5;
 }
 .contactTableTD > input {
     width: 300px;
     height: 35px;
     margin: 0;
 }
+.contactTableTD {
+    line-height: 3;
+}
+.contactTableTD4 {
+    line-height: 50%;
+}
 #message {
     /* font-size: 14px; */
-    width: 400px;
+    /* width: 400px; */
 }
 .adminQNABTN,
 .adminQNABackBTN {
