@@ -79,7 +79,7 @@ exports.showPost = (req, res) => {
                                 });
 
                                 if (isLogin) {
-                                    console.log("내가 원하는데이터", commentResult[0].userNickname);
+                                    // console.log("내가 원하는데이터", commentResult[0].userNickname);
                                     res.render("post", {
                                         isLogin: isLogin,
                                         postData: postData,
