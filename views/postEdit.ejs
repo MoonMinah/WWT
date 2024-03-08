@@ -23,36 +23,34 @@
                         >
                     </fieldset>
                     <input type="text" name="title" id="postEditTitle" placeholder="제목" />
-                    <textarea
-                        name=""
-                        id=""
-                        cols="30"
-                        rows="10"
-                        placeholder="내용을 입력해주세요"
-                    ></textarea>
-                    <input type="file" name="" id="postEditFile" />
-                    <input type="text" id="searchText" placeholder="찾으시는 위치를 적어주세요" />
-                    <button type="button" onclick="getPlaces()" value="위치검색" id="searchBTN">
-                        위치 검색하기
-                    </button>
-                    <div class="searchResult"></div>
+                    <div>
+                        <textarea
+                            name=""
+                            id=""
+                            cols="30"
+                            rows="10"
+                            placeholder="내용을 입력해주세요"
+                        ></textarea>
+                        <input type="file" name="" id="postEditFile" />
+                        <input
+                            type="text"
+                            id="searchText"
+                            placeholder="찾으시는 위치를 적어주세요"
+                        />
+                        <div class="searchResult"></div>
+                        <button type="button" onclick="getPlaces()" value="위치검색" id="searchBTN">
+                            위치 검색하기
+                        </button>
+                    </div>
                     <button type="button" onclick="addPost()">+</button>
+                    <button type="button" onclick="getLonLat()">+</button>
                 </div>
                 <button class="writePostBTN" type="button" onclick="appendPost()">
                     Would you like to post?
                 </button>
             </form>
         </div>
-        <!-- <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> -->
         <script>
-            // function execDaumPostcode() {
-            //     new daum.Postcode({
-            //         oncomplete: function (data) {
-            //             document.getElementById("zip-code").value = data.zonecode;
-            //             document.getElementById("address-1").value = data.address;
-            //         },
-            //     }).open();
-            // }
             const form = document.forms["wwtPostEdit"];
             // function searchRegion() {
             //     const region = document.querySelector("#searchText");
@@ -84,14 +82,50 @@
                     const response = await axios.post("http://localhost:8000/getPlaces", {
                         keyword: keyword,
                     });
-
                     const places = response.data.places;
+                    
                     console.log(places);
                     displayPlaces(places);
                 } catch (error) {
                     console.error("Error fetching places:", error.message);
                     alert("Failed to fetch places. Please check the console for details.");
                 }
+            }
+            //{
+            //    "postTitle" :"임시제목",
+            //    "weather" : "sunny",
+            //    "region" : "서울",
+            //    "postCourse" : [{"courseImagePath" : "temp", "courseLon":12.12, "courseLat":13.13, "courseText":"course설명입니다"},{"courseImagePath" : "temp", "courseLon":12.12, "courseLat":13.13, "courseText":"course설명입니다"}]
+            //}와 같은 형태로 받도록 되어 있습니다.
+            let postCourse = [];
+            let lon, lat;
+            let num = 0;
+            async function axiosPost(place) {
+                console.log(place);
+                const response = await axios
+                    .post("http://localhost:8000/getLatLng", {
+                        placeId: place.id,
+                    })
+                    .then((result) => {
+                        console.log(result.data);
+                        lon = result.data.lon;
+                        lat = result.data.lat;
+                        const div = place.parentNode.parentNode.parentNode;
+                        const ul = place.parentNode;
+                        div.setAttribute(
+                            "id",
+                            `${result.data.location.lng} ${result.data.location.lat}`
+                        );
+                        console.log(div);
+                        ul.innerHTML = "";
+                        // postCourse[num].append({
+                        //     courseImagePath: "temp",
+                        //     courseLon: result.data.lon,
+                        //     courseLat: result.data.lat,
+                        //     courseText: "course설명입니다",
+                        // });
+                        // return result.data;
+                    });
             }
 
             function displayPlaces(places) {
@@ -105,29 +139,52 @@
                 const search = document.querySelector(".searchResult");
                 const ul = document.createElement("ul");
                 places.forEach((place) => {
+                    const btn = document.createElement("button");
                     const li = document.createElement("li");
+
+                    btn.setAttribute("id", place.place_id);
+                    btn.setAttribute("type", "button");
+                    btn.setAttribute("onclick", "axiosPost(this)");
+                    btn.setAttribute("value", "위치 선택");
                     li.textContent = `Name: ${place.name}, Place ID: ${place.place_id}`;
+                    console.log(btn);
+
                     ul.appendChild(li);
+                    ul.appendChild(btn);
                 });
 
                 placesList.appendChild(ul);
             }
-            function showRegion() {
-                const createTable = document.createElement("table");
-                const searchResult = document.querySelector(".searchResult");
-                const btn = document.querySelector("#searchBTN");
 
-                searchResult.appendChild(createTable);
+            async function getLonLat() {
+                try {
+                    // const placeIdInput = document.getElementById("placeIdInput");
+                    // const placeId = placeIdInput.value;
+
+                    const response = await axios.post("http://localhost:8000/getLatLng", {
+                        placeId: "ChIJAQUM8DC5fDURFfgRagtj3pM",
+                    });
+
+                    const location = response.data.location;
+
+                    // displayLocation(location);
+                    console.log(location);
+                } catch (error) {
+                    console.error("Error fetching location:", error.message);
+                    alert("Failed to fetch location. Please check the console for details.");
+                }
             }
-            function addPost() {}
-            let postCourse = [
-                {
-                    courseImagePath: "temp",
-                    courseLon: 12.12,
-                    courseLat: 13.13,
-                    courseText: "course설명입니다",
-                },
-            ];
+
+            function displayLocation(location) {
+                const locationInfo = document.getElementById("locationInfo");
+                locationInfo.innerHTML = ""; // 이전 정보 초기화
+
+                const p = document.createElement("p");
+                p.textContent = `Latitude: ${location.lat}, Longitude: ${location.lng}`;
+
+                locationInfo.appendChild(p);
+            }
+
             function appendPost() {
                 console.log(form.title.value);
                 const data = {
@@ -152,6 +209,8 @@
                     // .then(function (data) {})
                     .catch((err) => console.log(err));
             }
+
+            function addPost() {}
         </script>
     </body>
 </html>
