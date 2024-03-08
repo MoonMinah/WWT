@@ -62,10 +62,6 @@ exports.showPost = (req, res) => {
                     },
                 })
                     .then((commentResult) => {
-                        console.log(">>>", postCourseData);
-                        console.log(">>>", postData, ">>>", commentResult);
-                        console.log(commentResult.length);
-
                         const getUserNicknamePromises = commentResult.map((comment) => {
                             const CommentUserID = comment.userID;
                             return model.User.findOne({
