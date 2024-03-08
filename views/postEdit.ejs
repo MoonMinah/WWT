@@ -10,13 +10,17 @@
                     <fieldset>
                         <legend>날씨를 골라주세요</legend>
                         <label for=""
-                            ><input type="checkbox" name="weather" value="맑음" />맑음</label
+                            ><input type="checkbox" name="weather" value="sunny" />맑음</label
                         >
                         <label for=""
-                            ><input type="checkbox" name="weather" value="흐림" />흐림</label
+                            ><input type="checkbox" name="weather" value="rainy" />비</label
                         >
-                        <label for=""><input type="checkbox" name="weather" value="비" />비</label>
-                        <label for=""><input type="checkbox" name="weather" value="눈" />눈</label>
+                        <label for=""
+                            ><input type="checkbox" name="weather" value="snow" />눈</label
+                        >
+                        <label for=""
+                            ><input type="checkbox" name="weather" value="cloudy" />흐림</label
+                        >
                     </fieldset>
                     <input type="text" name="title" id="postEditTitle" placeholder="제목" />
                     <textarea
@@ -28,13 +32,15 @@
                     ></textarea>
                     <input type="file" name="" id="postEditFile" />
                     <input type="text" id="searchText" placeholder="찾으시는 위치를 적어주세요" />
-                    <button type="button" onclick="searchRegion()" value="위치검색" id="searchBTN">
+                    <button type="button" onclick="getPlaces()" value="위치검색" id="searchBTN">
                         위치 검색하기
                     </button>
                     <div class="searchResult"></div>
                     <button type="button" onclick="addPost()">+</button>
                 </div>
-                <button class="writePostBTN" type="button">Would you like to post?</button>
+                <button class="writePostBTN" type="button" onclick="appendPost()">
+                    Would you like to post?
+                </button>
             </form>
         </div>
         <!-- <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> -->
@@ -48,7 +54,64 @@
             //     }).open();
             // }
             const form = document.forms["wwtPostEdit"];
-            function searchRegion() {}
+            // function searchRegion() {
+            //     const region = document.querySelector("#searchText");
+            //     console.log(region.value);
+            //     const data = {
+
+            //     };
+            //     axios({
+            //         method: "POST",
+            //         url: "/writePost",
+            //         data: data,
+            //     })
+            //         .then((data) => {
+            //             if (data) {
+            //                 console.log(data);
+            //                 location.href = "/main";
+            //             } else {
+            //                 alert("다시 시도해주세요");
+            //             }
+            //         })
+            //         // .then(function (data) {})
+            //         .catch((err) => console.log(err));
+            // }
+            async function getPlaces() {
+                try {
+                    const keywordInput = document.getElementById("searchText");
+                    const keyword = keywordInput.value;
+
+                    const response = await axios.post("http://localhost:8000/getPlaces", {
+                        keyword: keyword,
+                    });
+
+                    const places = response.data.places;
+                    console.log(places);
+                    displayPlaces(places);
+                } catch (error) {
+                    console.error("Error fetching places:", error.message);
+                    alert("Failed to fetch places. Please check the console for details.");
+                }
+            }
+
+            function displayPlaces(places) {
+                const placesList = document.querySelector(".searchResult");
+                placesList.innerHTML = ""; // 기존 목록 초기화
+
+                if (places.length === 0) {
+                    placesList.innerHTML = "No places found.";
+                    return;
+                }
+                const search = document.querySelector(".searchResult");
+                const ul = document.createElement("ul");
+                places.forEach((place) => {
+                    const li = document.createElement("li");
+                    li.textContent = `Name: ${place.name}, Place ID: ${place.place_id}`;
+                    ul.appendChild(li);
+                });
+
+                placesList.appendChild(ul);
+            }
             function showRegion() {
                 const createTable = document.createElement("table");
                 const searchResult = document.querySelector(".searchResult");
@@ -57,6 +120,38 @@
                 searchResult.appendChild(createTable);
             }
             function addPost() {}
+            let postCourse = [
+                {
+                    courseImagePath: "temp",
+                    courseLon: 12.12,
+                    courseLat: 13.13,
+                    courseText: "course설명입니다",
+                },
+            ];
+            function appendPost() {
+                console.log(form.title.value);
+                const data = {
+                    postTitle: 1,
+                    weather: "sunny",
+                    region: "서울",
+                    postCourse: postCourse,
+                };
+                axios({
+                    method: "POST",
+                    url: "/writePost",
+                    data: data,
+                })
+                    .then((data) => {
+                        if (data) {
+                            console.log(data);
+                            location.href = "/main";
+                        } else {
+                            alert("다시 시도해주세요");
+                        }
+                    })
+                    // .then(function (data) {})
+                    .catch((err) => console.log(err));
+            }
         </script>
     </body>
 </html>

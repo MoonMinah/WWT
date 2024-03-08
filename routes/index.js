@@ -1,6 +1,35 @@
 const express = require("express");
 const router = express.Router();
 const controller = require("../controllers/Cmain");
+const apiKey = "AIzaSyDlu0zaA5jg995Mm5-Lu1lJ3jEjNg25m3c";
+const axios = require("axios");
+
+router.post("/getPlaces", async (req, res) => {
+    const { keyword } = req.body;
+
+    try {
+        // Google Places API를 사용하여 건물 이름과 관련된 장소 검색
+        const placesResponse = await axios.get(
+            "https://maps.googleapis.com/maps/api/place/textsearch/json",
+            {
+                params: {
+                    query: keyword,
+                    key: apiKey,
+                },
+            }
+        );
+
+        const places = placesResponse.data.results.map((place) => ({
+            name: place.name,
+            place_id: place.place_id,
+        }));
+
+        res.json({ places });
+    } catch (error) {
+        console.error("Error fetching places:", error.message);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
 
 router.get("/", controller.open);
 router.get("/login", controller.login);
