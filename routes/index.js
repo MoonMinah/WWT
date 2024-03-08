@@ -65,7 +65,7 @@ router.put("/putPost/:postID", postController.putPost); //이 코드는, post ap
 // =================================================
 
 //포스트의 댓글과 관련된 router 설정
-const commentController = require("../controllers/Ccomment.js");
+const commentController = require("../controllers/Ccomment");
 router.post("/postComment", commentController.postComment); // 댓글 등록에 관한 api입니다. req의 body 데이터로,
 //{
 //     "postNumber": 1,
