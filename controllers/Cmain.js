@@ -9,6 +9,7 @@ exports.open = (req, res) => {
         res.render("open", { isLogin: false });
     }
 };
+
 exports.main = (req, res) => {
     if (req.session.userID) {
         console.log("main에서 로그인", req.session.data.userNickname);
