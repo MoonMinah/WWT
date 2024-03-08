@@ -3,6 +3,8 @@ const router = express.Router();
 const controller = require("../controllers/Cmain");
 const apiKey = "AIzaSyDlu0zaA5jg995Mm5-Lu1lJ3jEjNg25m3c";
 const axios = require("axios");
+const multer = require("../middleware/upload");
+console.log("multer", multer);
 
 router.post("/getPlaces", async (req, res) => {
     const { keyword } = req.body;
@@ -46,9 +48,7 @@ router.post("/login", controller.postLogin);
 router.get("/logout", controller.postLogout);
 router.post("/profileEdit", controller.postProfile);
 router.post("/deleteUser", controller.deleteUser);
-router.post("/editUser", controller.editUser);
-
-router.post("/profileUpload", uploadProfile.single("userfile"), controller.uploadProfile);
+router.post("/editUser", multer.uploadProfile.single("fileInput"), controller.editUser);
 
 //포스트와 관련된 router설정
 const postController = require("../controllers/Cpost");
