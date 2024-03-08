@@ -9,8 +9,43 @@
         <section class="contact">
             <h2>문의하기</h2>
 
-            <form id="contactForm">
-                <div class="input-box">
+            <form>
+                <fieldset id="contactForm">
+                    <input
+                        type="text"
+                        placeholder="성함"
+                        id="name"
+                        class="item"
+                        autocomplete="off"
+                    />
+                    <br />
+                    <input
+                        type="text"
+                        placeholder="이메일 주소"
+                        id="email"
+                        class="item"
+                        autocomplete="off"
+                    />
+                    <br />
+                    <input
+                        type="text"
+                        placeholder="제목"
+                        id="subject"
+                        class="item"
+                        autocomplete="off"
+                    />
+                    <br />
+                    <textarea
+                        name=""
+                        id="message"
+                        cols="30"
+                        rows="10"
+                        placeholder="메시지를 입력하세요"
+                    ></textarea>
+                    <br />
+                    <button type="submit">메시지 보내기</button>
+                </fieldset>
+                <!-- <div class="input-box">
                     <div class="input-field field">
                         <input
                             type="text"
@@ -50,8 +85,7 @@
                         rows="10"
                         placeholder="메시지를 입력하세요"
                     ></textarea>
-                </div>
-                <button type="submit">메시지 보내기</button>
+                </div> -->
             </form>
         </section>
 

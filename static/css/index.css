@@ -806,3 +806,7 @@ li {
     font-size: 12px;
     padding: 5px 10px;
 }
+/* adminQnA CSS */
+fieldset > input {
+    width: 300px;
+}
