@@ -2,20 +2,100 @@
 <html lang="ko">
     <%- include('include/head', { title: 'What Was Today' })%>
     <body>
-        <%- include('include/header')%>
+        <%- include('include/header')%> <% console.log(isModify) %>
         <div class="postEditContainer">
             <h2 class="H1WWT">What Was Today</h2>
             <form action="/writePost" method="post" name="wwtPostEdit">
                 <div class="inputContainer">
+                    <% if(isModify){ %>
                     <fieldset>
                         <legend>날씨를 골라주세요</legend>
-                        <label for=""
-                            ><input type="radio" name="weather" value="sunny" />맑음</label
+                        <label for="sunny"
+                            ><input
+                                id="sunny"
+                                type="radio"
+                                name="weather"
+                                value="sunny"
+                            />맑음</label
                         >
-                        <label for=""><input type="radio" name="weather" value="rainy" />비</label>
-                        <label for=""><input type="radio" name="weather" value="snow" />눈</label>
-                        <label for=""
-                            ><input type="radio" name="weather" value="cloudy" />흐림</label
+                        <label for="rainy"
+                            ><input id="rainy" type="radio" name="weather" value="rainy" />비</label
+                        >
+                        <label for="snow"
+                            ><input id="snow" type="radio" name="weather" value="snow" />눈</label
+                        >
+                        <label for="cloudy"
+                            ><input
+                                id="cloudy"
+                                type="radio"
+                                name="weather"
+                                value="cloudy"
+                            />흐림</label
+                        >
+                    </fieldset>
+                    <input
+                        type="text"
+                        name="title"
+                        id="postEditTitle"
+                        placeholder="제목"
+                        value="<%=postResult.postTitle%>"
+                    />
+                    <div class="regionBox">
+                        <% for(let i = 0; i < courseResult.length ; i++ ) {%>
+                        <textarea
+                            name="postContent"
+                            id=""
+                            cols="30"
+                            rows="500"
+                            placeholder="내용을 입력해주세요"
+                            style="height: 300px"
+                            maxlength="500"
+                        >
+<%=courseResult[i].courseText  %></textarea
+                        >
+                        <input type="file" name="" id="postEditFile" />
+                        <!-- 수정할 땐 이미지가 있는 게 좋을 것 같아서 넣었는데, 결과물 보고 별로면 없애도 될 것 같아요. -->
+                        <img
+                            src="/static/uploads/<%= postResult.reImage %>"
+                            alt="<%= postResult.postTitle %> Image"
+                        />
+                        <input
+                            type="text"
+                            id="searchText"
+                            placeholder="찾으시는 위치를 적어주세요"
+                            value=""
+                        />
+                        <div class="searchResult"></div>
+                        <button type="button" onclick="getPlaces()" value="위치검색" id="searchBTN">
+                            위치 검색하기
+                        </button>
+                        <% } %>
+                    </div>
+                    <button type="button" onclick="addPost()" id="addBTN">+</button>
+                    <% }else{ %>
+                    <fieldset>
+                        <legend>날씨를 골라주세요</legend>
+                        <label for="sunny"
+                            ><input
+                                id="sunny"
+                                type="radio"
+                                name="weather"
+                                value="sunny"
+                            />맑음</label
+                        >
+                        <label for="rainy"
+                            ><input id="rainy" type="radio" name="weather" value="rainy" />비</label
+                        >
+                        <label for="snow"
+                            ><input id="snow" type="radio" name="weather" value="snow" />눈</label
+                        >
+                        <label for="cloudy"
+                            ><input
+                                id="cloudy"
+                                type="radio"
+                                name="weather"
+                                value="cloudy"
+                            />흐림</label
                         >
                     </fieldset>
                     <input type="text" name="title" id="postEditTitle" placeholder="제목" />
@@ -34,6 +114,7 @@
                             type="text"
                             id="searchText"
                             placeholder="찾으시는 위치를 적어주세요"
+                            value=""
                         />
                         <div class="searchResult"></div>
                         <button type="button" onclick="getPlaces()" value="위치검색" id="searchBTN">
@@ -41,6 +122,7 @@
                         </button>
                     </div>
                     <button type="button" onclick="addPost()" id="addBTN">+</button>
+                    <% } %>
                 </div>
                 <button class="writePostBTN" type="button" onclick="appendPost()">
                     Would you like to post?
