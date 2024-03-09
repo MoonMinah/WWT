@@ -174,6 +174,11 @@
             }
 
             function appendPost() {
+                //multer
+                const form = document.forms["wwtPostEdit"];
+                const file = document.getElementById("postEditFile");
+                const formData = new FormData();
+
                 console.log(form.title.value);
                 let postBoxList = document.getElementsByClassName("postBox");
                 let weatherRadio = document.querySelector('input[name="weather"]:checked').value;
@@ -202,6 +207,26 @@
                     method: "POST",
                     url: "/writePost",
                     data: data,
+                })
+                    .then((data) => {
+                        if (data) {
+                            console.log(data);
+                            location.href = "/main";
+                        } else {
+                            alert("다시 시도해주세요");
+                        }
+                    })
+                    // .then(function (data) {})
+                    .catch((err) => console.log(err));
+
+                // multer
+                axios({
+                    method: "POST",
+                    url: "/writePost",
+                    data: formData,
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
                 })
                     .then((data) => {
                         if (data) {
