@@ -34,9 +34,6 @@ exports.main = (req, res) => {
                 id: req.session.data.id,
             },
         }).then((result) => {
-<<<<<<< HEAD
-            res.render("main", { isLogin: true, data: req.session.data, posts: result });
-=======
             userData = result;
             model.Post.findAll({
                 attributes: ["postTitle", "postNumber", "reImage"],
@@ -46,7 +43,6 @@ exports.main = (req, res) => {
                 res.render("main", { isLogin: true, data: userData, posts: result }); //메인 페이지에 접근 할 때, 최신글 20개에 대해, postNumber, postTitle, reImage(대표 이미지 경로)
                 //를 보내고 있습니다. 이 또한 console.log()찍으시면서 작업하시면 수월하실겁니다.
             });
->>>>>>> c5e903319c3108752c5552a4679473fb49834f2c
         });
     } else {
         model.Post.findAll({
