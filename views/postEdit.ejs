@@ -10,26 +10,24 @@
                     <fieldset>
                         <legend>날씨를 골라주세요</legend>
                         <label for=""
-                            ><input type="checkbox" name="weather" value="sunny" />맑음</label
+                            ><input type="radio" name="weather" value="sunny" />맑음</label
                         >
+                        <label for=""><input type="radio" name="weather" value="rainy" />비</label>
+                        <label for=""><input type="radio" name="weather" value="snow" />눈</label>
                         <label for=""
-                            ><input type="checkbox" name="weather" value="rainy" />비</label
-                        >
-                        <label for=""
-                            ><input type="checkbox" name="weather" value="snow" />눈</label
-                        >
-                        <label for=""
-                            ><input type="checkbox" name="weather" value="cloudy" />흐림</label
+                            ><input type="radio" name="weather" value="cloudy" />흐림</label
                         >
                     </fieldset>
                     <input type="text" name="title" id="postEditTitle" placeholder="제목" />
-                    <div>
+                    <div class="regionBox">
                         <textarea
-                            name=""
+                            name="postContent"
                             id=""
                             cols="30"
-                            rows="10"
+                            rows="500"
                             placeholder="내용을 입력해주세요"
+                            style="height: 300px"
+                            maxlength="500"
                         ></textarea>
                         <input type="file" name="" id="postEditFile" />
                         <input
@@ -42,8 +40,7 @@
                             위치 검색하기
                         </button>
                     </div>
-                    <button type="button" onclick="addPost()">+</button>
-                    <button type="button" onclick="getLonLat()">+</button>
+                    <button type="button" onclick="addPost()" id="addBTN">+</button>
                 </div>
                 <button class="writePostBTN" type="button" onclick="appendPost()">
                     Would you like to post?
@@ -52,31 +49,10 @@
         </div>
         <script>
             const form = document.forms["wwtPostEdit"];
-            // function searchRegion() {
-            //     const region = document.querySelector("#searchText");
-            //     console.log(region.value);
-            //     const data = {
-
-            //     };
-            //     axios({
-            //         method: "POST",
-            //         url: "/writePost",
-            //         data: data,
-            //     })
-            //         .then((data) => {
-            //             if (data) {
-            //                 console.log(data);
-            //                 location.href = "/main";
-            //             } else {
-            //                 alert("다시 시도해주세요");
-            //             }
-            //         })
-            //         // .then(function (data) {})
-            //         .catch((err) => console.log(err));
-            // }
             async function getPlaces() {
                 try {
                     const keywordInput = document.getElementById("searchText");
+                    console.log(keywordInput);
                     const keyword = keywordInput.value;
 
                     const response = await axios.post("http://49.50.167.42:8000/getPlaces", {
@@ -86,6 +62,7 @@
 
                     console.log(places);
                     displayPlaces(places);
+                    keywordInput.remove();
                 } catch (error) {
                     console.error("Error fetching places:", error.message);
                     alert("Failed to fetch places. Please check the console for details.");
@@ -112,12 +89,23 @@
                         lat = result.data.lat;
                         const div = place.parentNode.parentNode.parentNode;
                         const ul = place.parentNode;
+                        const p = document.createElement("p");
+                        const placesList = document.querySelector(".searchResult");
+
                         div.setAttribute(
                             "id",
-                            `${result.data.location.lng} ${result.data.location.lat}`
+                            `${result.data.location.lng},${result.data.location.lat}`
                         );
+                        div.setAttribute("class", "postBox");
                         console.log(div);
-                        ul.innerHTML = "";
+
+                        console.log(place.innerText);
+                        p.innerText = place.innerText + " (" + place.id + ")";
+
+                        ul.parentNode.nextElementSibling.remove();
+                        ul.parentNode.remove();
+                        div.append(p);
+
                         // postCourse[num].append({
                         //     courseImagePath: "temp",
                         //     courseLon: result.data.lon,
@@ -141,15 +129,15 @@
                 places.forEach((place) => {
                     const btn = document.createElement("button");
                     const li = document.createElement("li");
-
+                    console.log(place);
                     btn.setAttribute("id", place.place_id);
                     btn.setAttribute("type", "button");
                     btn.setAttribute("onclick", "axiosPost(this)");
                     btn.setAttribute("value", "위치 선택");
-                    li.textContent = `Name: ${place.name}, Place ID: ${place.place_id}`;
+                    btn.textContent = `${place.name}`;
                     console.log(btn);
 
-                    ul.appendChild(li);
+                    li.appendChild(btn);
                     ul.appendChild(btn);
                 });
 
@@ -187,24 +175,28 @@
 
             function appendPost() {
                 console.log(form.title.value);
+                let postBoxList = document.getElementsByClassName("postBox");
+                let weatherRadio = document.querySelector('input[name="weather"]:checked').value;
+                let postTitle = document.querySelector('input[name="title"]').value;
+                let postContent = document.querySelector('textarea[name="postContent"]').value;
+                let postCourse = [];
+                for (let i = 0; i < postBoxList.length; i++) {
+                    console.log(postBoxList[i]);
+                    console.log(postContent);
+                    let postLonLat = postBoxList[i].id.toString().split(",");
+                    console.log(postLonLat);
+                    postCourse[i] = {
+                        courseImagePath: "temp",
+                        courseLon: postLonLat[0],
+                        courseLat: postLonLat[1],
+                        courseText: postContent,
+                    };
+                }
                 const data = {
-                    postTitle: 1,
-                    weather: "sunny",
+                    postTitle: postTitle,
+                    weather: weatherRadio,
                     region: "서울",
-                    postCourse: [
-                        {
-                            courseImagePath: "temp",
-                            courseLon: 12.12,
-                            courseLat: 13.13,
-                            courseText: "course설명입니다",
-                        },
-                        {
-                            courseImagePath: "temp",
-                            courseLon: 12.12,
-                            courseLat: 13.13,
-                            courseText: "course설명입니다",
-                        },
-                    ],
+                    postCourse: postCourse,
                 };
                 axios({
                     method: "POST",
@@ -223,7 +215,16 @@
                     .catch((err) => console.log(err));
             }
 
-            function addPost() {}
+            function addPost() {
+                let regionNewBox = document.createElement("div");
+                let addBTN = document.querySelector("#addBTN");
+                let regionBox = addBTN.previousElementSibling;
+                console.log(addBTN);
+                console.log(regionBox);
+
+                regionNewBox.innerHTML = `<textarea name="" id="" cols="30" rows="10" placeholder="내용을 입력해주세요" style="height: 300px" maxlength="500"></textarea><input type="file" name="" id="postEditFile" /><input type="text" id="searchText" placeholder="찾으시는 위치를 적어주세요"/><div class="searchResult"></div> <button type="button" onclick="getPlaces()" value="위치검색" id="searchBTN"> 위치 검색하기 </button>`;
+                regionBox.append(regionNewBox);
+            }
         </script>
     </body>
 </html>

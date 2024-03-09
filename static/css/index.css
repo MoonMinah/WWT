@@ -520,7 +520,7 @@ input[type="email"] {
 
 /* post edit */
 .postEditContainer {
-    width: 30%;
+    width: 600px;
     margin: 0 auto;
     /* border: 1px solid blue; */
 }
@@ -532,12 +532,19 @@ input[type="email"] {
     border: 1px solid rgb(215, 215, 215);
     /* border: 1px solid red; */
     margin-bottom: 30px;
+    width: 600px;
+    /* border: 1px solid red; */
 }
-.inputContainer > input {
+.inputContainer textarea,
+input[type="file"],
+input[id="postEditTitle"],
+input[id="searchText"] {
+    /* position: relative; */
     display: block;
-    width: 94.7%;
+    width: 600px;
     height: 30px;
-    margin: 0 auto;
+    margin: 0;
+    padding: 0;
     border: none;
     border-bottom: 1px solid rgb(217, 217, 217);
     /* box-shadow: 5px 5px 5px rgb(217, 217, 217); */
@@ -545,20 +552,19 @@ input[type="email"] {
 .inputContainer #postEditTitle {
     margin-top: 5px;
 }
-.inputContainer > textarea {
-    margin: 0 auto;
-    border: none;
-    width: 97.5%;
-    margin-bottom: 10px;
-    /* box-shadow: 5px 5px 5px rgb(217, 217, 217); */
+p {
+    text-align: center;
 }
-.inputContainer > button {
+button {
     width: 100%;
     border: none;
     padding: 10px;
     /* border: 1px solid rgb(215, 215, 215); */
 }
-.inputContainer > button:hover {
+.inputContainer div button[value="위치 선택"]:hover {
+    background-color: #b1b1b1;
+}
+.inputContainer div button:hover {
     background-color: #b1b1b1;
 }
 .writePostBTN {
@@ -573,6 +579,9 @@ input[type="email"] {
     border: 0;
     box-shadow: 5px 5px 5px rgb(217, 217, 217);
     border: 1px solid rgb(215, 215, 215);
+}
+#addBTN:hover {
+    background-color: #b1b1b1;
 }
 .writePostBTN:hover {
     background-color: #b1b1b1;
