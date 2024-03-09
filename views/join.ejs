@@ -5,8 +5,23 @@
         <%- include('include/header')%>
         <H1 class="H1WWT">What Was Today</H1>
         <form class="joinForm" name="form-join">
-            <input type="text" name="userID" placeholder="아이디" required /> <br />
-            <input type="password" name="userPW" placeholder="비밀번호" required /> <br />
+            <input
+                type="text"
+                name="userID"
+                placeholder="아이디"
+                pattern="^([a-z0-9가-힣]{4,10})$"
+                title="아이디는 영어 대소문자, 숫자, 한글로 이루어진 4자 이상 10자 이하입니다."
+                required
+            />
+            <br />
+            <input
+                type="password"
+                name="userPW"
+                placeholder="비밀번호"
+                pattern="^([a-z0-9{8,12}])"
+                required
+            />
+            <br />
             <input type="text" name="userName" placeholder="이름" required /> <br />
             <input type="text" name="userNickname" placeholder="닉네임" required /> <br />
             <input type="email" name="userEmail" placeholder="이메일 주소" required /><br />
