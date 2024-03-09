@@ -44,7 +44,7 @@
                         alt="<%myPosts[i].postNumber%>번 게시글" />
                     </div>
                     <div class="info">
-                        <p><a href="/postEdit">글 수정하기</a></p>
+                        <p><a href="/putPostRequest/<%=myPosts[i].postNumber%>">글 수정하기</a></p>
                     </div>
                 </div>
                 <% } %>
@@ -65,7 +65,6 @@
             <script src="../static/js/util.js"></script>
             <script src="../static/js/main.js"></script>
         </div>
-        <% } %> <%console.log("==============================")%>;
-        <%console.log(myPosts[0].postNumber)%>;
+        <% } %>
     </body>
 </html>
