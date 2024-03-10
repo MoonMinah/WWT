@@ -121,11 +121,12 @@ exports.showPost = (req, res) => {
 };
 
 exports.deletePost = (req, res) => {
+    console.log("**********************", req.body);
     if (!req.session.data) {
         res.send("게시글을 삭제할 권한이 없습니다!");
     } else {
         const CURRENTUSER = req.session.data.id;
-        const postNumber = req.params.postID;
+        const postNumber = req.body.postNumber;
         model.Post.findOne({
             where: {
                 postNumber: postNumber,

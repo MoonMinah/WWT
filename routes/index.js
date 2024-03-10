@@ -59,7 +59,7 @@ router.get("/getPost/:postID", postController.showPost);
 //     ]
 // }
 
-router.delete("/deletePost/:postID", postController.deletePost); //삭제할 게시글의 postID(DBmodel에는 postNumber로 되어 있음)을 params로 넘기면, 권한 조회 후, 삭제함
+router.delete("/deletePost", postController.deletePost); //삭제할 게시글의 postID(DBmodel에는 postNumber로 되어 있음)을 params로 넘기면, 권한 조회 후, 삭제함
 
 router.get("/putPostRequest/:postID", postController.putPostRequest);
 router.put("/putPost/:postID", postController.putPost); //이 코드는, post api /writePost와 완전 일치합니다.
