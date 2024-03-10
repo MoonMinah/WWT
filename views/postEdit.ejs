@@ -264,17 +264,6 @@
                 regionNewBox.innerHTML = `<textarea name="" id="" cols="30" rows="10" placeholder="내용을 입력해주세요" style="height: 300px" maxlength="500"></textarea><input type="file" name="" id="postEditFile" /><input type="text" id="searchText" placeholder="찾으시는 위치를 적어주세요"/><div class="searchResult"></div> <button type="button" onclick="getPlaces()" value="위치검색" id="searchBTN"> 위치 검색하기 </button>`;
                 regionBox.append(regionNewBox);
             }
-
-            function addPost() {
-                let regionNewBox = document.createElement("div");
-                let addBTN = document.querySelector("#addBTN");
-                let regionBox = addBTN.previousElementSibling;
-                console.log(addBTN);
-                console.log(regionBox);
-
-                regionNewBox.innerHTML = `<textarea name="" id="" cols="30" rows="10" placeholder="내용을 입력해주세요" style="height: 300px" maxlength="500"></textarea><input type="file" name="" id="postEditFile" /><input type="text" id="searchText" placeholder="찾으시는 위치를 적어주세요"/><div class="searchResult"></div> <button type="button" onclick="getPlaces()" value="위치검색" id="searchBTN"> 위치 검색하기 </button>`;
-                regionBox.append(regionNewBox);
-            }
         </script>
     </body>
 </html>
