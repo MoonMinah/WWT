@@ -25,7 +25,7 @@ body {
     width: 80px;
     height: 80px;
     /* border: 1px solid gray; */
-    border-radius: 50px;
+    border-radius: 50%;
     box-shadow: 5px 5px 5px rgb(207, 207, 207);
     border: 1px solid rgb(215, 215, 215);
 }
@@ -362,7 +362,7 @@ input[type="email"] {
     text-align: center;
     justify-content: center;
     align-items: center;
-    margin-top: 150px;
+    margin-top: 100px;
     /* border: 1px solid black; */
     /* position: relative; */
 }
@@ -372,10 +372,19 @@ input[type="email"] {
     font-size: 15px;
     font-weight: bold;
     position: relative;
-    left: 4px;
+    left: -8%;
+    top: 1rem;
     /* border: 1px solid black; */
 }
-#postIcon > img {
+#myPageIcon {
+    width: 130px;
+    height: 130px;
+    border: 1px solid gray;
+    border-radius: 50%;
+    box-shadow: 5px 5px 5px rgb(207, 207, 207);
+    border: 1px solid rgb(215, 215, 215);
+}
+#myPageIcon > img {
     width: 100%;
     height: 100%;
     border-radius: 50%;
@@ -385,23 +394,34 @@ input[type="email"] {
     position: relative;
     top: 5px;
 }
-.myPageDiv2 {
+#userText {
+    width: 280px;
+    height: 130px;
+    border: #7d7d7d;
+    background-color: #f2f2f2;
+    /* border: 1px solid black; */
+    position: relative;
+    right: 8.3%;
+}
+/* .myPageDiv2 {
     margin-left: 70px;
     margin-right: 15px;
     position: relative;
     top: 7px;
-    /* border: 1px solid black; */
+    border: 1px solid black;
+} */
+.myPagePostCountDIV > p {
+    position: relative;
+    left: 31%;
 }
 .myPagePostCount {
-    margin-bottom: 0;
-    margin-top: 60px;
-    font-size: 1.5vmax;
     color: #555;
+    position: relative;
+    left: 31%;
 }
 
 .myPagePostCountName {
     margin-top: 6px;
-    font-size: 1.2vmax;
     font-weight: 400;
 }
 /* BTN CSS */
@@ -415,6 +435,7 @@ input[type="email"] {
 }
 hr {
     border-style: groove;
+    color: #b1b1b1;
 }
 .myPageEditBTN,
 .myPagePostBTN {
