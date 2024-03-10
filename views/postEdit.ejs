@@ -343,8 +343,10 @@
                 const form = document.forms["wwtPostEdit"];
                 const file = document.getElementById("postEditFile");
                 const formData = new FormData();
+                formData.append("postEditFile", file.files[0]);
 
                 console.log(form.title.value);
+                let postImagePath = document.getElementById("postEditFile");
                 let postBoxList = document.getElementsByClassName("postBox");
                 let weatherRadio = document.querySelector('input[name="weather"]:checked').value;
                 let postTitle = document.querySelector('input[name="title"]').value;
@@ -355,8 +357,9 @@
                     console.log(postContent);
                     let postLonLat = postBoxList[i].id.toString().split(",");
                     console.log(postLonLat);
+                    console.log("::::::::::::::::::", postImagePath);
                     postCourse[i] = {
-                        courseImagePath: "temp",
+                        courseImagePath: "postImagePath",
                         courseLon: postLonLat[0],
                         courseLat: postLonLat[1],
                         courseText: postContent,
@@ -393,13 +396,8 @@
                         "Content-Type": "multipart/form-data",
                     },
                 })
-                    .then((data) => {
-                        if (data) {
-                            console.log(data);
-                            location.href = "/main";
-                        } else {
-                            alert("다시 시도해주세요");
-                        }
+                    .then((res) => {
+                        document.location.href = "/main";
                     })
                     // .then(function (data) {})
                     .catch((err) => console.log(err));
