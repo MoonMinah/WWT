@@ -177,9 +177,12 @@ exports.putPostRequest = (req, res) => {
                         //     courseResult: courseResult,
                         //     isLogin: true,
                         // });
-                        res.send({
+                        res.render("postEdit", {
+                            isLogin: true,
+                            isModify: true,
                             postResult: postResult,
                             courseResult: courseResult,
+                            data: req.session.data,
                         });
                     })
                     .catch((err) => {

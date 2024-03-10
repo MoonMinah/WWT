@@ -35,87 +35,26 @@
         </div>
         <div class="inner">
             <!-- Boxes -->
+            <!-- 이미지 경로 이름은 확인하고 변경할 수도 있음(/static/uploads/post Or /static/) -->
+            <% for(let i = 0; i < myPosts.length ; i++ ) {%>
             <div class="box-wrap">
                 <div class="box">
-                    <div class="img"><img src=../static/image/pic04.jpg alt="Hover Effect" /></div>
+                    <div class="img">
+                        <img src=/static/uploads/<%#=myPosts[i].reImage%>
+                        alt="<%myPosts[i].postNumber%>번 게시글" />
+                    </div>
                     <div class="info">
-                        <p><a href="/postEdit">글 수정하기</a></p>
+                        <p><a href="/putPostRequest/<%=myPosts[i].postNumber%>">글 수정하기</a></p>
                     </div>
                 </div>
-                <div class="box">
+                <% } %>
+
+                <!-- <div class="box">
                     <div class="img"><img src=../static/image/pic03.jpg alt="Hover Effect" /></div>
                     <div class="info">
                         <p><a href="/postEdit">글 수정하기</a></p>
                     </div>
-                </div>
-                <div class="box">
-                    <div class="img">
-                        <img src="../static/image/pic01.jpg" alt="Hover Effect" />
-                    </div>
-                    <div class="info">
-                        <p><a href="/postEdit">글 수정하기</a></p>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <div class="img">
-                        <img src="../static/image/pic02.jpg" alt="Hover Effect" />
-                    </div>
-                    <div class="info">
-                        <p><a href="/postEdit">글 수정하기</a></p>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="img">
-                        <img src="../static/image/pic01.jpg" alt="Hover Effect" />
-                    </div>
-                    <div class="info">
-                        <p><a href="/postEdit">글 수정하기</a></p>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <div class="img">
-                        <img src="../static/image/pic02.jpg" alt="Hover Effect" />
-                    </div>
-                    <div class="info">
-                        <p><a href="/postEdit">글 수정하기</a></p>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="img">
-                        <img src="../static/image/pic01.jpg" alt="Hover Effect" />
-                    </div>
-                    <div class="info">
-                        <p><a href="/postEdit">글 수정하기</a></p>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <div class="img">
-                        <img src="../static/image/pic02.jpg" alt="Hover Effect" />
-                    </div>
-                    <div class="info">
-                        <p><a href="/postEdit">글 수정하기</a></p>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="img">
-                        <img src="../static/image/pic01.jpg" alt="Hover Effect" />
-                    </div>
-                    <div class="info">
-                        <p><a href="/postEdit">글 수정하기</a></p>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <div class="img">
-                        <img src="../static/image/pic02.jpg" alt="Hover Effect" />
-                    </div>
-                    <div class="info">
-                        <p><a href="/postEdit">글 수정하기</a></p>
-                    </div>
-                </div>
+                </div> -->
             </div>
 
             <!-- Scripts -->

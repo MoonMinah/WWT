@@ -133,11 +133,12 @@ exports.postEdit = (req, res) => {
         }).then((result) => {
             res.render("postEdit", {
                 isLogin: true,
+                isModify: false,
                 data: result,
             });
         });
     } else {
-        res.render("postEdit", { isLogin: false });
+        res.send("로그인을 해주세요");
     }
 };
 exports.profileEdit = async (req, res) => {
