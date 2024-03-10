@@ -31,6 +31,17 @@ postCourseData:[
         <div class="postContainer">
             <div id="postIcon"></div>
             <h2><%=postData.postTitle%></h2>
+            <div
+                id="mapid"
+                style="
+                    width: 100%;
+                    height: 400px;
+                    z-index: 0;
+                    box-shadow: 5px 5px 5px rgb(217, 217, 217);
+                    margin-bottom: 15px;
+                "
+            ></div>
+            <% for(let i = 0; i < postCourseData.length; i++){ %>
             <div class="postContent">
                 <ul>
                     <li id="postImg">
@@ -41,11 +52,12 @@ postCourseData:[
                         />
                     </li>
                     <li id="postWriting"><%=postCourseData[0].courseText%></li>
-                    <li id="postRegion">
+                    <li class="map" style="height: 200px">
                         <%#=postCourseData[0].courseLon, postCourseData[0].couresLat%>위치
                     </li>
                 </ul>
             </div>
+            <% } %>
         </div>
         <div class="commentContainer">
             <ul class="comment">
@@ -64,7 +76,7 @@ postCourseData:[
                         </span>
                     </form>
                 </li>
-                <li><%#= commentResult[0].userNickname %></li>
+                <li><%= commentResult[0].userNickname %></li>
             </ul>
             <% console.log(data) %> <% console.log('----->',postData) %>
         </div>
@@ -74,11 +86,62 @@ postCourseData:[
             const total = document.querySelector("h4 > span");
             const list = [];
             const form = document.forms["comment"];
+            // 위도(latitude)와 경도(longitude) 데이터
+            let locations = [];
+            function showMap(lat, lon) {
+                console.log(`<%=postCourseData.length %>`);
 
+                `<%for (let i = 0; i < postCourseData.length; i++) { %>`;
+                console.log("=====");
+                `<% let latitude = postCourseData[i].courseLat %>`;
+                `<% let longitude = postCourseData[i].courseLon %>`;
+                locations[`<%=i%>`] = {
+                    latitude: `<%= latitude%>`,
+                    longitude: `<%= longitude%>`,
+                };
+                `<%}%>`;
+                console.log(locations);
+                console.log(locations);
+                // Leaflet을 사용하여 지도를 생성합니다.
+                let mymap = L.map("mapid").setView(
+                    [locations[0].latitude, locations[0].longitude],
+                    10
+                );
+
+                // OpenStreetMap 타일 레이어를 추가합니다.
+                L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                    maxZoom: 10,
+                }).addTo(mymap);
+
+                locations.forEach(function (location) {
+                    var marker = L.marker([location.latitude, location.longitude]).addTo(mymap);
+                });
+                // 마커를 추가하여 해당 위도와 경도에 표시합니다.
+            }
+            function showSmallMap() {
+                locations.forEach(function (location, index) {
+                    let mapLi = document.querySelectorAll(".map");
+                    console.log(mapLi[1]);
+                    mapLi[index].setAttribute("id", "map-" + index);
+
+                    let map = L.map("map-" + index).setView(
+                        [location.latitude, location.longitude],
+                        16
+                    );
+
+                    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                        maxZoom: 19,
+                    }).addTo(map);
+
+                    L.marker([location.latitude, location.longitude]).addTo(map);
+                });
+            }
+            showMap();
+            showSmallMap();
             function Comment(content) {
                 let today = new Date();
                 // this.userid = data.userNickname;
-                this.userid = "rekey";
+                this.userid = `<%= data.userNickname%>`;
                 this.content = content;
                 this.date = today.toLocaleString();
             }
@@ -133,6 +196,7 @@ postCourseData:[
             // commentBtn.addEventListener("submit", commentBtnHandler);
             // console.log(form.content.value);
 
+            totalRecord();
             function postComment() {
                 console.log(form.content.value);
                 console.log(list.length + 1);
@@ -150,7 +214,7 @@ postCourseData:[
                     .then((data) => {
                         if (data) {
                             console.log(data);
-                            const commentObj = new Comment(data.userID, data.commentText);
+                            const commentObj = new Comment(data.commentText);
                             list.push(commentObj);
                             totalRecord();
                             drawing();
