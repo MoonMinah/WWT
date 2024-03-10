@@ -67,7 +67,6 @@
                     alert("입력 필드를 채워주세요.");
                     return false;
                 }
-                return true;
                 axios({
                     url: "/join",
                     method: "POST",
@@ -88,6 +87,7 @@
                         //console.log("회원가입 오류", err.response.data);
                         alert("회원가입 실패");
                     });
+                return true;
             };
         </script>
     </body>

@@ -33,7 +33,6 @@
                     alert("입력 필드를 채워주세요.");
                     return false;
                 }
-                return true;
 
                 axios({
                     url: "/login",
@@ -58,6 +57,7 @@
                         }
                     })
                     .catch((err) => console.log(err));
+                return true;
             };
         </script>
     </body>
