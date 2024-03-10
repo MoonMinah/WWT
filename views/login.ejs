@@ -9,16 +9,31 @@
             <input type="hidden" name="userID" />
         </form> -->
         <form class="loginForm" name="form-login">
-            <input type="text" name="userID" placeholder="아이디" required /><br />
-            <input type="password" name="userPW" placeholder="비밀번호" required /><br />
+            <input id="userID" type="text" name="userID" placeholder="아이디" required /><br />
+            <input
+                id="userPW"
+                type="password"
+                name="userPW"
+                placeholder="비밀번호"
+                required
+            /><br />
             <button class="loginBTN" type="button" onclick="Login()">Login</button><br />
             <a class="loginJoin" href="/join">회원가입 하시겠습니까?</a>
         </form>
         <script>
             const Login = () => {
-                const formInfo = document.forms["form_info"];
+                // const formInfo = document.forms["form_info"];
                 const form = document.forms["form-login"];
                 console.log(form.userID.value);
+
+                var userID = document.getElementById("userID").value;
+                var userPW = document.getElementById("userPW").value;
+
+                if (userID.trim() === "" || userPW.trim() === "") {
+                    alert("입력 필드를 채워주세요.");
+                    return false;
+                }
+                return true;
 
                 axios({
                     url: "/login",
