@@ -489,7 +489,6 @@ hr {
     padding: 8px 0;
     line-height: 30px;
 }
-
 /* post edit */
 /* post */
 .postContainer {
@@ -755,11 +754,22 @@ li {
     margin-bottom: 10px;
 }
 .commentDate {
+    display: flex;
+    justify-content: space-between;
     padding: 2px 5px;
     font-size: 13px;
     border-top: 1px solid #ebebeb;
     text-align: end;
 }
+.postBTNs > button {
+    border: none;
+    outline: none;
+    background-color: white;
+    cursor: pointer;
+    padding: 2px;
+    margin-right: 15px;
+}
+
 /* admin CSS */
 .adminBody {
     display: flex;

@@ -370,18 +370,20 @@
                 let postBoxList = document.getElementsByClassName("postBox");
                 let weatherRadio = document.querySelector('input[name="weather"]:checked').value;
                 let postTitle = document.querySelector('input[name="title"]').value;
-                let postContent = document.querySelector('textarea[name="postContent"]').value;
+                let postContent = document.querySelectorAll('textarea[name="postContent"]');
+                console.log("=======" + postContent[0]);
+                console.log(postContent[1] + "=======");
                 let postCourse = [];
                 for (let i = 0; i < postBoxList.length; i++) {
                     console.log(postBoxList[i]);
-                    console.log(postContent);
+                    console.log(postContent[i]);
                     let postLonLat = postBoxList[i].id.toString().split(",");
                     console.log(postLonLat);
                     postCourse[i] = {
                         // courseImagePath: "tt",
                         courseLon: postLonLat[0],
                         courseLat: postLonLat[1],
-                        courseText: postContent,
+                        courseText: postContent[i].value,
                     };
                 }
                 console.log(postCourse);
@@ -445,7 +447,7 @@
                 console.log(addBTN);
                 console.log(regionBox);
 
-                regionNewBox.innerHTML = `<textarea name="" id="" cols="30" rows="10" placeholder="내용을 입력해주세요" style="height: 300px" maxlength="500"></textarea><input type="file" name="" id="postEditFile" /><input type="text" id="searchText" placeholder="찾으시는 위치를 적어주세요"/><div class="searchResult"></div> <button type="button" onclick="getPlaces()" value="위치검색" id="searchBTN"> 위치 검색하기 </button>`;
+                regionNewBox.innerHTML = `<textarea name="postContent" id="" cols="30" rows="10" placeholder="내용을 입력해주세요" style="height: 300px" maxlength="500"></textarea><input type="file" name="" id="postEditFile" /><input type="text" id="searchText" placeholder="찾으시는 위치를 적어주세요"/><div class="searchResult"></div> <button type="button" onclick="getPlaces()" value="위치검색" id="searchBTN"> 위치 검색하기 </button>`;
                 regionBox.append(regionNewBox);
             }
 

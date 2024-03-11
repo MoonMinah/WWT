@@ -2,7 +2,6 @@ const model = require("../models");
 const path = require("path");
 const id = 1;
 exports.postPost = (req, res) => {
-
     console.log("req.file");
     console.log(req.file);
     // console.log("-----------", req.session);
