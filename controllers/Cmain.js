@@ -186,9 +186,19 @@ exports.postLogin = (req, res) => {
             if (LoginResult) {
                 req.session.userID = req.body.userID;
                 req.session.data = result;
-                // console.log("이것은 로그인입니다 !!", result);
-                res.send({ isLogin: true, data: result });
-                // res.render("open", { data: result });
+                console.log("memLV", typeof result.memLV);
+
+                if (result.memLV === 0) {
+                    console.log(result.memLV);
+                    // res.redirect("/admin/adminAccess");
+                    // const users = await model.User.findAll();
+                    res.send({ isLogin: true, data: result, admin: result.memLV });
+                } else {
+                    // console.log("이것은 로그인입니다 !!", result);
+                    res.send({ isLogin: true, data: result, admin: result.memLV });
+                    // res.render("open", { data: result });
+                    // res.redirect("/");
+                }
             } else {
                 res.send("비밀번호가 틀렸습니다");
             }
