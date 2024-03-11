@@ -362,7 +362,7 @@ input[type="email"] {
     text-align: center;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
+    margin-top: 150px;
     /* border: 1px solid black; */
     /* position: relative; */
 }
@@ -374,6 +374,12 @@ input[type="email"] {
     position: relative;
     left: 4px;
     /* border: 1px solid black; */
+}
+#postIcon > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    font-size: 12px;
 }
 .myPageDiv1 .myPageNickname {
     position: relative;
@@ -407,7 +413,9 @@ input[type="email"] {
     padding-bottom: 15px;
     /* border: 1px solid rgb(215, 215, 215); */
 }
-
+hr {
+    border-style: groove;
+}
 .myPageEditBTN,
 .myPagePostBTN {
     display: block;

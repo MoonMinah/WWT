@@ -13,7 +13,6 @@ router.get("/myPage", controller.myPage);
 router.get("/post", controller.post);
 router.get("/postEdit", controller.postEdit);
 router.get("/profileEdit", controller.profileEdit);
-// router.get("/postCount", controller.getPostCount);
 
 router.post("/join", controller.postJoin);
 router.post("/login", controller.postLogin);
@@ -21,6 +20,7 @@ router.get("/logout", controller.postLogout);
 router.post("/profileEdit", controller.postProfile);
 router.post("/deleteUser", controller.deleteUser);
 router.post("/editUser", multer.uploadProfile.single("fileInput"), controller.editUser);
+router.post("/writePost", multer.uploadPostPhoto.single("postEditFile"), controller.postEdit);
 
 //포스트와 관련된 router설정
 const postController = require("../controllers/Cpost");
