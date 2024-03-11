@@ -25,7 +25,17 @@ router.post("/editUser", multer.uploadProfile.single("fileInput"), controller.ed
 
 //포스트와 관련된 router설정
 const postController = require("../controllers/Cpost");
-router.post("/writePost", multer.uploadPostPhoto.single("postEditFile"), postController.postPost); // 게시글 등록에 관한 api입니다. req의 body데이터로,
+router.post(
+    "/writePost",
+    multer.uploadPostPhoto.fields([
+        { name: "file1" },
+        { name: "file2" },
+        { name: "file3" },
+        { name: "file4" },
+        { name: "file5" },
+    ]),
+    postController.postPost
+); // 게시글 등록에 관한 api입니다. req의 body데이터로,
 //{
 //    "postTitle" :"임시제목",
 //    "weather" : "sunny",
