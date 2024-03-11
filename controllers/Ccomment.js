@@ -55,7 +55,6 @@ exports.deleteComment = (req, res) => {
                         }
                     )
                         .then(() => {
-                            res.send("성공");
                             res.send({ isSuccess: true });
                         })
                         .catch((err) => {
