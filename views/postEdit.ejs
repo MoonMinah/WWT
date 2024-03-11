@@ -2,7 +2,8 @@
 <html lang="ko">
     <%- include('include/head', { title: 'What Was Today' })%>
     <body>
-        <%- include('include/header')%> <% console.log(isModify) %>
+        <%- include('include/header')%> <% console.log(isModify) %> <%#
+        console.log("****************************",postResult) %>
         <div class="postEditContainer">
             <h2 class="H1WWT">What Was Today</h2>
             <form action="/writePost" method="post" name="wwtPostEdit">
@@ -155,7 +156,20 @@
                         <% } %>
                     </div>
                     <button type="button" onclick="addPost()" id="addBTN">+</button>
-                    <% }else{ %>
+                    <button class="writePostBTN" type="button" onclick="appendPost()">
+                        Would you like to post?
+                    </button>
+                    <br />
+                    <br />
+                    <br />
+                    <input name="postNumber" type="hidden" value="<%= postResult.postNumber %>" />
+                    <button id="deletePostBTN" type="button" onclick="deletePost()">
+                        Delete the post
+                    </button>
+                </div>
+
+                <% }else{ %>
+                <div class="inputContainer">
                     <fieldset>
                         <legend>날씨를 골라주세요</legend>
                         <label for="sunny"
@@ -205,11 +219,12 @@
                         </button>
                     </div>
                     <button type="button" onclick="addPost()" id="addBTN">+</button>
-                    <% } %>
+                    <button class="writePostBTN" type="button" onclick="appendPost()">
+                        Would you like to post?
+                    </button>
+                    <input name="postNumber" type="hidden" value="" />
                 </div>
-                <button class="writePostBTN" type="button" onclick="appendPost()">
-                    Would you like to post?
-                </button>
+                <% } %>
             </form>
         </div>
         <script>
@@ -343,8 +358,10 @@
                 const form = document.forms["wwtPostEdit"];
                 const file = document.getElementById("postEditFile");
                 const formData = new FormData();
+                formData.append("postEditFile", file.files[0]);
 
                 console.log(form.title.value);
+                let postImagePath = document.getElementById("postEditFile");
                 let postBoxList = document.getElementsByClassName("postBox");
                 let weatherRadio = document.querySelector('input[name="weather"]:checked').value;
                 let postTitle = document.querySelector('input[name="title"]').value;
@@ -355,8 +372,9 @@
                     console.log(postContent);
                     let postLonLat = postBoxList[i].id.toString().split(",");
                     console.log(postLonLat);
+                    console.log("::::::::::::::::::", postImagePath);
                     postCourse[i] = {
-                        courseImagePath: "temp",
+                        courseImagePath: "postImagePath",
                         courseLon: postLonLat[0],
                         courseLat: postLonLat[1],
                         courseText: postContent,
@@ -393,13 +411,8 @@
                         "Content-Type": "multipart/form-data",
                     },
                 })
-                    .then((data) => {
-                        if (data) {
-                            console.log(data);
-                            location.href = "/main";
-                        } else {
-                            alert("다시 시도해주세요");
-                        }
+                    .then((res) => {
+                        document.location.href = "/main";
                     })
                     // .then(function (data) {})
                     .catch((err) => console.log(err));
@@ -414,6 +427,21 @@
 
                 regionNewBox.innerHTML = `<textarea name="" id="" cols="30" rows="10" placeholder="내용을 입력해주세요" style="height: 300px" maxlength="500"></textarea><input type="file" name="" id="postEditFile" /><input type="text" id="searchText" placeholder="찾으시는 위치를 적어주세요"/><div class="searchResult"></div> <button type="button" onclick="getPlaces()" value="위치검색" id="searchBTN"> 위치 검색하기 </button>`;
                 regionBox.append(regionNewBox);
+            }
+
+            function deletePost() {
+                // console.log(req.body);
+                let form = document.forms["wwtPostEdit"];
+                axios({
+                    url: "/deletePost",
+                    method: "DELETE",
+                    data: {
+                        postNumber: form.postNumber.value,
+                    },
+                }).then(() => {
+                    alert("게시글이 삭제되었습니다.");
+                    document.location.href = "/myPage";
+                });
             }
         </script>
     </body>

@@ -121,11 +121,12 @@ exports.showPost = (req, res) => {
 };
 
 exports.deletePost = (req, res) => {
+    console.log("**********************", req.body);
     if (!req.session.data) {
         res.send("게시글을 삭제할 권한이 없습니다!");
     } else {
         const CURRENTUSER = req.session.data.id;
-        const postNumber = req.params.postID;
+        const postNumber = req.body.postNumber;
         model.Post.findOne({
             where: {
                 postNumber: postNumber,
@@ -235,4 +236,18 @@ exports.putPost = (req, res) => {
             });
         });
     }
+};
+exports.writePost = (req, res) => {
+    // uploadDetail 미들웨어로 파일 업로드 처리 후 요청 처리
+    upload.single("postEditFile")(req, res, (err) => {
+        if (err instanceof multer.MulterError) {
+            // multer에서 발생한 오류 처리
+            return res.status(500).json({ error: "Multer error occurred" });
+        } else if (err) {
+            // 기타 오류 처리
+            return res.status(500).json({ error: "Unknown error occurred" });
+        }
+
+        return res.json({ message: "File uploaded successfully" });
+    });
 };

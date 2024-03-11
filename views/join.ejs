@@ -5,13 +5,25 @@
         <%- include('include/header')%>
         <H1 class="H1WWT">What Was Today</H1>
         <form class="joinForm" name="form-join">
-            <input type="text" name="userID" placeholder="아이디" required />
+            <input type="text" id="userID" name="userID" placeholder="아이디" required /><br />
+            <input type="password" id="userPW" name="userPW" placeholder="비밀번호" required />
             <br />
-            <input type="password" name="userPW" placeholder="비밀번호" required />
+            <input type="text" id="userName" name="userName" placeholder="이름" required /> <br />
+            <input
+                type="text"
+                id="userNickname"
+                name="userNickname"
+                placeholder="닉네임"
+                required
+            />
             <br />
-            <input type="text" name="userName" placeholder="이름" required /> <br />
-            <input type="text" name="userNickname" placeholder="닉네임" required /> <br />
-            <input type="email" name="userEmail" placeholder="이메일 주소" required /><br />
+            <input
+                type="email"
+                id="userEmail"
+                name="userEmail"
+                placeholder="이메일 주소"
+                required
+            /><br />
             <!-- <textarea
                 name=""
                 id=""
@@ -28,6 +40,33 @@
                 //     form.reportValidity();
                 //     return;
                 // }
+                var userID = document.getElementById("userID").value;
+                var userPW = document.getElementById("userPW").value;
+                var userEmail = document.getElementById("userEmail").value;
+                var userName = document.getElementById("userName").value;
+                var userNickname = document.getElementById("userNickname").value;
+                var IDPWPattern = /^[a-zA-Z0-9가-힣]{8,}$/;
+                var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+                if (!IDPWPattern.test(userID)) {
+                    alert("아이디는 영어 대소문자, 한글, 숫자로 이루어진 8자 이상이어야 합니다.");
+                    return false;
+                } else if (!IDPWPattern.test(userPW)) {
+                    alert("비밀번호는 영어 대소문자, 한글, 숫자로 이루어진 8자 이상이어야 합니다.");
+                    return false;
+                } else if (!emailPattern.test(userEmail)) {
+                    alert("유효한 이메일 주소를 입력하세요.");
+                    return false;
+                } else if (
+                    userID.trim() === "" ||
+                    userPW.trim() === "" ||
+                    userName.trim() === "" ||
+                    userNickname.trim() === "" ||
+                    userEmail.trim() === ""
+                ) {
+                    alert("입력 필드를 채워주세요.");
+                    return false;
+                }
                 axios({
                     url: "/join",
                     method: "POST",
@@ -48,6 +87,7 @@
                         //console.log("회원가입 오류", err.response.data);
                         alert("회원가입 실패");
                     });
+                return true;
             };
         </script>
     </body>
