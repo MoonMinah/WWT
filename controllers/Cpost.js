@@ -2,6 +2,7 @@ const model = require("../models");
 const path = require("path");
 const id = 1;
 exports.postPost = (req, res) => {
+
     console.log("req.file");
     console.log(req.file);
     // console.log("-----------", req.session);
@@ -60,6 +61,7 @@ exports.showPost = (req, res) => {
         where: {
             postNumber: PostNumber,
         },
+        include: [{ model: model.User }],
     }).then((postData) => {
         model.PostCourse.findAll({
             where: {
