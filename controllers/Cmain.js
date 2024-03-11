@@ -91,6 +91,7 @@ exports.myPage = (req, res) => {
                         where: {
                             userId: req.session.data.id,
                         },
+                        order: [["createdAt", "DESC"]],
                     }).then((findResult) => {
                         res.render("myPage", {
                             isLogin: true,
