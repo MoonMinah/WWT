@@ -2,6 +2,7 @@ const model = require("../models");
 const path = require("path");
 const bcrypt = require("bcrypt");
 const saltRound = 10;
+const multer = require("multer");
 function hashPW(pw) {
     return bcrypt.hashSync(pw, saltRound);
 }
@@ -23,6 +24,7 @@ exports.open = (req, res) => {
         res.render("open", { isLogin: false });
     }
 };
+
 exports.main = (req, res) => {
     if (req.session.userID) {
         console.log("main에서 로그인", req.session.data.userNickname);
@@ -49,8 +51,16 @@ exports.main = (req, res) => {
             limit: 20,
         }).then((result) => {
             console.log(result);
-            res.render("main", { isLogin: false, posts: result }); // 이 또한, 위 주석과 설명이 같습니다.
+            res.render("main", { isLogin: false, posts: result });
         });
+    }
+};
+
+exports.adminAccess = (req, res, next) => {
+    if (req.session.userID && req.session.data.memLV === 0) {
+        next(); // 권한이 있으면 다음 미들웨어로 이동
+    } else {
+        res.redirect("/"); // 권한이 없으면 홈페이지로 리다이렉트
     }
 };
 exports.login = (req, res) => {
@@ -176,9 +186,19 @@ exports.postLogin = (req, res) => {
             if (LoginResult) {
                 req.session.userID = req.body.userID;
                 req.session.data = result;
-                // console.log("이것은 로그인입니다 !!", result);
-                res.send({ isLogin: true, data: result });
-                // res.render("open", { data: result });
+                console.log("memLV", typeof result.memLV);
+
+                if (result.memLV === 0) {
+                    console.log(result.memLV);
+                    // res.redirect("/admin/adminAccess");
+                    // const users = await model.User.findAll();
+                    res.send({ isLogin: true, data: result, admin: result.memLV });
+                } else {
+                    // console.log("이것은 로그인입니다 !!", result);
+                    res.send({ isLogin: true, data: result, admin: result.memLV });
+                    // res.render("open", { data: result });
+                    // res.redirect("/");
+                }
             } else {
                 res.send("비밀번호가 틀렸습니다");
             }
@@ -273,4 +293,10 @@ exports.editUser = (req, res) => {
             console.error("프로필 정보 업데이트 실패", err);
             res.status(500).send("프로필 정보 업데이트 실패");
         });
+};
+
+exports.uploadProfile = (req, res) => {
+    console.log(req.file); // 파일 정보
+    console.log(req.body); // 텍스트 정보
+    res.send("파일 업로드 완료");
 };

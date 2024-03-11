@@ -46,11 +46,15 @@
                         const { data } = res;
                         console.log("login Axios", data);
 
+                        console.log(data.admin);
                         if (data) {
                             alert("로그인 성공");
                             // formInfo.userID.value = form.userID.value;
                             // formInfo.submit();
-                            document.location.href = "/";
+                            // console.log(admin);
+                            data.admin === 0
+                                ? (document.location.href = "/admin/adminAccess")
+                                : (document.location.href = "/");
                         } else {
                             alert("로그인 실패");
                             form.reset();
