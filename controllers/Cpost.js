@@ -227,6 +227,7 @@ exports.putPost = (req, res) => {
         const weather = req.body.weather;
         const region = req.body.region;
         const postCourseList = req.body.postCourse;
+        console.log("==============req.file.path============");
         model.Post.update(
             {
                 postTitle: title,
