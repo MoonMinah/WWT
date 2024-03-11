@@ -131,7 +131,7 @@ router.post("/getLatLng", async (req, res) => {
 });
 //}와 같은 형태로 받고 있습니다.
 
-router.delete("/deleteComment/:commentID", commentController.deleteComment);
+router.delete("/deleteComment", commentController.deleteComment);
 
 // delete 로 댓글 ID(PostCommet의 PK입니다)를 params로 넣어서 전송하시면, 현재 세션의 userID와, 그 댓글 작성자의 ID를 검사후, DB에서 삭제하는 것이 아닌,
 
