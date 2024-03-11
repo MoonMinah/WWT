@@ -87,7 +87,7 @@ postCourseData:[
                         <li class="commentContent"><%= commentResult[i].commentText %></li>
                         <li class="commentDate">
                             <div class="postBTNs">
-                                <button class="replyComment" type="button" onclick="commentReply()">
+                                <button class="replyComment" type="button">
                                     댓글
                                     <img
                                         src="../static/image/comment.png"
@@ -106,12 +106,7 @@ postCourseData:[
                             </div>
                             <%= commentResult[i].createdAt.toLocaleString() %>
                         </li>
-                        <li class="commentReply" style="display: none">
-                            <ul>
-                                <li>하하</li>
-                            </ul>
-                        </li>
-                        <% } %>
+                        <%}%>
                     </ul>
                     <%}%>
                 </li>
@@ -124,39 +119,41 @@ postCourseData:[
             const list = [];
             const form = document.forms["comment"];
             // 위도(latitude)와 경도(longitude) 데이터
-            let locations = [];
-            function showMap(lat, lon) {
+            let markers = [];
+            function showMap() {
                 console.log(`<%=postCourseData.length %>`);
 
                 `<%for (let i = 0; i < postCourseData.length; i++) { %>`;
                 console.log("=====");
                 `<% let latitude = postCourseData[i].courseLat %>`;
                 `<% let longitude = postCourseData[i].courseLon %>`;
-                locations[`<%=i%>`] = {
+                markers[`<%=i%>`] = {
                     latitude: `<%= latitude%>`,
                     longitude: `<%= longitude%>`,
                 };
                 `<%}%>`;
-                console.log(locations);
-                console.log(locations);
-                // Leaflet을 사용하여 지도를 생성합니다.
-                let mymap = L.map("mapid").setView(
-                    [locations[0].latitude, locations[0].longitude],
-                    10
-                );
+
+                let mymap = L.map("mapid").setView([markers[0].latitude, markers[0].longitude], 10);
 
                 // OpenStreetMap 타일 레이어를 추가합니다.
                 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
                     maxZoom: 21,
                 }).addTo(mymap);
 
-                locations.forEach(function (location) {
-                    var marker = L.marker([location.latitude, location.longitude]).addTo(mymap);
+                markers.forEach(function (marker) {
+                    L.marker([marker.latitude, marker.longitude]).addTo(mymap);
                 });
+
+                let polyline = L.polyline(
+                    markers.map((marker) => [marker.latitude, marker.longitude]),
+                    {
+                        color: "red",
+                    }
+                ).addTo(mymap);
                 // 마커를 추가하여 해당 위도와 경도에 표시합니다.
             }
             function showSmallMap() {
-                locations.forEach(function (location, index) {
+                markers.forEach(function (location, index) {
                     let mapLi = document.querySelectorAll(".map");
                     console.log(mapLi[1]);
                     mapLi[index].setAttribute("id", "map-" + index);
@@ -174,10 +171,16 @@ postCourseData:[
                 });
             }
 
-            function commentReply() {
-                let replyBox = document.querySelectorAll(".commentReply");
-                replyBox[0].setAttribute("style", "display: block");
-            }
+            // function commentReply(id) {
+            //     let replyBox = document.getElementById(id);
+
+            //     console.log(replyBox.style.display);
+            //     if (replyBox.style.display === "block") {
+            //         replyBox.setAttribute("style", "display: none");
+            //     } else {
+            //         replyBox.setAttribute("style", "display: block");
+            //     }
+            // }
 
             showMap();
             showSmallMap();
@@ -186,13 +189,21 @@ postCourseData:[
                 console.log(form.content.value);
                 console.log(list.length + 1);
                 console.log("<%= postData.postNumber%>");
-                let commentText = form.content.value;
-                const data = {
+
+                // const replyInput = document.querySelector(".replyInput");
+
+                console.log(form.content.value);
+
+                let data = {
                     postNumber: "<%= postData.postNumber%>",
                     // userID: getPost.useID,
                     userID: "<%=data.id%>",
-                    commentText: commentText.toString(),
+                    commentText: form.content.value,
+                    // isReply: replyInput.parentNode.parentNode.id
                 };
+
+                console.log(data);
+
                 axios({
                     method: "POST",
                     url: "/postComment",
@@ -200,7 +211,7 @@ postCourseData:[
                 })
                     .then((data) => {
                         if (data) {
-                            locations.href = "/getPost/" + `<%= postData.postNumber %>`;
+                            location.href = "/getPost/" + `<%= postData.postNumber %>`;
                         } else {
                             alert("다시 시도해주세요");
                         }
@@ -208,6 +219,42 @@ postCourseData:[
                     // .then(function (data) {})
                     .catch((err) => console.log(err));
             }
+
+            // function postReplyComment() {
+            //     console.log(form.content.value);
+            //     console.log(list.length + 1);
+            //     console.log("<%#= postData.postNumber%>");
+
+            //     const replyInput = document.querySelector(".replyInput");
+
+            //     // console.log(replyInput.parentNode.parentNode.id);
+
+            //     let data = {
+            //         postNumber: "<%#= postData.postNumber%>",
+            //         // userID: getPost.useID,
+            //         userID: "<%#=data.id%>",
+            //         commentText: replyInput.value,
+            //         isReply: replyInput.parentNode.parentNode.id,
+            //     };
+
+            //     console.log(data);
+
+            //     axios({
+            //         method: "POST",
+            //         url: "/postComment",
+            //         data: data,
+            //     })
+            //         .then((data) => {
+            //             if (data) {
+            //                 locations.href = "/getPost/" + `<%= postData.postNumber %>`;
+            //             } else {
+            //                 alert("다시 시도해주세요");
+            //             }
+            //         })
+            //         // .then(function (data) {})
+            //         .catch((err) => console.log(err));
+            // }
+
             function deleteComment(id) {
                 console.log(id);
                 axios({
