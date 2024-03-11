@@ -206,7 +206,7 @@
                             style="height: 300px"
                             maxlength="500"
                         ></textarea>
-                        <input type="file" name="" id="postEditFile" />
+                        <input type="file" name="file1" id="postEditFile" />
                         <input
                             type="text"
                             id="searchText"
@@ -345,7 +345,7 @@
                     alert("Failed to fetch location. Please check the console for details.");
                 }
             }
-
+            let count = 1;
             function displayLocation(location) {
                 const locationInfo = document.getElementById("locationInfo");
                 locationInfo.innerHTML = ""; // 이전 정보 초기화
@@ -361,9 +361,13 @@
                 const form = document.forms["wwtPostEdit"];
                 const file = document.getElementById("postEditFile");
                 const formData = new FormData();
-                formData.append("postEditFile", file.files[0]);
-
+                //formData.append("postEditFile", file.files[0]);
+                for (let i = 1; i <= count; i++) {
+                    const file = document.getElementsByName(`file${i}`);
+                    formData.append(`file${i}`, file[0].files[0]);
+                }
                 console.log(form.title.value);
+
                 // console.log("=====");
                 // console.log(`<%#= courseResult[0].courseImagePath%>`);
                 // let postImagePath = `<%#= courseResult[0].courseImagePath%>`;
@@ -462,15 +466,17 @@
                 //     // .then(function (data) {})
                 //     .catch((err) => console.log(err));
             }
-            let count = 1;
+
             function addPost() {
+                count++;
+                console.log(count);
                 let regionNewBox = document.createElement("div");
                 let addBTN = document.querySelector("#addBTN");
                 let regionBox = addBTN.previousElementSibling;
                 console.log(addBTN);
                 console.log(regionBox);
 
-                regionNewBox.innerHTML = `<textarea name="postContent" id="" cols="30" rows="10" placeholder="내용을 입력해주세요" style="height: 300px" maxlength="500"></textarea><input type="file" name="" id="postEditFile" /><input type="text" id="searchText" placeholder="찾으시는 위치를 적어주세요"/><div class="searchResult"></div> <button type="button" onclick="getPlaces()" value="위치검색" id="searchBTN"> 위치 검색하기 </button>`;
+                regionNewBox.innerHTML = `<textarea name="postContent" id="" cols="30" rows="10" placeholder="내용을 입력해주세요" style="height: 300px" maxlength="500"></textarea><input type="file" name="file${count}" id="postEditFile" /><input type="text" id="searchText" placeholder="찾으시는 위치를 적어주세요"/><div class="searchResult"></div> <button type="button" onclick="getPlaces()" value="위치검색" id="searchBTN"> 위치 검색하기 </button>`;
                 regionBox.append(regionNewBox);
             }
 

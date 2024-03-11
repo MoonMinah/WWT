@@ -2,8 +2,9 @@ const model = require("../models");
 const path = require("path");
 const id = 1;
 exports.postPost = (req, res) => {
+    console.log("hi!!");
     console.log("req.file");
-    console.log(req.file);
+    console.log(req.files);
     // console.log("-----------", req.session);
 
     if (req.session.userID) {
@@ -19,22 +20,31 @@ exports.postPost = (req, res) => {
         // console.log(req.file);
         console.log("req.body-=-----");
         console.log(req.body);
-
+        console.log("==========================");
+        console.log(req.files);
+        console.log("==========================");
+        console.log(req.files.file1);
+        console.log("==========================");
+        console.log(req.files.file1[0].path);
         model.Post.create({
             userID: req.session.data.id,
             postTitle: title,
             weather: weather,
             region: region,
-            reImage: req.file.path,
+            reImage: req.files.file1[0].path,
             // reImage: postCourseList[0].courseImagePath, // 글 불러오기를 위해 대표 이미지로 가장 첫 코스의 이미지를 가져오도록
         })
             .then((result) => {
                 console.log("-----postCourse----------");
                 console.log(postCourseList[0]);
+                const { file1, file2, file3, file4, file5 } = req.files;
+                let temp = [file1, file2, file3, file4, file5];
                 for (let i = 0; i < postCourseList.length; i++) {
                     model.PostCourse.create({
                         postNumber: result.postNumber,
-                        courseImagePath: postCourseList[i].courseImagePath,
+                        courseImagePath: temp[i][0].path,
+                        // courseImagePath:req.files.file${i}[0].path,
+                        // courseImagePath: req.files[`file${i}`][0].path,
                         courseLon: postCourseList[i].courseLon,
                         courseLat: postCourseList[i].courseLat,
                         courseText: postCourseList[i].courseText,
