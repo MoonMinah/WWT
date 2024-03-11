@@ -30,6 +30,7 @@ postCourseData:[
          -->
         <div class="postContainer">
             <div id="postIcon"></div>
+            <div class="userNickname"><%= data.userNickname %></div>
             <h2><%=postData.postTitle%></h2>
             <div
                 id="mapid"
@@ -192,19 +193,21 @@ postCourseData:[
                 e.target.reset();
             }
 
-            // totalRecord();
-            // commentBtn.addEventListener("submit", commentBtnHandler);
-            // console.log(form.content.value);
+            totalRecord();
+            commentBtn.addEventListener("submit", commentBtnHandler);
+            console.log(form.content.value);
 
             totalRecord();
             function postComment() {
                 console.log(form.content.value);
                 console.log(list.length + 1);
+                console.log("<%= postData.postNumber%>");
+                let commentText = form.content.value;
                 const data = {
                     postNumber: "<%= postData.postNumber%>",
                     // userID: getPost.useID,
                     userID: "<%=data.id%>",
-                    commentText: form.content.value,
+                    commentText: commentText.toString(),
                 };
                 axios({
                     method: "POST",
@@ -213,11 +216,8 @@ postCourseData:[
                 })
                     .then((data) => {
                         if (data) {
-                            console.log(data);
-                            const commentObj = new Comment(data.commentText);
-                            list.push(commentObj);
                             totalRecord();
-                            drawing();
+                            location.href = "/getPost/" + data.postNumber;
                         } else {
                             alert("다시 시도해주세요");
                         }
