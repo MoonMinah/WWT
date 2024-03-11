@@ -555,7 +555,7 @@ input[id="searchText"] {
 p {
     text-align: center;
 }
-button {
+button[value="위치 선택"] {
     width: 100%;
     border: none;
     padding: 10px;
