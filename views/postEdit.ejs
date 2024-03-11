@@ -2,8 +2,8 @@
 <html lang="ko">
     <%- include('include/head', { title: 'What Was Today' })%>
     <body>
-        <% console.log("****************************",postResult) %> <%- include('include/header')%>
-        <% console.log(isModify) %>
+        <%- include('include/header')%> <% console.log(isModify) %> <%#
+        console.log("****************************",postResult) %>
         <div class="postEditContainer">
             <h2 class="H1WWT">What Was Today</h2>
             <form action="/writePost" method="post" name="wwtPostEdit">
@@ -150,11 +150,6 @@
                             value=""
                         />
                         <div class="searchResult"></div>
-                        <input
-                            name="postNumber"
-                            type="hidden"
-                            value="<%= postResult.postNumber %>"
-                        />
                         <button type="button" onclick="getPlaces()" value="위치검색" id="searchBTN">
                             위치 검색하기
                         </button>
@@ -167,6 +162,7 @@
                     <br />
                     <br />
                     <br />
+                    <input name="postNumber" type="hidden" value="<%= postResult.postNumber %>" />
                     <button id="deletePostBTN" type="button" onclick="deletePost()">
                         Delete the post
                     </button>
@@ -222,11 +218,11 @@
                             위치 검색하기
                         </button>
                     </div>
-                    <input name="postNumber" type="hidden" value="<%= postResult.postNumber %>" />
                     <button type="button" onclick="addPost()" id="addBTN">+</button>
                     <button class="writePostBTN" type="button" onclick="appendPost()">
                         Would you like to post?
                     </button>
+                    <input name="postNumber" type="hidden" value="" />
                 </div>
                 <% } %>
             </form>
