@@ -2,7 +2,7 @@ const model = require("../models");
 const path = require("path");
 const id = 1;
 exports.postPost = (req, res) => {
-    console.log(req.session);
+    console.log("-----------", req.session);
 
     if (req.session.userID) {
         console.log(req.body.postTitle);
