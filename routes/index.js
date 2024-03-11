@@ -20,11 +20,12 @@ router.get("/logout", controller.postLogout);
 router.post("/profileEdit", controller.postProfile);
 router.post("/deleteUser", controller.deleteUser);
 router.post("/editUser", multer.uploadProfile.single("fileInput"), controller.editUser);
-router.post("/uploadPost", multer.uploadPostPhoto.single("postEditFile"), controller.postEdit);
+// router.post("/uploadPost", multer.uploadPostPhoto.single("postEditFile"), controller.postPost);
+// router.post("/uploadPost", multer.uploadPostPhoto.single("postEditFile"), controller.putPost);
 
 //포스트와 관련된 router설정
 const postController = require("../controllers/Cpost");
-router.post("/writePost", postController.postPost); // 게시글 등록에 관한 api입니다. req의 body데이터로,
+router.post("/writePost", multer.uploadPostPhoto.single("postEditFile"), postController.postPost); // 게시글 등록에 관한 api입니다. req의 body데이터로,
 //{
 //    "postTitle" :"임시제목",
 //    "weather" : "sunny",
@@ -62,7 +63,11 @@ router.get("/getPost/:postID", postController.showPost);
 router.delete("/deletePost", postController.deletePost); //삭제할 게시글의 postID(DBmodel에는 postNumber로 되어 있음)을 params로 넘기면, 권한 조회 후, 삭제함
 
 router.get("/putPostRequest/:postID", postController.putPostRequest);
-router.put("/putPost/:postID", postController.putPost); //이 코드는, post api /writePost와 완전 일치합니다.
+router.put(
+    "/putPost/:postID",
+    multer.uploadPostPhoto.single("postEditFile"),
+    postController.putPost
+); //이 코드는, post api /writePost와 완전 일치합니다.
 // post /writePost와 같은 req.body를 작성하신 후, put api로 전송하면 됩니다.
 
 // =================================================
