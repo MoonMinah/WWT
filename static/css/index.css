@@ -72,6 +72,7 @@ body {
     position: relative;
     width: 100%;
     /* height: 300px; */
+    border-radius: 5px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
     margin: 5px;
 }
@@ -79,6 +80,7 @@ body {
     width: 100%;
     /* height: 300px; */
     overflow: hidden;
+    border-radius: 5px;
 }
 .box .info {
     color: #fff;
@@ -100,6 +102,7 @@ body {
 }
 .box:hover .info {
     opacity: 1;
+    border-radius: 5px;
 }
 .box .info h3 {
     padding-bottom: 0.4em;
@@ -318,7 +321,7 @@ input[id="menuicon"]:checked + label + div {
     padding: 50px 30px 40px;
     font-weight: 800;
     font-size: 2rem;
-    background-color: #7f93b0;
+    background-color: #a5b4cc;
     border-radius: 4%;
 }
 .joinDIV {
@@ -326,8 +329,11 @@ input[id="menuicon"]:checked + label + div {
     padding: 50px 45px 20px;
     font-weight: 800;
     font-size: 2rem;
-    background-color: #7f93b0;
+    background-color: #a5b4cc;
     border-radius: 4%;
+}
+.joinDIV > hr {
+    color: #606d75;
 }
 .joinH1 {
     margin-top: 70px;
@@ -346,7 +352,7 @@ input[type="email"] {
     /* border-radius: 5px; */
     border: 1px solid #7a8da6;
     width: 250px;
-    height: 30px;
+    height: 35px;
     font-size: 14px;
     border-radius: 2%;
 }
@@ -365,8 +371,8 @@ input[type="email"] {
 }
 .loginBTN:hover,
 .joinBTN:hover {
-    background-color: #99a2a9;
-    border: 0.2px solid #7a8da6;
+    background-color: #8396af;
+    border: 0.2px solid #a0b5d2;
 }
 .loginJoin {
     display: block;
@@ -374,6 +380,7 @@ input[type="email"] {
     text-align: center;
     color: #3f4042;
     font-size: 16px;
+    font-weight: 400;
 }
 
 /* mypage */
@@ -440,6 +447,9 @@ input[type="email"] {
     color: #555;
     position: relative;
     left: 34%;
+    font-weight: 400;
+    margin: 1px;
+    font-size: 13px;
 }
 
 .myPagePostCountName {
@@ -644,6 +654,7 @@ button[value="위치 선택"] {
 .profileEditContainer {
     padding-top: 50px;
     width: 30%;
+    height: 600px;
     margin: 100px auto;
     display: flex;
     flex-direction: column;
@@ -680,7 +691,8 @@ button[value="위치 선택"] {
     background-color: white;
     margin-right: 10px;
     position: relative;
-    left: 2.3rem;
+    left: 1.5rem;
+    top: 1rem;
 }
 
 .profileEditIcon > #imageElement {
@@ -692,7 +704,7 @@ button[value="위치 선택"] {
     border: none;
     padding: 18px;
     height: 30px;
-    background-color: rgb(221, 212, 223);
+    background-color: rgb(242, 235, 235);
     border-radius: 10px;
     box-shadow: 5px 5px 5px rgb(207, 207, 207);
     border: 1px solid rgb(215, 215, 215);
@@ -706,7 +718,7 @@ button[value="위치 선택"] {
 }
 
 #profileEditIconBTN:hover {
-    background-color: #b1b1b1;
+    background-color: #c5bbbb;
     color: rgb(248, 248, 248);
 }
 .profileEditContainer form > input {
@@ -721,7 +733,7 @@ button[value="위치 선택"] {
 .profileEditContainer form > textarea {
     display: block;
     border: none;
-    margin: 20px auto;
+    margin: 20px auto 15px;
     width: 90%;
     box-shadow: 5px 5px 5px rgb(217, 217, 217);
 }
@@ -729,6 +741,8 @@ button[value="위치 선택"] {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+    position: relative;
+    bottom: 1.2rem;
 }
 .profileEditBTN > button {
     width: 35%;
@@ -737,15 +751,14 @@ button[value="위치 선택"] {
     border: none;
     padding: 10px 0;
     border-radius: 7px;
-    background-color: rgb(248, 248, 248);
+    background-color: rgb(242, 235, 235);
     box-shadow: 5px 5px 5px rgb(207, 207, 207);
-
     color: #3c3c3c;
     font-size: 14px;
 }
 
-.profileEditContainer > button:hover {
-    background-color: #b1b1b1;
+.profileEditBTN > button:hover {
+    background-color: #c5bbbb;
     color: rgb(248, 248, 248);
 }
 
