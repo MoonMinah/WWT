@@ -3,239 +3,173 @@
     <%- include('include/head', { title: 'What Was Today' })%>
     <body>
         <%- include('include/header')%>
-        <H1 class="H1WWT">Today's Weather</H1>
-        <div class="carousel-frame">
-            <div class="carousel-contents">
-                <div class="weather carousel-item">
-                    <p id="weatherLogo">
-                        <img
-                            class="weatherLogoImg"
-                            src="../static/image/sunny.png"
-                            alt="날씨로고"
-                        />
-                    </p>
-                    <!-- 날씨 api 받아서 로고 표시 -->
-                    <div id="weatherInfo">
-                        <p id="weatherRegion">서울</p>
-                        <p id="weatherTemp">7<span>℃</span></p>
-                    </div>
-                    <!-- 날씨 api 받아서 온도 및 지역 표시 -->
-                    <a href="/main">오늘의 코스를 보시겠습니까?</a>
-                </div>
-                <div class="weather carousel-item">
-                    <p id="weatherLogo">
-                        <img
-                            class="weatherLogoImg"
-                            src="../static/image/rainny.png"
-                            alt="날씨로고"
-                        />
-                    </p>
-                    <!-- 날씨 api 받아서 로고 표시 -->
-                    <div id="weatherInfo">
-                        <p id="weatherRegion">경기</p>
-                        <p id="weatherTemp">5<span>℃</span></p>
-                    </div>
-                    <!-- 날씨 api 받아서 온도 및 지역 표시 -->
-                    <a href="/main">오늘의 코스를 보시겠습니까?</a>
-                </div>
-                <div class="weather carousel-item">
-                    <p id="weatherLogo">
-                        <img
-                            class="weatherLogoImg"
-                            src="../static/image/snowy.png"
-                            alt="날씨로고"
-                        />
-                    </p>
-                    <!-- 날씨 api 받아서 로고 표시 -->
-                    <div id="weatherInfo">
-                        <p id="weatherRegion">강원</p>
-                        <p id="weatherTemp">7<span>℃</span></p>
-                    </div>
-                    <!-- 날씨 api 받아서 온도 및 지역 표시 -->
-                    <a href="/main">오늘의 코스를 보시겠습니까?</a>
-                </div>
-                <div class="weather carousel-item">
-                    <p id="weatherLogo">
-                        <img
-                            class="weatherLogoImg"
-                            src="../static/image/cloud.png"
-                            alt="날씨로고"
-                        />
-                    </p>
-                    <!-- 날씨 api 받아서 로고 표시 -->
-                    <div id="weatherInfo">
-                        <p id="weatherRegion">충북</p>
-                        <p id="weatherTemp">7<span>℃</span></p>
-                    </div>
-                    <!-- 날씨 api 받아서 온도 및 지역 표시 -->
-                    <a href="/main">오늘의 코스를 보시겠습니까?</a>
-                </div>
-                <div class="weather carousel-item">
-                    <p id="weatherLogo">
-                        <img
-                            class="weatherLogoImg"
-                            src="../static/image/sunny.png"
-                            alt="날씨로고"
-                        />
-                    </p>
-                    <!-- 날씨 api 받아서 로고 표시 -->
-                    <div id="weatherInfo">
-                        <p id="weatherRegion">충남</p>
-                        <p id="weatherTemp">7<span>℃</span></p>
-                    </div>
-                    <!-- 날씨 api 받아서 온도 및 지역 표시 -->
-                    <a href="/main">오늘의 코스를 보시겠습니까?</a>
-                </div>
-                <div class="weather carousel-item">
-                    <p id="weatherLogo">
-                        <img
-                            class="weatherLogoImg"
-                            src="../static/image/rainny.png"
-                            alt="날씨로고"
-                        />
-                    </p>
-                    <!-- 날씨 api 받아서 로고 표시 -->
-                    <div id="weatherInfo">
-                        <p id="weatherRegion">전북</p>
-                        <p id="weatherTemp">7<span>℃</span></p>
-                    </div>
-                    <!-- 날씨 api 받아서 온도 및 지역 표시 -->
-                    <a href="/main">오늘의 코스를 보시겠습니까?</a>
-                </div>
-                <div class="weather carousel-item">
-                    <p id="weatherLogo">
-                        <img
-                            class="weatherLogoImg"
-                            src="../static/image/sunny.png"
-                            alt="날씨로고"
-                        />
-                    </p>
-                    <!-- 날씨 api 받아서 로고 표시 -->
-                    <div id="weatherInfo">
-                        <p id="weatherRegion">전남</p>
-                        <p id="weatherTemp">7<span>℃</span></p>
-                    </div>
-                    <!-- 날씨 api 받아서 온도 및 지역 표시 -->
-                    <a href="/main">오늘의 코스를 보시겠습니까?</a>
-                </div>
-                <div class="weather carousel-item">
-                    <p id="weatherLogo">
-                        <img
-                            class="weatherLogoImg"
-                            src="../static/image/cloud.png"
-                            alt="날씨로고"
-                        />
-                    </p>
-                    <!-- 날씨 api 받아서 로고 표시 -->
-                    <div id="weatherInfo">
-                        <p id="weatherRegion">경북</p>
-                        <p id="weatherTemp">7<span>℃</span></p>
-                    </div>
-                    <!-- 날씨 api 받아서 온도 및 지역 표시 -->
-                    <a href="/main">오늘의 코스를 보시겠습니까?</a>
-                </div>
-                <div class="weather carousel-item">
-                    <p id="weatherLogo">
-                        <img
-                            class="weatherLogoImg"
-                            src="../static/image/snowy.png"
-                            alt="날씨로고"
-                        />
-                    </p>
-                    <!-- 날씨 api 받아서 로고 표시 -->
-                    <div id="weatherInfo">
-                        <p id="weatherRegion">경남</p>
-                        <p id="weatherTemp">7<span>℃</span></p>
-                    </div>
-                    <!-- 날씨 api 받아서 온도 및 지역 표시 -->
-                    <a href="/main">오늘의 코스를 보시겠습니까?</a>
-                </div>
-                <div class="weather carousel-item">
-                    <p id="weatherLogo">
-                        <img
-                            class="weatherLogoImg"
-                            src="../static/image/sunny.png"
-                            alt="날씨로고"
-                        />
-                    </p>
-                    <!-- 날씨 api 받아서 로고 표시 -->
-                    <div id="weatherInfo">
-                        <p id="weatherRegion">제주도</p>
-                        <p id="weatherTemp">7<span>℃</span></p>
-                    </div>
-                    <!-- 날씨 api 받아서 온도 및 지역 표시 -->
-                    <a href="/main">오늘의 코스를 보시겠습니까?</a>
-                </div>
-            </div>
-            <button onclick="leftHandler()" class="left"><</button>
-            <button onclick="rightHandler()" class="right">></button>
+        <H1 class="H1WWT">오늘의 날씨</H1>
+        <div class="openContainer">
+            <div class="card" id="weatherInfo"></div>
+            <a href="/main" class="link-secondary fs-4">오늘의 코스를 보시겠습니까?</a>
+            <p class="fs-2" style="margin-top: 30px">다른 지역 날씨 정보</p>
+            <div id="weatherRegionInfo"></div>
         </div>
-        <div class="line">
-            <div class="target"></div>
-        </div>
+
+        <%- include('include/footer') %>
         <script>
-            // JS code 해석이 더 빨라도 가장 나중에 실행되게끔 맨 마지막에 써준다.
-            // 그걸 확실히 방지하고 싶으면 onload() 라는 함수를 쓴다
-            window.onload = () => {
-                const line = document.querySelector(".line");
-                const items = document.querySelectorAll(".carousel-item");
-                const target = document.querySelector(".target");
-                target.style.width = `${line.offsetWidth / items.length}px`;
-            };
+            // OpenWeatherMap API 키
+            const apiKey = "aa88b6a4ce24f5cf5acfc023046517f2";
 
-            let count = 0; // 처음에 초기값을 0으로 잡아준다. 꼭 함수 밖에다 선언!!
+            function getWeatherInfo(position) {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
 
-            const leftHandler = () => {
-                // 지금 내가보고 있는 그림이 몇번째인지,
-                //                  count
-                // 1번 0            0
-                // 2번 -1000        1
-                // 3번 -2000        2
-                // 4번 -3000        3
-                // 5번 -4000        4
-                const line = document.querySelector(".line");
-                const frame = document.querySelector(".carousel-frame");
-                const items = document.querySelectorAll(".carousel-item");
-                if (count <= 0) {
-                    count = items.length;
-                }
-                count = count - 1;
-                const carContents = document.querySelector(".carousel-contents");
-                carContents.style.transform = `translateX(-${count * frame.offsetWidth}px)`;
-                carContents.style.transform = `translateX(-${count * frame.offsetWidth}px)`;
-                const target = document.querySelector(".target");
-                target.style.transform = `translateX(${
-                    count * (line.offsetWidth / items.length)
-                }px)`;
-            };
+                // API 엔드포인트 URL
+                const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
 
-            const rightHandler = () => {
-                // 전체길이 / div갯수 = 하면 컴퓨터가 알아서 계산 해줄텐데...
-                // 코드를 그때 그때 잘 적용시키기 위해서 요소로 적어둔다
-                const line = document.querySelector(".line");
-                const frame = document.querySelector(".carousel-frame");
-                // console.log(line);
-                // 회색 선 전체의 길이: line.offsetWidth
-                // 한칸의 길이 : 회색선전체길이 / 갯수
+                // API 요청을 보냄
+                fetch(apiUrl)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        // 날씨 정보를 가져와서 페이지에 표시
+                        const weatherInfo = document.getElementById("weatherInfo");
+                        if (data.weather[0].description.includes("clouds")) {
+                            weatherInfo.innerHTML += `
+                            <div class="card">
+                                <img src="../static/image/cloudy.jpg" class="card-img-top" alt="..." style="width: 23rem">
+                                <h2 class = "card-title">나의 위치</h2>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">온도: ${data.main.temp} °C</li>
+                                    <li class="list-group-item">흐림</li>
+                                    <li class="list-group-item">풍속: ${data.wind.speed} m/s</li>
+                                </ul>
+                            </div>
+                            `;
+                        } else if (data.weather[0].description.includes("rain")) {
+                            weatherInfo.innerHTML += `
+                            <div class="card">
+                                <img src="../static/image/rainny.jpg" class="card-img-top" alt="..." style="width: 23rem">
+                                <h2 class = "card-title">현재 날씨</h2>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">온도: ${data.main.temp} °C</li>
+                                    <li class="list-group-item">비</li>
+                                    <li class="list-group-item">풍속: ${data.wind.speed} m/s</li>
+                                </ul>
+                            </div>
+                            `;
+                        } else if (data.weather[0].description.includes("clear")) {
+                            weatherInfo.innerHTML += `
+                            <div class="card">
+                                <img src="../static/image/sunny.jpg" class="card-img-top" alt="..." style="width: 23rem">
+                                <h2 class = "card-title">현재 날씨</h2>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">온도: ${data.main.temp} °C</li>
+                                    <li class="list-group-item">맑음</li>
+                                    <li class="list-group-item">풍속: ${data.wind.speed} m/s</li>
+                                </ul>
+                            </div>
+                            `;
+                        } else if (data.weather[0].description.includes("snow")) {
+                            weatherInfo.innerHTML += `
+                            <div class="card">
+                                <img src="../static/image/snowy.jpg" class="card-img-top" alt="..." style="width: 23rem">
+                                <h2 class = "card-title">현재 날씨</h2>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">온도: ${data.main.temp} °C</li>
+                                    <li class="list-group-item">눈</li>
+                                    <li class="list-group-item">풍속: ${data.wind.speed} m/s</li>
+                                </ul>
+                            </div>
+                            `;
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("날씨 정보를 가져오는 중 오류 발생:", error);
+                    });
+            }
 
-                const items = document.querySelectorAll(".carousel-item");
-                // items에는 무엇이 들어있다? :배열
-                // 배열의 요소의 갯수는? length 키값에 들어있다
-                if (count >= items.length - 1) {
-                    count = -1;
-                    // return; 함수 종료 시키려면
-                }
-                count = count + 1; // 여기가 어려움(누를때마다 숫자가 올라가야하니까)
-                const carContents = document.querySelector(".carousel-contents");
-                carContents.style.transform = `translateX(-${count * frame.offsetWidth}px)`;
-                const target = document.querySelector(".target");
-                // 막대기 이동시키기
-                // 원리: css를 어떻게 바꿔줄 것이냐
-                target.style.transform = `translateX(${
-                    count * (line.offsetWidth / items.length)
-                }px)`;
-                // target.style.width = `(${(count+1)*200}px)`; 막대기 늘리기
-            };
+            // Geolocation API를 사용하여 사용자의 현재 위치를 확인
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(getWeatherInfo);
+            } else {
+                console.error("Geolocation을 지원하지 않는 브라우저입니다.");
+            }
+
+            const locations = [
+                { name: "서울", lat: 37.5665, lon: 126.978 },
+                { name: "경기도", lat: 37.4138, lon: 127.5183 },
+                { name: "강원도", lat: 37.5558, lon: 127.7299 },
+                { name: "부산", lat: 35.1796, lon: 129.0756 },
+                { name: "대구", lat: 35.8714, lon: 128.6014 },
+                { name: "충청도", lat: 36.4879, lon: 127.281 },
+            ];
+
+            // 날씨 정보를 가져오고 표시하는 함수
+            function getRegionWeather(location) {
+                // API 엔드포인트 URL
+                const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&appid=${apiKey}&units=metric`;
+                // <p>현재 온도: ${data.main.temp} °C</p>
+                // <p>날씨 상태: ${data.weather[0].description}</p>
+                // <p>풍속: ${data.wind.speed} m/s</p>
+                // API 요청을 보냄
+                fetch(apiUrl)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        // 날씨 정보를 가져와서 페이지에 표시
+                        const weatherInfo = document.getElementById("weatherRegionInfo");
+                        if (data.weather[0].description.includes("clouds")) {
+                            weatherInfo.innerHTML += `
+                            <div class="card">
+                                <img src="../static/image/cloudy.jpg" class="card-img-top" alt="..." style="width: 18rem">
+                                <h2 class = "card-title">${location.name}</h2>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">온도: ${data.main.temp} °C</li>
+                                    <li class="list-group-item">흐림</li>
+                                    <li class="list-group-item">풍속: ${data.wind.speed} m/s</li>
+                                </ul>
+                            </div>
+                            `;
+                        } else if (data.weather[0].description.includes("rain")) {
+                            weatherInfo.innerHTML += `
+                            <div class="card">
+                                <img src="../static/image/rainny.jpg" class="card-img-top" alt="..." style="width: 18rem">
+                                <h2 class = "card-title">${location.name}</h2>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">온도: ${data.main.temp} °C</li>
+                                    <li class="list-group-item">비</li>
+                                    <li class="list-group-item">풍속: ${data.wind.speed} m/s</li>
+                                </ul>
+                            </div>
+                            `;
+                        } else if (data.weather[0].description.includes("clear")) {
+                            weatherInfo.innerHTML += `
+                            <div class="card">
+                                <img src="../static/image/sunny.jpg" class="card-img-top" alt="..." style="width: 18rem">
+                                <h2 class = "card-title">${location.name}</h2>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">온도: ${data.main.temp} °C</li>
+                                    <li class="list-group-item">맑음</li>
+                                    <li class="list-group-item">풍속: ${data.wind.speed} m/s</li>
+                                </ul>
+                            </div>
+                            `;
+                        } else if (data.weather[0].description.includes("snow")) {
+                            weatherInfo.innerHTML += `
+                            <div class="card">
+                                <img src="../static/image/snowy.jpg" class="card-img-top" alt="..." style="width: 18rem">
+                                <h2 class = "card-title">${location.name}</h2>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">온도: ${data.main.temp} °C</li>
+                                    <li class="list-group-item">눈</li>
+                                    <li class="list-group-item">풍속: ${data.wind.speed} m/s</li>
+                                </ul>
+                            </div>
+                            `;
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("날씨 정보를 가져오는 중 오류 발생:", error);
+                    });
+            }
+
+            // 모든 지역의 날씨 정보 가져오기
+            locations.forEach(getRegionWeather);
         </script>
     </body>
 </html>
