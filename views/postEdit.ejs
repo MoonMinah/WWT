@@ -97,29 +97,29 @@
                         >
 <%=courseResult[i].courseText  %></textarea
                         >
-                        <input type="file" name="" id="postEditFile" />
+                        <!-- <input type="file" name="" id="postEditFile" /> -->
                         <!-- 수정할 땐 이미지가 있는 게 좋을 것 같아서 넣었는데, 결과물 보고 별로면 없애도 될 것 같아요. -->
-                        <img
-                            src="/<%= postResult.reImage %>"
-                            alt="<%= postResult.postTitle %> Image"
-                        />
-                        <input
-                            type="text"
-                            id="searchText"
-                            placeholder="찾으시는 위치를 적어주세요"
-                            value=""
-                        />
-                        <div class="searchResult"></div>
-                        <button type="button" onclick="getPlaces()" value="위치검색" id="searchBTN">
+                        <div class="searchResult">
+                            <img
+                                src="/<%= postResult.reImage %>"
+                                alt="<%= postResult.postTitle %> Image"
+                            />
+                            <!-- <input
+                                type="text"
+                                id="searchText"
+                                placeholder="찾으시는 위치를 적어주세요"
+                                value=""
+                            /> -->
+                        </div>
+                        <!-- <button type="button" onclick="getPlaces()" value="위치검색" id="searchBTN">
                             위치 검색하기
-                        </button>
+                        </button> -->
                         <% } %>
                     </div>
                     <button type="button" onclick="addPost()" id="addBTN">+</button>
                     <button class="writePostBTN" type="button" onclick="appendPost()">
                         Would you like to post?
                     </button>
-                    <br />
                     <br />
                     <br />
                     <input name="postNumber" type="hidden" value="<%= postResult.postNumber %>" />
