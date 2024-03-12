@@ -13,107 +13,67 @@
                         <legend>날씨를 골라주세요</legend>
                         <% if(postResult.weather === 'sunny'){ %>
                         <label for="sunny"
-                            ><input
-                                id="sunny"
-                                type="radio"
-                                name="weather"
-                                value="sunny"
-                                checked
-                            />맑음</label
+                            ><input id="sunny" type="radio" name="weather" value="sunny" checked />
+                            맑음</label
                         >
                         <label for="rainy"
-                            ><input id="rainy" type="radio" name="weather" value="rainy" />비</label
+                            ><input id="rainy" type="radio" name="weather" value="rainy" />
+                            비</label
                         >
                         <label for="snow"
-                            ><input id="snow" type="radio" name="weather" value="snow" />눈</label
+                            ><input id="snow" type="radio" name="weather" value="snow" /> 눈</label
                         >
                         <label for="cloudy"
-                            ><input
-                                id="cloudy"
-                                type="radio"
-                                name="weather"
-                                value="cloudy"
-                            />흐림</label
+                            ><input id="cloudy" type="radio" name="weather" value="cloudy" />
+                            흐림</label
                         >
                         <% } else if(postResult.weather === 'rainy'){ %>
                         <label for="sunny"
-                            ><input
-                                id="sunny"
-                                type="radio"
-                                name="weather"
-                                value="sunny"
-                            />맑음</label
+                            ><input id="sunny" type="radio" name="weather" value="sunny" />
+                            맑음</label
                         >
                         <label for="rainy"
-                            ><input
-                                id="rainy"
-                                type="radio"
-                                name="weather"
-                                value="rainy"
-                                checked
-                            />비</label
+                            ><input id="rainy" type="radio" name="weather" value="rainy" checked />
+                            비</label
                         ><label for="snow"
-                            ><input id="snow" type="radio" name="weather" value="snow" />눈</label
+                            ><input id="snow" type="radio" name="weather" value="snow" /> 눈</label
                         >
                         <label for="cloudy"
-                            ><input
-                                id="cloudy"
-                                type="radio"
-                                name="weather"
-                                value="cloudy"
-                            />흐림</label
+                            ><input id="cloudy" type="radio" name="weather" value="cloudy" />
+                            흐림</label
                         >
                         <% } else if(postResult.weather === 'snow'){ %>
                         <label for="sunny"
-                            ><input
-                                id="sunny"
-                                type="radio"
-                                name="weather"
-                                value="sunny"
-                            />맑음</label
+                            ><input id="sunny" type="radio" name="weather" value="sunny" />
+                            맑음</label
                         >
                         <label for="rainy"
-                            ><input id="rainy" type="radio" name="weather" value="rainy" />비</label
+                            ><input id="rainy" type="radio" name="weather" value="rainy" />
+                            비</label
                         >
                         <label for="snow"
-                            ><input
-                                id="snow"
-                                type="radio"
-                                name="weather"
-                                value="snow"
-                                checked
-                            />눈</label
+                            ><input id="snow" type="radio" name="weather" value="snow" checked />
+                            눈</label
                         >
                         <label for="cloudy"
-                            ><input
-                                id="cloudy"
-                                type="radio"
-                                name="weather"
-                                value="cloudy"
-                            />흐림</label
+                            ><input id="cloudy" type="radio" name="weather" value="cloudy" />
+                            흐림</label
                         >
                         <% }else{ %>
                         <label for="sunny"
-                            ><input
-                                id="sunny"
-                                type="radio"
-                                name="weather"
-                                value="sunny"
-                            />맑음</label
+                            ><input id="sunny" type="radio" name="weather" value="sunny" />
+                            맑음</label
                         >
                         <label for="rainy"
-                            ><input id="rainy" type="radio" name="weather" value="rainy" />비</label
+                            ><input id="rainy" type="radio" name="weather" value="rainy" />
+                            비</label
                         >
                         <label for="snow"
-                            ><input id="snow" type="radio" name="weather" value="snow" />눈</label
+                            ><input id="snow" type="radio" name="weather" value="snow" /> 눈</label
                         >
                         <label for="cloudy"
-                            ><input
-                                id="cloudy"
-                                type="radio"
-                                name="weather"
-                                value="cloudy"
-                            />흐림</label
+                            ><input id="cloudy" type="radio" name="weather" value="cloudy" />
+                            흐림</label
                         >
                         <% } %>
                     </fieldset>
@@ -137,29 +97,29 @@
                         >
 <%=courseResult[i].courseText  %></textarea
                         >
-                        <input type="file" name="" id="postEditFile" />
+                        <!-- <input type="file" name="" id="postEditFile" /> -->
                         <!-- 수정할 땐 이미지가 있는 게 좋을 것 같아서 넣었는데, 결과물 보고 별로면 없애도 될 것 같아요. -->
-                        <img
-                            src="/<%= postResult.reImage %>"
-                            alt="<%= postResult.postTitle %> Image"
-                        />
-                        <input
-                            type="text"
-                            id="searchText"
-                            placeholder="찾으시는 위치를 적어주세요"
-                            value=""
-                        />
-                        <div class="searchResult"></div>
-                        <button type="button" onclick="getPlaces()" value="위치검색" id="searchBTN">
+                        <div class="searchResult">
+                            <img
+                                src="/<%= postResult.reImage %>"
+                                alt="<%= postResult.postTitle %> Image"
+                            />
+                            <!-- <input
+                                type="text"
+                                id="searchText"
+                                placeholder="찾으시는 위치를 적어주세요"
+                                value=""
+                            /> -->
+                        </div>
+                        <!-- <button type="button" onclick="getPlaces()" value="위치검색" id="searchBTN">
                             위치 검색하기
-                        </button>
+                        </button> -->
                         <% } %>
                     </div>
                     <button type="button" onclick="addPost()" id="addBTN">+</button>
                     <button class="writePostBTN" type="button" onclick="appendPost()">
                         Would you like to post?
                     </button>
-                    <br />
                     <br />
                     <br />
                     <input name="postNumber" type="hidden" value="<%= postResult.postNumber %>" />
@@ -226,7 +186,6 @@
                 </div>
                 <% } %>
             </form>
-            <br />
             <%#console.log(courseResult[0].courseImagePath) %>
         </div>
         <script>
