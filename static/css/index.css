@@ -14,6 +14,10 @@
     box-sizing: border-box;
 } */
 
+textarea {
+    resize: none;
+}
+
 body {
     padding-top: 5px;
     font-family: "SUITE-Regular";
@@ -45,13 +49,31 @@ body {
     height: auto;
     margin: 30px 0;
 }
+/* #postIcon {
+    width: 80px;
+    height: 80px; */
+/* border: 1px solid gray; */
+/* border-radius: 50%;
+    box-shadow: 5px 5px 5px rgb(207, 207, 207);
+    border: 1px solid rgb(215, 215, 215);
+} */
 #postIcon {
     width: 80px;
     height: 80px;
     /* border: 1px solid gray; */
     border-radius: 50%;
     box-shadow: 5px 5px 5px rgb(207, 207, 207);
-    border: 1px solid rgb(215, 215, 215);
+    border: 1px solid rgb(220, 220, 220);
+    margin: 70px 0 5px;
+}
+#postIcon > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    font-size: 12px;
+}
+.userNickname {
+    color: rgb(108, 108, 108);
 }
 .inner {
     max-width: 900px;
@@ -321,22 +343,22 @@ input[id="menuicon"]:checked + label + div {
     padding: 50px 30px 40px;
     font-weight: 800;
     font-size: 2rem;
-    background-color: #a5b4cc;
+    background-color: #a0b5d2;
     border-radius: 4%;
 }
 .joinDIV {
     display: inline-block;
-    padding: 50px 45px 20px;
+    padding: 35px 45px 10px;
     font-weight: 800;
     font-size: 2rem;
-    background-color: #a5b4cc;
+    background-color: #a0b5d2;
     border-radius: 4%;
 }
 .joinDIV > hr {
     color: #606d75;
 }
 .joinH1 {
-    margin-top: 70px;
+    margin-top: 90px;
     margin-bottom: 30px;
 }
 #userID {
@@ -536,6 +558,7 @@ hr {
     width: 100%;
     text-align: center;
     box-shadow: 5px 5px 5px rgb(207, 207, 207);
+    font-size: 20px;
 }
 .postContent ul > #postWriting {
     height: 150px;
@@ -588,6 +611,9 @@ hr {
     margin: 0 auto;
     /* border: 1px solid blue; */
 }
+.postEditContainer > form {
+    background-color: #ebecee;
+}
 .inputContainer {
     display: flex;
     flex-direction: column;
@@ -599,37 +625,59 @@ hr {
     width: 600px;
     /* border: 1px solid red; */
 }
+.inputContainer > fieldset > legend {
+    text-align: center;
+}
+.inputContainer > fieldset {
+    display: flex;
+    justify-content: center;
+}
+.inputContainer > fieldset > label {
+    padding-right: 10px;
+    padding-left: 3px;
+}
+
 .inputContainer textarea,
 input[type="file"],
 input[id="postEditTitle"],
 input[id="searchText"] {
     /* position: relative; */
     display: block;
-    width: 600px;
+    width: 100%;
     height: 30px;
     margin: 0;
     padding: 0;
     border: none;
     border-bottom: 1px solid rgb(217, 217, 217);
     /* box-shadow: 5px 5px 5px rgb(217, 217, 217); */
+    resize: none;
+}
+.regionBox > #postEditFile {
+    text-align: center;
 }
 .inputContainer #postEditTitle {
-    margin-top: 5px;
+    margin: 5px 0 2px;
 }
 p {
     text-align: center;
 }
-button[value="위치 선택"] {
+.regionBox > textarea {
+    padding: 5px;
+}
+#searchBTN {
     width: 100%;
     border: none;
     padding: 10px;
     /* border: 1px solid rgb(215, 215, 215); */
 }
-.inputContainer div button[value="위치 선택"]:hover {
+.inputContainer div button[value="위치 검색"]:hover {
     background-color: #b1b1b1;
+    border: none;
+    width: 100%;
 }
 .inputContainer div button:hover {
     background-color: #b1b1b1;
+    width: 100%;
 }
 .writePostBTN {
     display: block;
@@ -644,11 +692,20 @@ button[value="위치 선택"] {
     box-shadow: 5px 5px 5px rgb(217, 217, 217);
     border: 1px solid rgb(215, 215, 215);
 }
+#addBTN {
+    padding: 3px;
+    width: 100%;
+    border: none;
+    background-color: rgb(215, 215, 215);
+}
 #addBTN:hover {
     background-color: #b1b1b1;
+    border: none;
+    width: 100%;
 }
 .writePostBTN:hover {
     background-color: #b1b1b1;
+    width: 100%;
 }
 /* profile edit */
 .profileEditContainer {
@@ -786,6 +843,7 @@ li {
     display: flex;
     flex-direction: column;
     width: 100%;
+    padding-top: 7px;
 }
 .commentForm > form > h4 {
     margin-left: 1.3vmax;
@@ -846,6 +904,13 @@ li {
     cursor: pointer;
     padding: 2px;
     margin-right: 15px;
+}
+.btn {
+    border: 1px solid #6e8cb5;
+}
+.btn:hover {
+    border: 1px solid #ebebeb;
+    background-color: #6e8cb5;
 }
 
 /* admin CSS */
@@ -950,6 +1015,11 @@ li {
 }
 .contactTableTD4 {
     line-height: 50%;
+}
+.contactTableTD4 > textarea {
+    width: 300px;
+    padding: 7px;
+    resize: none;
 }
 
 .adminQNABTN,
