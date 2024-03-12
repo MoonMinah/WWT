@@ -9,7 +9,7 @@
 body {
     padding-top: 5px;
     font-family: "SUITE-Regular";
-    background-color: #f2f2f2;
+    background-color: #f7f6f6;
     overflow: auto;
 }
 
@@ -95,9 +95,26 @@ body {
 .box .info p:hover a {
     color: #99bcee;
 }
+/* footer */
+footer {
+    margin-top: 200px;
+    background-color: #cfdbeb;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+footer > div > ul {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 /* header */
 header {
-    background-color: #7b8a9f;
+    background-color: #7c9ac4;
     padding: 15px 0;
     display: flex;
     flex-direction: row-reverse;
@@ -241,10 +258,14 @@ input[id="menuicon"]:checked + label + div {
     margin-bottom: 100px;
 }
 #weatherRegionInfo {
+    width: 80%;
+    background-color: #ffffff;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px rgb(217, 217, 217);
 }
 #weatherRegionInfo > .card {
     margin: 20px;
