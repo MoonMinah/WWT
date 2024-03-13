@@ -29,9 +29,19 @@ postCourseData:[
     }
          -->
         <div class="postContainer">
-            <div id="postIcon"></div>
+            <div id="postIcon">
+                <% if(data.userPhoto) {%>
+                <img src="/<%= data.userPhoto%>" alt="<%= data.userNickname %> image" />
+                <% } else{ %>
+                <img src="/static/image/default.jpg" alt="default image" width="100%" />
+                <% } %>
+            </div>
             <div class="userNickname"><%= data.userNickname %></div>
+            <br />
+            <hr width="75%" style="color: #c3c2c2" />
+            <br />
             <h2><%=postData.postTitle%></h2>
+            <br />
             <div
                 id="mapid"
                 style="
@@ -82,7 +92,7 @@ postCourseData:[
                         <li style="text-align: center; height: 100px; line-height: 100px">
                             댓글이 삭제되었습니다.
                         </li>
-                        <% } else {%>
+                        <% } else{%>
                         <li class="commentID"><%= commentResult[i].userNickname %></li>
                         <li class="commentContent"><%= commentResult[i].commentText %></li>
                         <li class="commentDate">
@@ -112,12 +122,15 @@ postCourseData:[
                 </li>
             </ul>
         </div>
+
+        <%- include('include/footer') %>
         <script>
             const commentBtn = document.querySelector("#commentForm");
             const commentList = document.querySelector("#commentList");
             const total = document.querySelector("h4 > span");
             const list = [];
             const form = document.forms["comment"];
+            const form2 = document.forms["reply"];
             // 위도(latitude)와 경도(longitude) 데이터
             let markers = [];
             function showMap() {
@@ -144,12 +157,17 @@ postCourseData:[
                     L.marker([marker.latitude, marker.longitude]).addTo(mymap);
                 });
 
-                let polyline = L.polyline(
-                    markers.map((marker) => [marker.latitude, marker.longitude]),
-                    {
-                        color: "red",
-                    }
-                ).addTo(mymap);
+                L.Routing.control({
+                    waypoints: markers.map((marker) => L.latLng(marker.latitude, marker.longitude)),
+                    routeWhileDragging: true,
+                    show: false,
+                }).addTo(mymap);
+                // let polyline = L.polyline(
+                //     markers.map((marker) => [marker.latitude, marker.longitude]),
+                //     {
+                //         color: "red",
+                //     }
+                // ).addTo(mymap);
                 // 마커를 추가하여 해당 위도와 경도에 표시합니다.
             }
             function showSmallMap() {
@@ -171,17 +189,6 @@ postCourseData:[
                 });
             }
 
-            // function commentReply(id) {
-            //     let replyBox = document.getElementById(id);
-
-            //     console.log(replyBox.style.display);
-            //     if (replyBox.style.display === "block") {
-            //         replyBox.setAttribute("style", "display: none");
-            //     } else {
-            //         replyBox.setAttribute("style", "display: block");
-            //     }
-            // }
-
             showMap();
             showSmallMap();
 
@@ -189,17 +196,14 @@ postCourseData:[
                 console.log(form.content.value);
                 console.log(list.length + 1);
                 console.log("<%= postData.postNumber%>");
-
-                // const replyInput = document.querySelector(".replyInput");
-
-                console.log(form.content.value);
+                // console.log(replyInput.id + "++++++++");
+                // console.log(form2.reply);
 
                 let data = {
                     postNumber: "<%= postData.postNumber%>",
                     // userID: getPost.useID,
                     userID: "<%=data.id%>",
                     commentText: form.content.value,
-                    // isReply: replyInput.parentNode.parentNode.id
                 };
 
                 console.log(data);
@@ -219,41 +223,6 @@ postCourseData:[
                     // .then(function (data) {})
                     .catch((err) => console.log(err));
             }
-
-            // function postReplyComment() {
-            //     console.log(form.content.value);
-            //     console.log(list.length + 1);
-            //     console.log("<%#= postData.postNumber%>");
-
-            //     const replyInput = document.querySelector(".replyInput");
-
-            //     // console.log(replyInput.parentNode.parentNode.id);
-
-            //     let data = {
-            //         postNumber: "<%#= postData.postNumber%>",
-            //         // userID: getPost.useID,
-            //         userID: "<%#=data.id%>",
-            //         commentText: replyInput.value,
-            //         isReply: replyInput.parentNode.parentNode.id,
-            //     };
-
-            //     console.log(data);
-
-            //     axios({
-            //         method: "POST",
-            //         url: "/postComment",
-            //         data: data,
-            //     })
-            //         .then((data) => {
-            //             if (data) {
-            //                 locations.href = "/getPost/" + `<%= postData.postNumber %>`;
-            //             } else {
-            //                 alert("다시 시도해주세요");
-            //             }
-            //         })
-            //         // .then(function (data) {})
-            //         .catch((err) => console.log(err));
-            // }
 
             function deleteComment(id) {
                 console.log(id);
