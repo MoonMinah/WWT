@@ -19,23 +19,36 @@
                 </div>
                 <input type="file" accept="image/*" style="display: none" id="fileInput" />
                 <button id="profileEditIconBTN">사진변경</button>
-                <input type="text" name="userName" value="<%=data.userName%>" required />
+                <input type="text" name="userName" placeholder="이름" value="<%=data.userName%>" />
                 <br />
-                <input type="text" name="userNickname" value="<%=data.userNickname%>" required />
+                <input
+                    type="text"
+                    name="userNickname"
+                    placeholder="닉네임"
+                    value="<%=data.userNickname%>"
+                />
                 <br />
-                <input type="text" name="userEmail" value="<%=data.userEmail%>" required />
+                <input
+                    type="text"
+                    name="userEmail"
+                    placeholder="이메일"
+                    value="<%=data.userEmail%>"
+                />
                 <br />
-                <input type="text" name="userPW" placeholder="비밀번호" required />
+                <input type="password" name="userPW" placeholder="비밀번호" required />
                 <textarea
                     name="userText"
                     cols="30"
-                    rows="10"
+                    rows="6"
                     placeholder="소개 글을 작성해주세요"
+                    value="<%= data.userText %>"
                 ></textarea>
                 <br />
+                <div class="profileEditBTN">
+                    <button type="button" onclick="profileEdit()">프로필 편집</button>
+                    <button type="button" onclick="deleteUser()">회원탈퇴</button>
+                </div>
             </form>
-            <button type="button" onclick="profileEdit()">프로필 편집</button>
-            <button type="button" onclick="deleteUser()">회원탈퇴</button>
         </div>
 
         <script>
@@ -54,6 +67,7 @@
                 formData.append("userEmail", form.userEmail.value);
                 formData.append("userText", form.userText.value);
                 console.log(formData);
+
                 axios({
                     url: "/editUser",
                     method: "POST",
@@ -65,7 +79,7 @@
                     .then((res) => {
                         alert("수정완료");
                         form.userText.value = res.userText;
-                        document.location.href = "/profileEdit";
+                        document.location.href = "/myPage";
                     })
                     .catch((err) => {
                         alert("수정실패");
