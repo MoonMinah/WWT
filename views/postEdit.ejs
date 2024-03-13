@@ -316,7 +316,7 @@
                     btn.setAttribute("id", place.place_id);
                     btn.setAttribute("type", "button");
                     btn.setAttribute("onclick", "axiosPost(this)");
-                    btn.setAttribute("value", "위치 선택");
+                    btn.setAttribute("value", "위치");
                     btn.textContent = `${place.name}`;
                     console.log(btn);
 
@@ -352,7 +352,6 @@
 
                 const p = document.createElement("p");
                 p.textContent = `Latitude: ${location.lat}, Longitude: ${location.lng}`;
-
                 locationInfo.appendChild(p);
             }
 
@@ -368,10 +367,6 @@
                 }
                 console.log(form.title.value);
 
-                // console.log("=====");
-                // console.log(`<%#= courseResult[0].courseImagePath%>`);
-                // let postImagePath = `<%#= courseResult[0].courseImagePath%>`;
-                // console.log("&&&&&&&postumagePath&&&&&&&", `<%#= postImagePath%>`);
                 let postBoxList = document.getElementsByClassName("postBox");
                 let weatherRadio = document.querySelector('input[name="weather"]:checked').value;
                 let postTitle = document.querySelector('input[name="title"]').value;

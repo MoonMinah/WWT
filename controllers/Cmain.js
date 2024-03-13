@@ -201,7 +201,7 @@ exports.postLogin = (req, res) => {
                     // res.redirect("/");
                 }
             } else {
-                res.send("비밀번호가 틀렸습니다");
+                res.send("");
             }
         } else {
             res.send(false);
@@ -281,6 +281,7 @@ exports.editUser = (req, res) => {
             userNickname: req.body.userNickname,
             userEmail: req.body.userEmail,
             userPhoto: req.file.path,
+            userText: req.body.userText,
         },
         {
             where: { userID: loggedInUserID },

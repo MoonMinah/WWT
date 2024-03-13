@@ -47,7 +47,10 @@
                         console.log("login Axios", data);
 
                         console.log(data.admin);
+                        console.log(data);
                         if (data) {
+                            console.log(data.userID == userID);
+                            console.log(data.userPW == userPW);
                             alert("로그인 성공");
                             // formInfo.userID.value = form.userID.value;
                             // formInfo.submit();
