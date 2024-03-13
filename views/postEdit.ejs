@@ -202,7 +202,7 @@
                     console.log(keywordInput);
                     const keyword = keywordInput.value;
 
-                    const response = await axios.post("http://localhost:8000/getPlaces", {
+                    const response = await axios.post("http://49.50.167.42:8000/getPlaces", {
                         keyword: keyword,
                     });
                     const places = response.data.places;
@@ -227,7 +227,7 @@
             async function axiosPost(place) {
                 console.log(place);
                 const response = await axios
-                    .post("http://localhost:8000/getLatLng", {
+                    .post("http://49.50.167.42:8000/getLatLng", {
                         placeId: place.id,
                     })
                     .then((result) => {
@@ -297,7 +297,7 @@
                     // const placeIdInput = document.getElementById("placeIdInput");
                     // const placeId = placeIdInput.value;
 
-                    const response = await axios.post("http://localhost:8000/getLatLng", {
+                    const response = await axios.post("http://49.50.167.42:8000/getLatLng", {
                         placeId: "ChIJAQUM8DC5fDURFfgRagtj3pM",
                     });
 
