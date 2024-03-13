@@ -87,6 +87,11 @@
                     />
                     <div class="regionBox">
                         <% for(let i = 0; i < courseResult.length ; i++ ) {%>
+                        <input
+                            type="hidden"
+                            value="<%=courseResult[i].courseNumber%>"
+                            class="hiddenCourseNumber"
+                        />
                         <textarea
                             name="postContent"
                             id=""
@@ -102,6 +107,7 @@
                         <!-- 수정할 땐 이미지가 있는 게 좋을 것 같아서 넣었는데, 결과물 보고 별로면 없애도 될 것 같아요. -->
                         <div class="searchResult">
                             <img
+                                style="width: 100%"
                                 src="/<%= postResult.reImage %>"
                                 alt="<%= postResult.postTitle %> Image"
                             />
@@ -117,7 +123,7 @@
                         </button> -->
                         <% } %>
                     </div>
-                    <button type="button" onclick="addPost()" id="addBTN">+</button>
+                    <!-- <button type="button" onclick="addPost()" id="addBTN">+</button> -->
                     <button class="writePostBTN" type="button" onclick="modifyPost()">
                         (수정하기)Would you like to post?
                     </button>
@@ -187,7 +193,6 @@
                 </div>
                 <% } %>
             </form>
-            <%#console.log(courseResult[0].courseImagePath) %>
         </div>
         <script>
             const form = document.forms["wwtPostEdit"];
@@ -418,69 +423,40 @@
                     document.location.href = "/myPage";
                 });
             }
+
             function modifyPost() {
                 const form = document.forms["wwtPostEdit"];
                 const file = document.getElementById("postEditFile");
-                // const formData = new FormData();
-                // formData.append("postEditFile", file.files[0]);
-                // for (let i = 1; i <= count; i++) {
-                //     const file = document.getElementsByName(`file${i}`);
-                //     formData.append(`file${i}`, file[0].files[0]);
-                // }
-                console.log(form.title.value);
 
-                console.log("=====");
-                console.log(`<%= courseResult[0].courseImagePath%>`);
-                let postImagePath = `<%= courseResult[0].courseImagePath%>`;
-                // console.log("&&&&&&&postumagePath&&&&&&&", `<%#= postImagePath%>`);
-                let postBoxList = document.getElementsByClassName("postBox");
                 let weatherRadio = document.querySelector('input[name="weather"]:checked').value;
                 let postTitle = document.querySelector('input[name="title"]').value;
-                let postContent = document.querySelectorAll('textarea[name="postContent"]');
-                let postNumber = document.querySelector('input [name="postNumber"]'.value);
+                const regionBox = document.querySelector(".regionBox");
+                const hiddenCourseNumber = document.querySelectorAll(".hiddenCourseNumber");
+                const courseContentText = regionBox.querySelectorAll("textarea");
+                const postCourse = [];
+                // const data = [];
+                for (let i = 0; i < courseContentText.length; i++) {
+                    const courseText = courseContentText[i].value;
+                    const courseNumber = hiddenCourseNumber[i].value;
 
-                console.log("=======" + postContent[0]);
-                console.log(postContent[1] + "=======");
-                let postCourse = [];
-                for (let i = 0; i < postBoxList.length; i++) {
-                    console.log(postBoxList[i]);
-                    console.log(postContent[i]);
-                    let postLonLat = postBoxList[i].id.toString().split(",");
-                    console.log(postLonLat);
-                    postCourse[i] = {
-                        // courseImagePath: "tt",
-                        courseNumber: "postNumber",
-                        courseText: postContent[i].value,
-                    };
+                    postCourse.push({
+                        courseNumber,
+                        courseText,
+                    });
                 }
-
-                console.log("==========postCourse========");
-                console.log(postCourse);
-                console.log("문자열로 변경");
-                console.log(JSON.stringify(postCourse));
+                console.log(`<%=postResult.postNumber%>;`);
                 const data = {
+                    postID: "<%=postResult.postNumber%>",
                     postTitle: postTitle,
                     weather: weatherRadio,
                     region: "서울",
-                    postCourse: postCourse,
+                    postCourse,
                 };
 
-                // formData.append("postTitle", postTitle);
-                // formData.append("weather", weatherRadio);
-                // formData.append("region", "서울");
-                // formData.append("postCourse", JSON.stringify(postCourse));
-                // console.log(formData);
-                // for (let key of formData.keys()) {
-                //     console.log("-----formdata");
-                //     console.log(formData.get(key));
-                // }
                 axios({
                     method: "PUT",
                     url: "/putPost",
                     data: data,
-                    // headers: {
-                    //     "Content-Type": "multipart/form-data",
-                    // },
                 })
                     .then((data) => {
                         if (data) {
@@ -490,7 +466,6 @@
                             alert("다시 시도해주세요");
                         }
                     })
-                    // .then(function (data) {})
                     .catch((err) => console.log(err));
             }
         </script>

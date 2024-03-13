@@ -200,6 +200,7 @@ exports.putPostRequest = (req, res) => {
                         //     courseResult: courseResult,
                         //     isLogin: true,
                         // });
+                        console.log("data", courseResult);
                         res.render("postEdit", {
                             isLogin: true,
                             isModify: true,
