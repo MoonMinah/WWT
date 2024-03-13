@@ -28,15 +28,19 @@ postCourseData:[
     ]
     }
          -->
+        <script></script>
         <div class="postContainer">
             <div id="postIcon">
-                <% if(data.userPhoto) {%>
-                <img src="/<%= data.userPhoto%>" alt="<%= data.userNickname %> image" />
+                <% if(postData.User.userPhoto) {%>
+                <img
+                    src="/<%= postData.User.userPhoto%>"
+                    alt="<%= postData.User.userNickname %> image"
+                />
                 <% } else{ %>
                 <img src="/static/image/default.jpg" alt="default image" width="100%" />
                 <% } %>
             </div>
-            <div class="userNickname"><%= data.userNickname %></div>
+            <div class="userNickname"><%= postData.User.userNickname %></div>
             <br />
             <hr width="75%" style="color: #c3c2c2" />
             <br />
