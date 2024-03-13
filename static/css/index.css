@@ -677,17 +677,15 @@ p {
 #searchBTN {
     width: 100%;
     border: none;
-    padding: 10px;
-    /* border: 1px solid rgb(215, 215, 215); */
+    padding: 8px;
+    /* border: 1px solid red; */
 }
-.inputContainer div button[value="위치 검색"]:hover {
-    background-color: #b1b1b1;
-    border: none;
-    width: 100%;
+#searchBTN:hover {
+    background-color: #e3e3e3;
 }
 .inputContainer div button:hover {
-    background-color: #b1b1b1;
-    width: 100%;
+    background-color: #e3e3e3;
+
 }
 .writePostBTN {
     display: block;
@@ -703,15 +701,10 @@ p {
     border: 1px solid rgb(215, 215, 215);
 }
 #addBTN {
-    padding: 3px;
-    width: 100%;
-    border: none;
-    background-color: rgb(215, 215, 215);
+    border: 1px solid rgb(215, 215, 215);
 }
 #addBTN:hover {
-    background-color: #b1b1b1;
-    border: none;
-    width: 100%;
+    background-color: #e3e3e3;
 }
 .writePostBTN:hover {
     background-color: #b1b1b1;
@@ -999,6 +992,11 @@ li {
 #deleteButton {
     font-size: 12px;
     padding: 5px 10px;
+}
+button[value="위치"] {
+    display: block;
+    border: 1px solid #e3e3e3;
+    width: 100%;
 }
 /* adminQnA CSS */
 .contact {

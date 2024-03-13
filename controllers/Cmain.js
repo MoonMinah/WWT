@@ -201,7 +201,7 @@ exports.postLogin = (req, res) => {
                     // res.redirect("/");
                 }
             } else {
-                res.send("비밀번호가 틀렸습니다");
+                res.send("");
             }
         } else {
             res.send(false);

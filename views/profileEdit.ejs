@@ -57,6 +57,7 @@
                 // new formData 를 이용해서 파일 정보 서버에 보내주기
                 const file = document.getElementById("fileInput");
                 const formData = new FormData();
+                console.log(form.userText.value);
                 // console.log(file.files[0]);
                 formData.append("fileInput", file.files[0]);
                 formData.append("userID", form.userID.value);
@@ -65,6 +66,8 @@
                 formData.append("userNickname", form.userNickname.value);
                 formData.append("userEmail", form.userEmail.value);
                 formData.append("userText", form.userText.value);
+                console.log(formData);
+
                 axios({
                     url: "/editUser",
                     method: "POST",
@@ -75,6 +78,7 @@
                 })
                     .then((res) => {
                         alert("수정완료");
+                        form.userText.value = res.userText;
                         document.location.href = "/myPage";
                     })
                     .catch((err) => {
