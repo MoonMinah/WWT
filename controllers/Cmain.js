@@ -271,6 +271,7 @@ exports.editUser = (req, res) => {
     const userIDFromClient = req.body.userID;
     console.log("=======================");
     console.log(req.file);
+    console.log(req.session.data.userPhoto);
     if (loggedInUserID !== userIDFromClient) {
         return res.status(403).send("권한이 없습니다.");
     }
@@ -298,6 +299,7 @@ exports.editUser = (req, res) => {
     )
         .then(() => {
             // 회원정보 수정 후 프로필 편집 페이지로 리다이렉션
+            req.session.data.userPhoto = req.file ? req.file.path : req.session.data.userPhoto;
             res.redirect("/profileEdit");
         })
         .catch((err) => {
