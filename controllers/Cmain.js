@@ -269,20 +269,29 @@ exports.deleteUser = (req, res) => {
 exports.editUser = (req, res) => {
     const loggedInUserID = req.session.userID;
     const userIDFromClient = req.body.userID;
-
+    console.log("=======================");
+    console.log(req.file);
     if (loggedInUserID !== userIDFromClient) {
         return res.status(403).send("권한이 없습니다.");
     }
 
     model.User.update(
-        {
-            userPW: hashPW(req.body.userPW),
-            userName: req.body.userName,
-            userNickname: req.body.userNickname,
-            userEmail: req.body.userEmail,
-            userPhoto: req.file.path,
-            userText: req.body.userText,
-        },
+        req.file
+            ? {
+                  userPW: hashPW(req.body.userPW),
+                  userName: req.body.userName,
+                  userNickname: req.body.userNickname,
+                  userEmail: req.body.userEmail,
+                  userText: req.body.userText,
+                  userPhoto: req.file.path,
+              }
+            : {
+                  userPW: hashPW(req.body.userPW),
+                  userName: req.body.userName,
+                  userNickname: req.body.userNickname,
+                  userEmail: req.body.userEmail,
+                  userText: req.body.userText,
+              },
         {
             where: { userID: loggedInUserID },
         }
