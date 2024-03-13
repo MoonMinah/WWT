@@ -281,6 +281,7 @@ exports.editUser = (req, res) => {
             userNickname: req.body.userNickname,
             userEmail: req.body.userEmail,
             userPhoto: req.file.path,
+            userText: req.body.userText,
         },
         {
             where: { userID: loggedInUserID },
