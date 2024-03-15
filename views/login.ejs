@@ -3,11 +3,7 @@
     <%- include('include/head', { title: 'Login' })%>
     <body>
         <%- include('include/header')%>
-
         <h1 class="H1WWT" style="color: #383d43">What Was Today</h1>
-        <!-- <form name="form_info" action="/profileEdit" method="POST">
-            <input type="hidden" name="userID" />
-        </form> -->
         <form class="loginForm" name="form-login">
             <div class="loginDIV">
                 <p style="color: #606d75">Login</p>
@@ -26,9 +22,7 @@
         </form>
         <script>
             const Login = () => {
-                // const formInfo = document.forms["form_info"];
                 const form = document.forms["form-login"];
-                console.log(form.userID.value);
 
                 var userID = document.getElementById("userID").value;
                 var userPW = document.getElementById("userPW").value;
@@ -55,10 +49,9 @@
                         if (data) {
                             console.log(data.userID == userID);
                             console.log(data.userPW == userPW);
+
                             alert("로그인 성공");
-                            // formInfo.userID.value = form.userID.value;
-                            // formInfo.submit();
-                            // console.log(admin);
+
                             data.admin === 0
                                 ? (document.location.href = "/admin/adminAccess")
                                 : (document.location.href = "/");

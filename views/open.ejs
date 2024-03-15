@@ -106,14 +106,10 @@
             function getRegionWeather(location) {
                 // API 엔드포인트 URL
                 const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&appid=${apiKey}&units=metric`;
-                // <p>현재 온도: ${data.main.temp} °C</p>
-                // <p>날씨 상태: ${data.weather[0].description}</p>
-                // <p>풍속: ${data.wind.speed} m/s</p>
-                // API 요청을 보냄
+
                 fetch(apiUrl)
                     .then((response) => response.json())
                     .then((data) => {
-                        // 날씨 정보를 가져와서 페이지에 표시
                         const weatherInfo = document.getElementById("weatherRegionInfo");
                         if (data.weather[0].description.includes("clouds")) {
                             weatherInfo.innerHTML += `

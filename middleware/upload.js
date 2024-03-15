@@ -1,11 +1,5 @@
 const multer = require("multer");
 const path = require("path");
-// const upload = multer({
-//     dest: "uploads/profile",
-// });
-// const uploads = multer({
-//     dest: "uploads/post",
-// });
 
 const uploadProfile = multer({
     storage: multer.diskStorage({

@@ -20,8 +20,6 @@ router.get("/logout", controller.postLogout);
 router.post("/profileEdit", controller.postProfile);
 router.post("/deleteUser", controller.deleteUser);
 router.post("/editUser", multer.uploadProfile.single("fileInput"), controller.editUser);
-// router.post("/uploadPost", multer.uploadPostPhoto.single("postEditFile"), controller.postPost);
-// router.post("/uploadPost", multer.uploadPostPhoto.single("postEditFile"), controller.putPost);
 
 //포스트와 관련된 router설정
 const postController = require("../controllers/Cpost");
@@ -35,14 +33,17 @@ router.post(
         { name: "file5" },
     ]),
     postController.postPost
-); // 게시글 등록에 관한 api입니다. req의 body데이터로,
+);
+// 게시글 등록에 관한 api입니다. req의 body데이터로,
 //{
 //    "postTitle" :"임시제목",
 //    "weather" : "sunny",
 //    "region" : "서울",
 //    "postCourse" : [{"courseImagePath" : "temp", "courseLon":12.12, "courseLat":13.13, "courseText":"course설명입니다"},{"courseImagePath" : "temp", "courseLon":12.12, "courseLat":13.13, "courseText":"course설명입니다"}]
 //}와 같은 형태로 받도록 되어 있습니다.
+
 router.get("/getPost/:postID", postController.showPost);
+
 // 게시글 하나에 대해 글 내용과, 그 글에 달린 전체 댓글을 가져오는 api입니다. params로 postID를 받습니다.
 //즉, /temp3/1 (postID=1)인글의 데이터를 읽어옵니다.
 
@@ -73,11 +74,9 @@ router.get("/getPost/:postID", postController.showPost);
 router.delete("/deletePost", postController.deletePost); //삭제할 게시글의 postID(DBmodel에는 postNumber로 되어 있음)을 params로 넘기면, 권한 조회 후, 삭제함
 
 router.get("/putPostRequest/:postID", postController.putPostRequest);
-router.put(
-    "/putPost",
-    // multer.uploadPostPhoto.single("postEditFile"),
-    postController.putPost
-); //이 코드는, post api /writePost와 완전 일치합니다.
+router.put("/putPost", postController.putPost);
+
+//이 코드는, post api /writePost와 완전 일치합니다.
 // post /writePost와 같은 req.body를 작성하신 후, put api로 전송하면 됩니다.
 
 // =================================================

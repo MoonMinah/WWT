@@ -2,10 +2,8 @@ const model = require("../models");
 const path = require("path");
 const id = 1;
 exports.postPost = (req, res) => {
-    console.log("hi!!");
     console.log("req.file");
     console.log(req.files);
-    // console.log("-----------", req.session);
 
     if (req.session.userID) {
         console.log(req.body.postTitle);
@@ -43,8 +41,6 @@ exports.postPost = (req, res) => {
                     model.PostCourse.create({
                         postNumber: result.postNumber,
                         courseImagePath: temp[i][0].path,
-                        // courseImagePath:req.files.file${i}[0].path,
-                        // courseImagePath: req.files[`file${i}`][0].path,
                         courseLon: postCourseList[i].courseLon,
                         courseLat: postCourseList[i].courseLat,
                         courseText: postCourseList[i].courseText,
@@ -101,7 +97,6 @@ exports.showPost = (req, res) => {
                                 });
 
                                 if (isLogin) {
-                                    // console.log("내가 원하는데이터", commentResult[0].userNickname);
                                     res.render("post", {
                                         isLogin: isLogin,
                                         postData: postData,
@@ -110,13 +105,6 @@ exports.showPost = (req, res) => {
                                         data: req.session.data,
                                     });
                                 } else {
-                                    // console.log("내가 원하는데이터", commentResult[0].userNickname);
-                                    // res.render("post", {
-                                    //     isLogin: isLogin,
-                                    //     postData: postData,
-                                    //     commentResult: commentResult,
-                                    //     postCourseData: postCourseData,
-                                    // });
                                     res.render("post", {
                                         isLogin: isLogin,
                                         postData: postData,
@@ -163,7 +151,6 @@ exports.deletePost = (req, res) => {
                     })
                         .then(() => {
                             res.send("삭제 완료!");
-                            //res.redirect('/');
                         })
                         .catch((err) => {
                             console.log("데이터를 삭제하는 중 에러가 발생했습니다", err);
@@ -195,11 +182,6 @@ exports.putPostRequest = (req, res) => {
                     },
                 })
                     .then((courseResult) => {
-                        // res.render("postEdit", {
-                        //     postResult: postResult,
-                        //     courseResult: courseResult,
-                        //     isLogin: true,
-                        // });
                         console.log("data", courseResult);
                         res.render("postEdit", {
                             isLogin: true,
@@ -237,7 +219,6 @@ exports.putPost = async (req, res) => {
                     postTitle: title,
                     weather: weather,
                     region: region,
-                    //reImage: req.file.path,
                 },
                 {
                     where: {

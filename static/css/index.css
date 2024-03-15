@@ -23,14 +23,6 @@ body {
     font-family: "SUITE-Regular";
     background-color: #f7f6f6;
     overflow: auto;
-    /* padding: 5px 16px 0;
-    height: 100%;
-    width: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
-        url("../image/skyBackground.jpeg"); */
 }
 
 /* 전체 css */
@@ -49,18 +41,9 @@ body {
     height: auto;
     margin: 30px 0;
 }
-/* #postIcon {
-    width: 80px;
-    height: 80px; */
-/* border: 1px solid gray; */
-/* border-radius: 50%;
-    box-shadow: 5px 5px 5px rgb(207, 207, 207);
-    border: 1px solid rgb(215, 215, 215);
-} */
 #postIcon {
     width: 80px;
     height: 80px;
-    /* border: 1px solid gray; */
     border-radius: 50%;
     box-shadow: 5px 5px 5px rgb(207, 207, 207);
     border: 1px solid rgb(220, 220, 220);
@@ -78,19 +61,14 @@ body {
 .inner {
     max-width: 900px;
     margin: 0 auto;
-    /* border: 1px solid red; */
 }
 .box-wrap {
     display: grid;
-    /* grid-template-rows: 1fr 1fr 1fr; */
     grid-template-columns: 1fr 1fr 1fr;
-    /* justify-content: space-evenly;
-    flex-wrap: wrap; */
     grid-gap: 10px;
     gap: 10px;
 }
 .box {
-    /* border: 1px solid blue; */
     position: relative;
     width: 100%;
     height: 250px;
@@ -144,6 +122,7 @@ body {
 .box .info p:hover a {
     color: #99bcee;
 }
+
 /* footer */
 footer {
     margin-top: 200px;
@@ -175,7 +154,6 @@ header {
     z-index: 99;
 }
 .headerUl .logo {
-    /* border: 1px solid white; */
     width: 25px;
     height: 25px;
     border-radius: 15%;
@@ -208,7 +186,6 @@ header {
     font-size: 17px;
     position: relative;
     left: 10px;
-    /* border: 1px solid black; */
 }
 #menuBar {
     z-index: 98;
@@ -322,23 +299,15 @@ input[id="menuicon"]:checked + label + div {
 .card {
     box-shadow: 3px 3px 3px rgb(217, 217, 217);
 }
-/* main */
 
-/* login & join */
 /* login & join */
 .joinForm,
 .loginForm {
     margin-top: 20px; /* Example margin from the header */
     text-align: center; /* Align form elements at the center */
     height: 50%;
-    /* position: static; */
-    /* border: 3px solid salmon; */
-    /* display: inline-block; */
 }
 .loginDIV {
-    /* border: 3px solid #f8f8f8; */
-    /* width: 10rem;
-    height: 10rem; */
     display: inline-block;
     padding: 50px 30px 40px;
     font-weight: 800;
@@ -363,7 +332,6 @@ input[id="menuicon"]:checked + label + div {
 }
 #userID {
     margin-top: 20px;
-    /* margin-bottom: 5px; */
 }
 input[type="text"],
 input[type="password"],
@@ -371,7 +339,6 @@ input[type="userName"],
 input[type="email"] {
     margin-bottom: 7px;
     padding: 5px 10px;
-    /* border-radius: 5px; */
     border: 1px solid #7a8da6;
     width: 250px;
     height: 35px;
@@ -413,8 +380,6 @@ input[type="email"] {
     justify-content: center;
     align-items: center;
     margin-top: 100px;
-    /* border: 1px solid black; */
-    /* position: relative; */
 }
 
 .myPageDiv1 {
@@ -424,12 +389,10 @@ input[type="email"] {
     position: relative;
     left: -8%;
     top: 1rem;
-    /* border: 1px solid black; */
 }
 #myPageIcon {
     width: 130px;
     height: 130px;
-    /* border: 1px solid gray; */
     border-radius: 50%;
     box-shadow: 5px 5px 5px rgb(207, 207, 207);
     border: 1px solid rgb(220, 220, 220);
@@ -449,18 +412,9 @@ input[type="email"] {
     height: 130px;
     border: #7d7d7d;
     background-color: rgba(0, 0, 255, 0);
-
-    /* border: 1px solid black; */
     position: relative;
     right: 8.3%;
 }
-/* .myPageDiv2 {
-    margin-left: 70px;
-    margin-right: 15px;
-    position: relative;
-    top: 7px;
-    border: 1px solid black;
-} */
 .myPagePostCountDIV > p {
     position: relative;
     left: 35%;
@@ -478,6 +432,7 @@ input[type="email"] {
     margin-top: 6px;
     font-weight: 400;
 }
+
 /* BTN CSS */
 .myPageBTN {
     display: flex;
@@ -485,7 +440,6 @@ input[type="email"] {
     margin: 18px auto;
     width: 25%;
     padding-bottom: 15px;
-    /* border: 1px solid rgb(215, 215, 215); */
 }
 hr {
     border-style: solid;
@@ -503,7 +457,6 @@ hr {
     margin: 0 auto;
     font-weight: bold;
     font-size: 12px;
-    /* border: 1px solid red; */
     color: #333;
     border: 0;
     box-shadow: 5px 5px 5px rgb(217, 217, 217);
@@ -522,7 +475,6 @@ hr {
     color: rgb(238, 237, 237);
 }
 .myPageGoEdit {
-    /* display: none; */
     cursor: pointer;
     font-size: 10px;
     text-align: center;
@@ -539,15 +491,12 @@ hr {
     margin: 50px auto;
     display: flex;
     flex-direction: column;
-    /* border: 1px solid red; */
     align-items: center;
     padding-top: 80px;
 }
 .postContent {
     width: 100%;
     margin: 0 -40px;
-
-    /* border: 1px solid red; */
 }
 .postContent ul {
     width: 100%;
@@ -556,7 +505,6 @@ hr {
 .postContent ul li {
     display: block;
     list-style: none;
-    /* border: 1px solid red; */
     width: 100%;
     text-align: center;
     box-shadow: 5px 5px 5px rgb(207, 207, 207);
@@ -571,19 +519,17 @@ hr {
     padding: 8px 0;
     line-height: 30px;
 }
-/* post edit */
+
 /* post */
 .postContainer {
     width: 50%;
     margin: 50px auto;
     display: flex;
     flex-direction: column;
-    /* border: 1px solid red; */
     align-items: center;
 }
 .postContent {
     width: 100%;
-    /* border: 1px solid red; */
 }
 .postContent > ul {
     width: 100%;
@@ -592,7 +538,6 @@ hr {
 .postContent > ul > li {
     display: block;
     list-style: none;
-    /* border: 1px solid red; */
     width: 100%;
     text-align: center;
     box-shadow: 5px 5px 5px rgb(207, 207, 207);
@@ -611,7 +556,6 @@ hr {
 .postEditContainer {
     width: 600px;
     margin: 0 auto;
-    /* border: 1px solid blue; */
 }
 .postEditContainer > form {
     background-color: #ebecee;
@@ -622,10 +566,8 @@ hr {
     justify-content: center;
     box-shadow: 5px 5px 5px rgb(217, 217, 217);
     border: 1px solid rgb(215, 215, 215);
-    /* border: 1px solid red; */
     margin-bottom: 30px;
     width: 600px;
-    /* border: 1px solid red; */
 }
 .inputContainer > fieldset > legend {
     text-align: center;
@@ -643,7 +585,6 @@ hr {
 input[type="file"],
 input[id="postEditTitle"],
 input[id="searchText"] {
-    /* position: relative; */
     display: block;
     width: 100%;
     height: 30px;
@@ -651,16 +592,11 @@ input[id="searchText"] {
     padding: 0;
     border: none;
     border-bottom: 1px solid rgb(217, 217, 217);
-    /* box-shadow: 5px 5px 5px rgb(217, 217, 217); */
     resize: none;
 }
 .regionBox > #postEditFile {
     text-align: center;
 }
-
-/* .regionBox > img {
-    margin-left: 28%;
-} */
 .searchResult {
     text-align: center;
     margin-bottom: 5px;
@@ -678,7 +614,6 @@ p {
     width: 100%;
     border: none;
     padding: 8px;
-    /* border: 1px solid red; */
 }
 #searchBTN:hover {
     background-color: #e3e3e3;
@@ -693,7 +628,6 @@ p {
     margin: 0 auto;
     font-weight: bold;
     font-size: 18px;
-    /* border: 1px solid red; */
     color: #333;
     border: 0;
     box-shadow: 5px 5px 5px rgb(217, 217, 217);
@@ -723,6 +657,7 @@ p {
     background-color: rgb(255, 137, 116);
     color: #3f4042;
 }
+
 /* profile edit */
 .profileEditContainer {
     padding-top: 50px;
@@ -734,7 +669,6 @@ p {
     justify-content: center;
     box-shadow: 5px 5px 5px rgb(217, 217, 217);
     border: 1px solid rgb(215, 215, 215);
-    /* border: 1px solid red; */
 }
 .profileEditForm {
     display: flex;
@@ -742,7 +676,6 @@ p {
 }
 .profileEditImgChange {
     display: flex;
-    /* border: 1px solid red; */
     align-items: center;
     justify-content: space-between;
     padding: 30px 0;
@@ -752,12 +685,10 @@ p {
     align-items: center;
     justify-content: space-around;
     margin-bottom: 30px;
-    /* border: 1px solid red; */
 }
 .profileEditIcon {
     width: 120px;
     height: 120px;
-    /* border: 1px solid gray; */
     border-radius: 50%;
     box-shadow: 5px 5px 5px rgb(207, 207, 207);
     border: 1px solid rgb(215, 215, 215);
@@ -784,7 +715,6 @@ p {
     color: #3c3c3c;
     line-height: 0px;
     font-size: 12px;
-    /* margin-left: 70px; */
     position: relative;
     left: 15rem;
     bottom: 2.5rem;
@@ -820,7 +750,6 @@ p {
 .profileEditBTN > button {
     width: 35%;
     margin: 0 20px 15px;
-    /* border: 2px solid rgb(248, 229, 241); */
     border: none;
     padding: 10px 0;
     border-radius: 7px;
@@ -849,11 +778,8 @@ li {
 .comment {
     display: block;
     width: 100%;
-    /* border: 1px solid red; */
     background-color: #f8f8f8;
     box-shadow: 5px 5px 5px rgb(207, 207, 207);
-    /* margin: 0 auto; */
-    /* padding-top: 15px; */
 }
 .commentForm {
     display: flex;
@@ -886,8 +812,6 @@ li {
     background: #fff;
     margin: 0 auto;
     border: 1px solid #b1b1b1;
-
-    /* box-shadow: 5px 5px 5px rgb(207, 207, 207); */
 }
 .commentID {
     width: 100%;
@@ -900,7 +824,6 @@ li {
     line-height: 20px;
 }
 .commentContent {
-    /* border: 1px solid red; */
     padding: 2px 5px;
     font-size: 15px;
     margin-bottom: 10px;
@@ -936,14 +859,12 @@ li {
     align-items: center;
 }
 .adminContainer {
-    /* display: flex; */
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     position: absolute;
     top: 40%;
-    /* border: 1px solid black; */
     width: 500px;
     height: 100px;
     font-size: 20px;
@@ -952,6 +873,7 @@ li {
     width: 200px;
     color: #333;
 }
+
 /* adminAcess CSS */
 #adminAccessBody {
     background-color: rgb(250, 250, 250);
@@ -997,7 +919,6 @@ button[value="위치"] {
     border: 1px solid #e3e3e3;
     width: 100%;
 }
-/* adminQnA CSS */
 .contact {
     display: flex;
     flex-direction: column;
@@ -1008,13 +929,7 @@ button[value="위치"] {
     margin-top: 5rem;
     margin-bottom: 2rem;
 }
-/* #contactForm {
-    border: 1px solid #3c3c3c;
-    border-style: outset;
-    width: 478.260864px;
-} */
 #contactForm > table {
-    /* display: inline; */
     text-align: center;
     border: 1px solid black;
 }
@@ -1051,7 +966,6 @@ button[value="위치"] {
     padding: 20px;
     height: 20px;
     background-color: rgb(248, 248, 248);
-    /* border-radius: 10px; */
     box-shadow: 5px 5px 5px rgb(207, 207, 207);
     border: 1px solid rgb(215, 215, 215);
     color: #3c3c3c;
@@ -1065,6 +979,5 @@ button[value="위치"] {
     color: rgb(248, 248, 248);
 }
 .contactTableTR {
-    /* text-align: center; */
     line-height: 50%;
 }

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <!-- <%- include('include/head', { title: '회원가입' })%> -->
+    <%- include('include/head', { title: '회원가입' })%>
     <body>
         <%- include('include/header')%>
         <H1 class="H1WWT joinH1" style="color: #383d43">What Was Today</H1>
@@ -40,23 +40,13 @@
                     required
                 />
                 <br />
-                <!-- <textarea
-                    name=""
-                    id=""
-                    cols="30"
-                    rows="10"
-                    placeholder="소개 글을 작성해주세요"
-                    ></textarea> -->
                 <button class="joinBTN" type="button" onclick="joinUs()">회원가입</button>
             </div>
         </form>
         <script>
             const joinUs = () => {
                 const form = document.forms["form-join"];
-                // if (!form.checkValidity()) {
-                //     form.reportValidity();
-                //     return;
-                // }
+
                 var userID = document.getElementById("userID").value;
                 var userPW = document.getElementById("userPW").value;
                 var userEmail = document.getElementById("userEmail").value;

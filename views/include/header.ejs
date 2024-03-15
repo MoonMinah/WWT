@@ -25,16 +25,14 @@
             <%if(isLogin){%>
             <li><a href="/">Open</a></li>
             <li><a href="/main">Main</a></li>
-            <%# if() {%>
             <li><a href="/myPage">My Page</a></li>
-            <%#} else { %>
             <li>
                 <a href="/admin/adminQNA">QnA</a>
             </li>
-            <%# } %> <%}else{%>
+            <%} else {%>
             <li><a href="/">Open</a></li>
             <li><a href="/main">Main</a></li>
-            <%}%>
+            <% } %>
         </ul>
     </div>
 </div>
