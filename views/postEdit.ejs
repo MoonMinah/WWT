@@ -2,8 +2,7 @@
 <html lang="ko">
     <%- include('include/head', { title: 'What Was Today' })%>
     <body>
-        <%- include('include/header')%> <% console.log(isModify) %> <%#
-        console.log("****************************",postResult) %>
+        <%- include('include/header')%> <% console.log(isModify) %>
         <div class="postEditContainer">
             <h2 class="H1WWT">What Was Today</h2>
             <form name="wwtPostEdit">
@@ -101,29 +100,17 @@
                             style="height: 300px"
                             maxlength="500"
                         >
-<%=courseResult[i].courseText  %></textarea
+                        <%=courseResult[i].courseText  %></textarea
                         >
-                        <!-- <input type="file" name="" id="postEditFile" /> -->
-                        <!-- 수정할 땐 이미지가 있는 게 좋을 것 같아서 넣었는데, 결과물 보고 별로면 없애도 될 것 같아요. -->
                         <div class="searchResult">
                             <img
                                 style="width: 100%"
                                 src="/<%= postResult.reImage %>"
                                 alt="<%= postResult.postTitle %> Image"
                             />
-                            <!-- <input
-                                type="text"
-                                id="searchText"
-                                placeholder="찾으시는 위치를 적어주세요"
-                                value=""
-                            /> -->
                         </div>
-                        <!-- <button type="button" onclick="getPlaces()" value="위치검색" id="searchBTN">
-                            위치 검색하기
-                        </button> -->
                         <% } %>
                     </div>
-                    <!-- <button type="button" onclick="addPost()" id="addBTN">+</button> -->
                     <button class="writePostBTN" type="button" onclick="modifyPost()">
                         (수정하기)Would you like to post?
                     </button>
@@ -215,12 +202,13 @@
                     alert("Failed to fetch places. Please check the console for details.");
                 }
             }
-            //{
+            //{ 들어오는 데이터 확인
             //    "postTitle" :"임시제목",
             //    "weather" : "sunny",
             //    "region" : "서울",
             //    "postCourse" : [{"courseImagePath" : "temp", "courseLon":12.12, "courseLat":13.13, "courseText":"course설명입니다"},{"courseImagePath" : "temp", "courseLon":12.12, "courseLat":13.13, "courseText":"course설명입니다"}]
             //}와 같은 형태로 받도록 되어 있습니다.
+
             let postCourse = [];
             let lon, lat;
             let num = 0;
@@ -252,14 +240,6 @@
                         ul.parentNode.nextElementSibling.remove();
                         ul.parentNode.remove();
                         div.append(p);
-
-                        // postCourse[num].append({
-                        //     courseImagePath: "temp",
-                        //     courseLon: result.data.lon,
-                        //     courseLat: result.data.lat,
-                        //     courseText: "course설명입니다",
-                        // });
-                        // return result.data;
                     });
             }
 
@@ -294,16 +274,12 @@
 
             async function getLonLat() {
                 try {
-                    // const placeIdInput = document.getElementById("placeIdInput");
-                    // const placeId = placeIdInput.value;
-
                     const response = await axios.post("http://49.50.167.42:8000/getLatLng", {
                         placeId: "ChIJAQUM8DC5fDURFfgRagtj3pM",
                     });
 
                     const location = response.data.location;
 
-                    // displayLocation(location);
                     console.log(location);
                 } catch (error) {
                     console.error("Error fetching location:", error.message);
@@ -325,7 +301,7 @@
                 const form = document.forms["wwtPostEdit"];
                 const file = document.getElementById("postEditFile");
                 const formData = new FormData();
-                //formData.append("postEditFile", file.files[0]);
+
                 for (let i = 1; i <= count; i++) {
                     const file = document.getElementsByName(`file${i}`);
                     formData.append(`file${i}`, file[0].files[0]);
@@ -336,8 +312,7 @@
                 let weatherRadio = document.querySelector('input[name="weather"]:checked').value;
                 let postTitle = document.querySelector('input[name="title"]').value;
                 let postContent = document.querySelectorAll('textarea[name="postContent"]');
-                console.log("=======" + postContent[0]);
-                console.log(postContent[1] + "=======");
+
                 let postCourse = [];
                 for (let i = 0; i < postBoxList.length; i++) {
                     console.log(postBoxList[i]);
@@ -345,22 +320,11 @@
                     let postLonLat = postBoxList[i].id.toString().split(",");
                     console.log(postLonLat);
                     postCourse[i] = {
-                        // courseImagePath: "tt",
                         courseLon: postLonLat[0],
                         courseLat: postLonLat[1],
                         courseText: postContent[i].value,
                     };
                 }
-
-                console.log(postCourse);
-                console.log("문자열로 변경");
-                console.log(JSON.stringify(postCourse));
-                // const data = {
-                //     postTitle: postTitle,
-                //     weather: weatherRadio,
-                //     region: "서울",
-                //     postCourse: postCourse,
-                // };
 
                 formData.append("postTitle", postTitle);
                 formData.append("weather", weatherRadio);
@@ -387,7 +351,6 @@
                             alert("다시 시도해주세요");
                         }
                     })
-                    // .then(function (data) {})
                     .catch((err) => console.log(err));
             }
 
@@ -405,7 +368,6 @@
             }
 
             function deletePost() {
-                // console.log(req.body);
                 let form = document.forms["wwtPostEdit"];
                 axios({
                     url: "/deletePost",
@@ -429,7 +391,7 @@
                 const hiddenCourseNumber = document.querySelectorAll(".hiddenCourseNumber");
                 const courseContentText = regionBox.querySelectorAll("textarea");
                 const postCourse = [];
-                // const data = [];
+
                 for (let i = 0; i < courseContentText.length; i++) {
                     const courseText = courseContentText[i].value;
                     const courseNumber = hiddenCourseNumber[i].value;

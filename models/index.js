@@ -2,7 +2,6 @@
 
 const Sequelize = require("sequelize");
 console.log("crossenv", process.env.NODE_ENV); //prod or development
-// const config = require(__dirname + "/../config/config.json")["development"];
 let config;
 if (process.env.NODE_ENV) {
     // npm run dev(로컬), npm start(서버)

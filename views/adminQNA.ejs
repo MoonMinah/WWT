@@ -77,21 +77,21 @@
                         </tr>
                     </tbody>
                 </table>
+                <div class="adminBTNContainer">
+                    <input class="adminQNABackBTN" type="button" value="뒤로" onclick="goBack()" />
+                    <button class="adminQNABTN" type="submit">SEND</button>
+                </div>
             </form>
-            <div class="adminBTNContainer">
-                <input class="adminQNABackBTN" type="button" value="뒤로" onclick="goBack()" />
-                <button class="adminQNABTN" type="submit">SEND</button>
-            </div>
         </div>
-
         <script src="https://smtpjs.com/v3/smtp.js"></script>
+
         <script>
             const form = document.getElementById("contactForm");
             const fullName = document.getElementById("name");
             const email = document.getElementById("email");
             const subject = document.getElementById("subject");
             const message = document.getElementById("message");
-
+            console.log(form);
             function sendEmail() {
                 const bodyMessage = `성함: ${fullName.value}<br> 이메일: ${email.value}<br> 제목: ${subject.value}<br> 메시지: ${message.value}<br>`;
                 Email.send({

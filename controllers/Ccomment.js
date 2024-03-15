@@ -4,7 +4,6 @@ const uID = 1;
 const pN = 3;
 
 exports.postComment = (req, res) => {
-    // console.log(req.body.postNumber);
     if (req.session.userID) {
         console.log("=========");
         console.log(req.body);

@@ -13,13 +13,8 @@
                     <% } %>
                 </div>
                 <p class="myPageNickname"><%= data.userNickname %></p>
-                <!--닉네임-->
             </div>
             <p id="userText" name="userText"><%= data.userText %></p>
-            <!-- <div class="myPageDiv2"> -->
-            <!--게시물 수-->
-            <!-- <p class="myPagePostCountName">게시물</p> -->
-            <!-- </div> -->
         </div>
         <div class="myPageBTN">
             <button class="myPageEditBTN" type="button" onClick="location.href='/profileEdit'">
@@ -29,14 +24,11 @@
                 글 등록하기
             </button>
         </div>
-
         <br /><br />
         <p class="myPagePostCount">게시물 <%= myPagePostCount%></p>
-        <!-- </div> -->
         <hr width="75%" />
         <br /><br />
         <div class="inner">
-            <!-- Boxes -->
             <!-- 이미지 경로 이름은 확인하고 변경할 수도 있음(/static/uploads/post Or /static/) -->
             <div class="box-wrap">
                 <% for(let i = 0; i < myPosts.length ; i++ ) {%>
@@ -55,7 +47,6 @@
                 <% } %>
             </div>
         </div>
-        <% } %> <%- include('include/footer') %> <% console.log("data========================") %>
-        <% console.log("************") %> <% console.log(myPosts) %>
+        <% } %> <%- include('include/footer') %>
     </body>
 </html>

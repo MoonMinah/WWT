@@ -5,28 +5,28 @@
         <%- include('include/header')%>
 
         <!-- 
-
-{
-isLogin: true,
-postData:{
-    postNumber: 1,
-    postTitle: "임시제목",
-    weather: null,
-    region: null,
-    reImage: "temp",
-    createdAt: "2024-03-06T04:59:23.000Z",
-    updatedAt: "2024-03-06T04:59:23.000Z",
-    userID: 1
-    },
-commentResult:[
-        {"courseNumber": 1, "courseImagePath": "temp", "courseLon": 12.12, "courseLat": 13.13, "courseText": "course설명입니다",…},
-        {"courseNumber": 2, "courseImagePath": "temp", "courseLon": 12.12, "courseLat": 13.13, "courseText": "course설명입니다",…}
-    ],
-postCourseData:[
-        {"courseNumber": 1, "courseImagePath": "temp", "courseLon": 12.12, "courseLat": 13.13, "courseText": "course설명입니다",…},
-        {"courseNumber": 2, "courseImagePath": "temp", "courseLon": 12.12, "courseLat": 13.13, "courseText": "course설명입니다",…}
-    ]
-    }
+            post에 들어오는 api 데이터 확인
+                {
+                    isLogin: true,
+                    postData:{
+                        postNumber: 1,
+                        postTitle: "임시제목",
+                        weather: null,
+                        region: null,
+                        reImage: "temp",
+                        createdAt: "2024-03-06T04:59:23.000Z",
+                        updatedAt: "2024-03-06T04:59:23.000Z",
+                        userID: 1
+                    },
+                    commentResult:[
+                        {"courseNumber": 1, "courseImagePath": "temp", "courseLon": 12.12, "courseLat": 13.13, "courseText": "course설명입니다",…},
+                        {"courseNumber": 2, "courseImagePath": "temp", "courseLon": 12.12, "courseLat": 13.13, "courseText": "course설명입니다",…}
+                    ],
+                    postCourseData:[
+                        {"courseNumber": 1, "courseImagePath": "temp", "courseLon": 12.12, "courseLat": 13.13, "courseText": "course설명입니다",…},
+                        {"courseNumber": 2, "courseImagePath": "temp", "courseLon": 12.12, "courseLat": 13.13, "courseText": "course설명입니다",…}
+                    ]
+                }
          -->
         <script></script>
         <div class="postContainer">
@@ -135,6 +135,7 @@ postCourseData:[
             const list = [];
             const form = document.forms["comment"];
             const form2 = document.forms["reply"];
+
             // 위도(latitude)와 경도(longitude) 데이터
             let markers = [];
             function showMap() {
@@ -166,13 +167,6 @@ postCourseData:[
                     routeWhileDragging: true,
                     show: false,
                 }).addTo(mymap);
-                // let polyline = L.polyline(
-                //     markers.map((marker) => [marker.latitude, marker.longitude]),
-                //     {
-                //         color: "red",
-                //     }
-                // ).addTo(mymap);
-                // 마커를 추가하여 해당 위도와 경도에 표시합니다.
             }
             function showSmallMap() {
                 markers.forEach(function (location, index) {
@@ -200,12 +194,9 @@ postCourseData:[
                 console.log(form.content.value);
                 console.log(list.length + 1);
                 console.log("<%= postData.postNumber%>");
-                // console.log(replyInput.id + "++++++++");
-                // console.log(form2.reply);
 
                 let data = {
                     postNumber: "<%= postData.postNumber%>",
-                    // userID: getPost.useID,
                     userID: "<%=data.id%>",
                     commentText: form.content.value,
                 };
@@ -224,7 +215,6 @@ postCourseData:[
                             alert("다시 시도해주세요");
                         }
                     })
-                    // .then(function (data) {})
                     .catch((err) => console.log(err));
             }
 

@@ -192,14 +192,9 @@ exports.postLogin = (req, res) => {
 
                 if (result.memLV === 0) {
                     console.log(result.memLV);
-                    // res.redirect("/admin/adminAccess");
-                    // const users = await model.User.findAll();
                     res.send({ isLogin: true, data: result, admin: result.memLV });
                 } else {
-                    // console.log("이것은 로그인입니다 !!", result);
                     res.send({ isLogin: true, data: result, admin: result.memLV });
-                    // res.render("open", { data: result });
-                    // res.redirect("/");
                 }
             } else {
                 res.send("");
@@ -235,7 +230,6 @@ exports.postProfile = (req, res) => {
             res.render("profileEdit", { data: result });
         })
         .catch(() => {
-            //console.log("프로필 조회 실패");
             res.send(500).send("프로필 조회 실패");
         });
 };

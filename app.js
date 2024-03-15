@@ -30,7 +30,6 @@ app.use(
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// const router = require("./routes");
 const indexRouter = require("./routes/index");
 const adminRouter = require("./routes/admin");
 
@@ -38,7 +37,6 @@ app.use("/", indexRouter);
 app.use("/admin", adminRouter);
 
 db.sequelize.sync({ force: false }).then((result) => {
-    // console.log(result);
     console.log("DB연결 성공");
 });
 
