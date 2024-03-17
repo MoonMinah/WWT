@@ -16,7 +16,7 @@
 * **추수연** - *Front* - [CHUSUYEON](https://github.com/CHUSUEYEON)
 * **이기혁** - *Front* - [leekihyeok](https://github.com/leekihyeok)
 * **신동운** - *Back* - [tlsdla1235](https://github.com/tlsdla1235)
-* **문민아** - *Back* - [MoonMiah](https://github.com/MoonMinah)
+* **문민아** - *Back* - [MoonMinah](https://github.com/MoonMinah)
 
 ## 프로젝트 소개
 저희 ready4는 일반적인 블로그와 차별화를 두기 위해 날씨를 이용한 SNS입니다. 
